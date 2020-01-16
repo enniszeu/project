@@ -6,6 +6,11 @@ body{
 	font-family: 'Poiret One', cursive;
 	
 }
+svg{
+	position: absolute;
+	top: 42%;
+    left: 48%;
+}
 nav{
 	
 }
@@ -297,5 +302,9 @@ nav{
 	.conten-social ul li{
 		top: 480px;
 	}
+	svg {
+	    top: 38%;
+	    left: 34%;
+}
 
 }
