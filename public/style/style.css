@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Poiret+One&display=swap');
+
+
+
+body{
+	font-family: 'Poiret One', cursive;
+	
+}
+nav{
+	
+}
+.pd{
+	padding: 0px !important;
+}
+.container-fluid{
+	background: #000;
+}
+.display-4{
+	font-size: 2.5rem !important;
+}
+.baner{
+	background-image: url("../image/enniszeu1.jpg");
+	background-size: cover;
+	height: 100vh;
+}
+#baner{
+	opacity: 0;
+	transition: 1s;
+}
+.meau-nav{
+	position: sticky;
+	height: 60px;
+	transition: 0.5s;
+}
+.meau-nav ul{
+	
+}
+.meau-nav-ul li{
+	list-style: none;
+	float: right;
+	margin: 16px;
+}
+.meau-nav ul li a{
+	color: #fff;
+}
+.title-nav{
+	position: absolute;
+	color: #B40431;
+	font-family: 'Montserrat Subrayada', sans-serif;
+	margin-left: 40px;
+	margin-top: 6px;
+}
+.font-1{
+	font-style: 37px;
+}
+.nav-mobie i{
+	font-size: 40px;
+    position: absolute;
+    color: #fff;
+    margin-left: 84%;
+    padding: 31px;
+    
+}
+.nav-mobie{
+	display: none;
+}
+.baner-title{
+	color: #fff;
+	position: relative;
+	font-family: 'Poiret One', cursive;
+	margin: 87px;
+	float: right;
+
+}
+.row-title{
+	width: 100%;
+}
+.title1{
+	color: #aaa;
+	font-size: 0px;
+	position: absolute;
+	transition: 1s;
+	font-size: 16px;
+	opacity: 0;
+}
+.title2{
+	font-size: 0px;
+	transition: 1s;
+	font-size: 55px;
+	position: absolute;
+	opacity: 0;
+}
+.title3{
+	font-size: 48px;
+	color: red;
+
+}
+.button-title{
+	width: 130px;
+	height: 50px;
+	border-radius: 50px;
+	border:1px solid #fff;
+	background: ;
+	color: #fff;
+	position: absolute;
+	top: 151px;
+	transition: 1s;
+	opacity: 0;
+
+}
+.button-title a{
+	margin: 11px;
+	position: absolute;
+	padding-left: 11px;	
+}
+.button-title:hover{
+	border: 1px solid red;
+}
+.nav-cribe{
+	position: fixed;
+	width: 101%;
+	height: 100vh;
+	background: #1C1C1C;
+	margin-left: 100%;
+	transition: 0.5s;
+}
+.fa-icon{
+	font-size: 37px;
+	padding: 14px;
+	color: #fff;
+}
+.meau-mobie ul{
+	margin: 10%;
+}
+.meau-mobie ul li{
+	list-style: none;
+	text-align: center;
+	padding: 4%;
+}
+.conten{
+	text-align: center;
+	padding:48px;
+}
+.conten-table1{
+	width: 30
+}
+.table1{
+	width: 100%;
+	height: 400px;
+	background-image: url("../image/tuan2.jpg");
+	background-size: cover;
+
+}
+.table1:hover .conten-social ul > li{
+	margin-left: 8px;
+	opacity: 1;
+}
+.table2{
+	width: 100%;
+	height: 440px;
+	background: #2E2E2E;
+	color: #fff;
+}.meau-conten{
+	height: 65px;
+}
+
+.meau-conten ul li{
+	list-style: none;
+	float: left;
+	padding: 17px;
+
+}
+.meau-conten ul li a{
+	color: #fff;
+}
+.meau-conten ul li a:hover{
+	color: #fff;
+}
+.active{
+	color: red !important;
+}
+.conten h3{
+	font-size: 2.75rem;
+	color: red;
+}
+.conten h3:before{
+	content: "";
+	position: absolute;
+	width: 63px;
+	height: 5px;
+	background: red;
+	top: 117px;
+    left: 46%;
+}
+.conten p{
+	padding-top: 39px;
+}
+.conten-meau{
+	
+	
+}
+#conten-meau , #conten-meau2{
+	position: absolute;
+	padding: 36px;
+	opacity: 0;
+	transition: 0.5s;
+	
+}
+#conten-meau1{
+	position: absolute;
+	padding: 36px;
+	transition: 0.5s;
+	
+}
+
+.conten-social ul li {
+	list-style: none;
+	float: left;
+	background: #fff;
+	width: 48px;
+	height: 48px;
+	margin: 5px;
+	border-radius: 40px;
+	position: relative;
+	top: 306px;
+	margin-left: -22px;
+	transition: all 0.3s ease;
+	opacity: 0;
+}
+.conten-social ul li:hover{
+	background: #ff4b4e;
+}
+.conten-social ul li i{
+	padding: 16px;
+}
+
+@media (max-width: 992px) {	
+	.meau-nav-ul{
+		display: none;
+	}
+
+	.nav-mobie{
+		display: block;	
+	}
+	.title1{
+		font-size: 15px;
+	}
+	.title2{
+		font-size: 50px;
+	}
+	.title3{
+		font-size: 43px;
+	}
+	.table1 {
+    	width: 100%;
+    	height: 800px;
+	}
+	.conten-social ul li{
+		top: 696px;
+	}
+}
+@media (max-width: 768px) { 
+	.baner-title{
+		margin: 141px;
+	}
+	
+}
+@media (max-width: 576px) { 
+	.nav-mobie i{
+		margin-left: 65%;
+	}
+	.baner-title {
+    	margin: 0px;
+    	margin-top: 103px;
+	}
+	.meau-mobie ul{
+		padding-top: 60%;
+		margin: 0%;
+	}
+	.meau-mobie ul li{
+		padding: 4%;
+		margin-left: -9%;
+
+	}
+	.table1 {
+    	height: 600px;
+	}
+	.table2 {
+    	height: 570px;
+	}
+	.conten h3:before {
+    	left: 43%;
+	}
+	.meau-conten ul li {
+    	padding: 13px;
+	}
+	.conten-social ul li{
+		top: 480px;
+	}
+
+}
