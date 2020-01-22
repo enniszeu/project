@@ -7,7 +7,7 @@ var postSchema = new mongoose.Schema({
 	imgeFile: String,
 	email:String,
 	password:String,
-	price:String,
+	url:String,
 	textAria:String
 });
 

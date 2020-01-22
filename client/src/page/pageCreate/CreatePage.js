@@ -73,32 +73,31 @@ import {
 
         onSubmit(e){
             e.preventDefault();
-            var {name,conten,textAria,image} = this.state;
+            var {name,conten,textAria,image,url} = this.state;
             var {history} = this.props;
 
-
-            const uploadTask = storage.ref(`image/${image.name}`).put(image);
+            const uploadTask = storage.ref(`image/${image.name}`);
             console.log(storage.ref('images'))
-            uploadTask.on('state_changed',
-                (snapshot)=>{
+            uploadTask.put(image).then(function(snapshot) {
 
-                },
-                (error)=>{
-                    console.log(error)
-                },
-                ()=>{
-                    storage.ref('images').child(image.name).getDownloadURL().then(url =>{
-                        console.log(this.state.url)
-                         this.setState({
-                            url: url
-                        });
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+            console.log('Upload is ' + progress + '% done');
+
+            }).then(function() {
+                uploadTask.getDownloadURL().then(function(downloadURL) {
+                    this.setState({
+                        url:downloadURL
                     })
-                } );
+                    console.log('File available at', downloadURL);
+                });
+            });
 
                 callApi('create', 'POST', {
                     name:name,
                     conten:conten,
-                    textAria:textAria
+                    textAria:textAria,
+                    url:url
                 }).then(res =>{
                     history.goBack('/');
                 })
