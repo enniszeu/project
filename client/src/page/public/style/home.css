@@ -1,0 +1,569 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Poiret+One&display=swap');
+
+
+.html{
+	opacity: 1 !important;
+}
+.title1-1{
+	opacity: 1 !important;
+	margin-top: -28px;
+}
+.title2-2{
+	opacity: 1 !important;
+	margin-top: 23px;
+}
+.button{
+	opacity: 1 !important;
+	margin-top: 23px;
+}
+.onMeau{
+	margin-left: -2% !important;
+}
+.closeMeau{
+	margin-left: 100% !important;
+}
+
+body{
+	font-family: 'Poiret One', cursive;
+	background: #000;
+	color: #fff;
+	
+}
+svg{
+	width: 100%;
+    position: fixed;
+	margin-top: 285px;
+}
+nav{
+	background: ;
+}
+.pd{
+	padding: 0px !important;
+}
+
+.container-fluid{
+}
+.display-4{
+	font-size: 2.5rem !important;
+}
+.baner{
+	background-image: url("../image/enniszeu1.jpg");
+	background-size: cover;
+	height: 100vh;
+}
+#html{
+	opacity: 0;
+	transition: 1s;
+}
+#baner{
+	
+	transition: 1s;
+}
+.meau-nav{
+	position: sticky;
+	height: 60px;
+	transition: 0.5s;
+}
+.meau-nav ul{
+	
+}
+.meau-nav-ul li{
+	list-style: none;
+	float: right;
+	margin: 16px;
+}
+.meau-nav ul li a{
+	color: #fff;
+}
+.title-nav{
+	position: absolute;
+	color: #B40431;
+	font-family: 'Montserrat Subrayada', sans-serif;
+	margin-left: 40px;
+	margin-top: 6px;
+}
+.font-1{
+	font-style: 37px;
+}
+.nav-mobie i{
+	font-size: 40px;
+    position: absolute;
+    color: #fff;
+    margin-left: 84%;
+    padding: 12px;
+    
+}
+.nav-mobie{
+	display: none;
+}
+.baner-title{
+	color: #fff;
+	position: relative;
+	font-family: 'Poiret One', cursive;
+	margin: 87px;
+	float: right;
+
+}
+.row-title{
+	width: 100%;
+}
+.title1{
+	color: #aaa;
+	font-size: 0px;
+	position: absolute;
+	transition: 1s;
+	font-size: 16px;
+	opacity: 0;
+}
+.title2{
+	font-size: 0px;
+	transition: 1s;
+	font-size: 55px;
+	position: absolute;
+	opacity: 0;
+}
+.title3{
+	font-size: 48px;
+	color: red;
+
+}
+.button-title{
+	width: 130px;
+	height: 50px;
+	border-radius: 50px;
+	border:1px solid #fff;
+	background: ;
+	color: #fff;
+	position: absolute;
+	top: 151px;
+	transition: 1s;
+	opacity: 0;
+
+}
+.button-title a{
+	margin: 11px;
+	position: absolute;
+	padding-left: 11px;	
+}
+.button-title:hover{
+	border: 1px solid red;
+}
+.nav-cribe{
+	position: fixed;
+	width: 101%;
+	height: 100vh;
+	background: #1C1C1C;
+	margin-left: 100%;
+	transition: 0.5s;
+}
+.fa-icon{
+	font-size: 37px;
+	padding: 14px;
+	color: #fff;
+}
+.meau-mobie ul{
+	margin: 10%;
+}
+.meau-mobie ul li{
+	list-style: none;
+	text-align: center;
+	padding: 4%;
+}
+.conten{
+	text-align: center;
+	padding:48px;
+	opacity: 1;
+}
+.conten-table1{
+	width: 30
+}
+.table1{
+	width: 100%;
+	height: 400px;
+	background-image: url("../image/tuan2.jpg");
+	background-size: cover;
+
+}
+.table1:hover .conten-social ul > li{
+	margin-left: 8px;
+	opacity: 1;
+}
+.table2{
+	width: 100%;
+	height: 440px;
+	background: #2E2E2E;
+	color: #fff;
+}.meau-conten{
+	height: 65px;
+}
+
+.meau-conten ul li{
+	list-style: none;
+	float: left;
+	padding: 17px;
+
+}
+.meau-conten ul li a{
+	color: #fff;
+}
+.meau-conten ul li a:hover{
+	color: #fff;
+}
+.active{
+	color: red !important;
+}
+.conten h3{
+	font-size: 2.75rem;
+	color: red;
+}
+.conten h3:before{
+	content: "";
+	position: absolute;
+	width: 63px;
+	height: 5px;
+	top: 117px;
+    left: 46%;
+}
+.conten p{
+	padding-top: 39px;
+}
+.conten-meau{
+	
+	
+}
+.conten-meau{
+	position: absolute;
+	padding: 36px;
+	transition: 0.5s;
+	
+}
+
+.conten-social ul li {
+	list-style: none;
+	float: left;
+	background: #fff;
+	width: 48px;
+	height: 48px;
+	margin: 5px;
+	border-radius: 40px;
+	position: relative;
+	top: 306px;
+	margin-left: -22px;
+	transition: all 0.3s ease;
+	opacity: 0;
+}
+.conten-social ul li:hover{
+	background: #ff4b4e;
+}
+.conten-social ul li i{
+	padding: 16px;
+}
+
+.contenSkill{
+	text-align: center;
+    padding: 40px;
+  /*  background: #f5f5f5;*/
+    margin-top: 56px;
+}
+.contenSkill h3{
+	padding: 15px;
+}
+.loaderSkill{
+	text-align: center;
+	font-size: 20px;
+    font-weight: 500;
+    /*background: #f5f5f5;*/
+    text-transform: uppercase;
+    width: 100%;
+    height: 75%;
+}
+.loaderSkill p{
+	margin-top: 40px;
+}
+.float{
+	margin-left: 32%;
+	transition: all 0.3s ease;
+	background: #ff4b4e;
+	font-size: 16px;
+	position:relative;
+}
+.skillOne{
+	width: 50px;
+	height: 350px;
+
+  	
+}
+.skillOne:before{
+	content: "90%";
+	position: relative;
+	top: calc(100% - 5px);
+
+}
+.skillTrue{
+	width: 50px;
+	height: 330px;
+
+}
+.skillTrue:before{
+	content: "70%";
+	position: relative;
+	top: calc(100% - 5px);
+
+}
+.skillTree{
+	width: 50px;
+	height: 250px;
+
+}
+.skillTree:before{
+	content: "60%";
+	position: relative;
+	top: calc(100% - 5px);
+
+}
+.skillFor{
+	width: 50px;
+	height: 310px;
+
+}
+.skillFor:before{
+	content: "68%";
+	position: relative;
+	top: calc(100% - 5px);
+
+}
+.skillFire{
+	width: 50px;
+	height: 150px;
+
+}
+.skillFire:before{
+	content: "30%";
+	position: relative;
+	top: calc(100% - 5px);
+
+}
+
+.skillSit{
+	width: 50px;
+	height: 130px;
+
+}
+.skillSit:before{
+	content: "25%";
+	position: relative;
+	top: calc(100% - 5px);
+
+}
+.conten-skill{
+	font-size: 13px;
+    padding: 47px;
+}
+.serviceMain{
+	background-image: url("../image/service_bg.png");
+	background-size: cover;
+	color: #fff;
+	padding-bottom: 60px;
+}
+.serviceConten{
+	text-align: center;
+	padding: 96px;
+	padding-bottom: 0px;
+}
+.size{
+	width: 340px;
+    height: 300px;
+	background: #fff;
+	margin-top: 32px;
+	transition: all 0.3s ease;
+}
+.size:hover{
+	background: #ff4b4e;
+}
+.size:hover >.conten-size{
+	color: #fff;
+}
+.sizeMain{
+	padding-left: 40px;
+	padding-right: 40px;
+}
+.conten-size{
+	color: #000;
+	padding: 41px;
+    text-align: center;
+
+}
+.imageMyteam{
+	background-image: url("../image/team-bg.png");
+	background-size: cover;
+	padding: 45px;
+}
+.Tem{
+	width: 100%;
+	height: 450px;
+	margin-top: 20px;
+	padding: 20px;
+	padding-left: 25%;
+	padding-right: 25%;
+	color: #fff;
+	text-align: center;
+}
+
+.teamOne{
+	background: rgba(32, 42, 54, 0.8);
+	
+}
+.teamTrue{
+	background: rgba(32, 42, 54, 0.8);
+}
+.teamTree{
+	background: rgba(32, 42, 54, 0.8);
+}
+.paddingTem{
+	padding-left: 70px;
+	padding-right: 70px;
+}
+.imageTeam1{
+	width: 100%;
+	height: 250px;
+	background-image: url("../image/tuan.jpg");
+	background-size: cover;
+	border-radius: 60%;
+}
+.teamDisplay{
+	position: absolute;
+	width: 80%;
+}
+.Tem:hover .teamDisplay{
+	display: none;
+}
+.Tem:hover .conten-social ul > li{
+	margin-left: 8px;
+	opacity: 1;
+	top: 0px;
+	color: #000;
+}
+
+
+@media (max-width: 1139px){
+	.size{
+		width: 290px;
+	    height: 300px;
+	}
+	.Tem{
+		padding-left: 15%;
+		padding-right: 15%;
+	}
+}
+@media (max-width: 992px) {	
+	.meau-nav-ul{
+		display: none;
+	}
+
+	.nav-mobie{
+		display: block;	
+	}
+	.title1{
+		font-size: 15px;
+	}
+	.title2{
+		font-size: 50px;
+	}
+	.title3{
+		font-size: 43px;
+	}
+	.table1 {
+    	width: 100%;
+    	height: 800px;
+	}
+	.conten-social ul li{
+		top: 696px;
+	}
+	.float{
+		margin-left: 32%;
+		width: 40%;
+	}
+	.loaderSkill{
+		height: 82%;
+	}
+	.nav-mobie i{
+		padding: 6px;
+	}
+	.size{
+		width: 100%;
+    	height: 300px;
+	}
+	.Tem{
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+}
+@media (max-width: 768px) { 
+	.baner-title{
+		margin: 141px;
+	}
+	.size{
+	    height: 254px;
+	}
+	.imageTeam1{
+		height: 320px;
+	}
+	.Tem{
+		padding-left: 15%;
+		padding-right: 15%;
+	}
+
+	
+}
+@media (max-width: 576px) { 
+	.nav-mobie i{
+		margin-left: 72%;
+	}
+	.baner-title {
+    	margin: 0px;
+    	margin-top: 103px;
+	}
+	.meau-mobie ul{
+		padding-top: 60%;
+		margin: 0%;
+	}
+	.meau-mobie ul li{
+		padding: 4%;
+		margin-left: -9%;
+
+	}
+	.table1 {
+    	height: 600px;
+	}
+	.table2 {
+    	height: 570px;
+	}
+	.conten h3:before {
+    	left: 43%;
+	}
+	.meau-conten ul li {
+    	padding: 13px;
+	}
+	.conten-social ul li{
+		top: 480px;
+	}
+	.loaderSkill{
+		height: 85%;
+	}
+	.nav-mobie i{
+		padding: 6px;
+	}
+
+	.size{
+	    height: 254px;
+	}
+	.paddingTem{
+		padding: 0px;
+	}
+	.serviceConten {
+    	padding: 12px;
+	}	
+	.imageTeam1 {
+    	height: 193px;
+	}
+}

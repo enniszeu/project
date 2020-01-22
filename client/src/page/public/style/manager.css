@@ -1,0 +1,96 @@
+
+.meauAdd{
+	margin-left: 4.375pc !important;
+	display: block !important;
+}
+.meau{
+	display: none !important;
+}
+.wapperManager{
+	opacity: 0;
+}
+
+form{
+	background: #000 !important;
+	padding: 68px;
+}
+
+.side-nav{
+	background: #fff;
+	width: 4.375pc;
+	position: fixed;
+	height: 100%;
+	transition: 0.5s;
+}
+.conten-mana{
+	margin-left: 4.375pc;
+	position: relative;
+
+}
+.logo, .side-nav ul li{
+	align-items: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 0;
+	    
+}
+.side-nav ul li{
+	margin-left: -16px;
+}
+.logo{
+	background: #f9f9f9;
+}
+.logo i{
+	margin-left: 20px;
+}
+.logo a{
+	color: #3e416d;
+}
+.side-nav ul{
+	padding-top: 20px;
+}
+.side-nav ul li{
+	list-style: none;
+
+}
+.fa-lt{
+	font-size: 25px;
+	color: #3e416d;
+}
+.nav-title{
+	width: 100%;
+	height: 4.375pc;
+	background: #aaa;
+
+}
+.meau-click{
+	display: none;
+	width: 8%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+}
+.close{
+	display: none;
+	width: 8%;
+    height: 30%;
+    position: absolute;
+    padding: 20px;
+}
+
+
+@media (max-width: 992px){
+	.side-nav{
+		width: 0pc;
+	}
+	.meau-click{
+		display: block;
+	}
+	.conten{
+		margin-left: 0pc;
+	}
+	.conten-mana {
+     	margin-left: 0px;
+	}
+
+}
