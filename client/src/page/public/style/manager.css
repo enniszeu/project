@@ -14,7 +14,15 @@ form{
 	background: #000 !important;
 	padding: 68px;
 }
-
+progress{
+	width: 100% !important;
+	height: 5px !important;
+	background: red;
+	margin: 15px;
+}
+.imageFile{
+	width: 30% !important;
+}
 .side-nav{
 	background: #fff;
 	width: 4.375pc;

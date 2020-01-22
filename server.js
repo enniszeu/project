@@ -42,8 +42,10 @@ app.post('/create', function(req, res){
     const conten = req.body.conten;
     const textAria = req.body.textAria;
     const date = req.body.date;
+    const url = req.body.url;
+    const imageName = req.body.imageName;
 
-    const newUser = new Post({name,conten,date,textAria})
+    const newUser = new Post({name,conten,date,textAria,url,imageName})
 
     newUser.save()
         .then(() => res.json('User add'))

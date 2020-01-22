@@ -3,6 +3,7 @@ import '../public/style/manager.css';
 import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager'
+import {storage} from './../../firebaseConfig/firebaseConfig'
 import {
   Link
 } from "react-router-dom";
@@ -35,6 +36,14 @@ class ManagerPage extends React.Component{
 		var {posts} = this.state;
 
 	   	if(confirm('ban co chan chan muon xoa ? ')){ // eslint-disable-line
+
+	   		var desertRef = storage.ref('images').child(posts.imageName);
+	   		desertRef.delete().then(()=> {
+			  // File deleted successfully
+			}).catch((err)=> {
+			  console.log(err)
+			});
+
 	   		callApi(`delete/${id}`, 'GET', null).then(res =>{
 	   			if( res.status === 200){
 	   				var index = this.findIndex(posts, id);
@@ -108,6 +117,7 @@ class ManagerPage extends React.Component{
 						      <th scope="col">Stt</th>
 						      <th scope="col">Name</th>
 						      <th scope="col">Conten</th>
+						      <th scope="col">Image</th>
 						      <th scope="col">Manager</th>
 						    </tr>
 						  </thead>
@@ -131,6 +141,9 @@ class ManagerPage extends React.Component{
 				      <th scope="row">{index + 1}</th>
 				      <td>{post.name}</td>
 				      <td>{post.conten}</td>
+				      <td>
+				      	<img src={post.url} width="50" height="50" />
+				      </td>
 				      <td><button type="button" 
 				      			  className="btn btn-danger"
 				      			  onClick={()=> this.onDelete(post._id)}

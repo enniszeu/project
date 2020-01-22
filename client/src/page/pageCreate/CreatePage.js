@@ -21,7 +21,8 @@ import {
                 conten:"",
                 image:null,
                 url:"",
-                progress:"",
+                imageName:"",
+                progress:0,
                 textAria:""        
             }
 
@@ -30,6 +31,7 @@ import {
             this.onChangeImage = this.onChangeImage.bind(this);
             this.onChangeTextAria = this.onChangeTextAria.bind(this);
             this.onSubmit = this.onSubmit.bind(this);
+            this.handleUpload = this.handleUpload.bind(this);
 	    }
 
         // componentDidMount(){
@@ -71,35 +73,44 @@ import {
 
         }
 
-        onSubmit(e){
-            e.preventDefault();
-            var {name,conten,textAria,image,url} = this.state;
-            var {history} = this.props;
+        handleUpload(e){
 
+             var {image} = this.state;
+             var imageName = image.name
             const uploadTask = storage.ref(`image/${image.name}`);
-            console.log(storage.ref('images'))
-            uploadTask.put(image).then(function(snapshot) {
+            this.setState(()=> ({imageName}))
 
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            uploadTask.put(image).then((snapshot)=> {
 
-            console.log('Upload is ' + progress + '% done');
+                var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState(()=> ({progress}))
+                console.log('Upload is ' + progress + '% done');
 
-            }).then(function() {
-                uploadTask.getDownloadURL().then(function(downloadURL) {
-                    this.setState({
-                        url:downloadURL
-                    })
-                    console.log('File available at', downloadURL);
+            }).then(()=> {
+                uploadTask.getDownloadURL().then((url)=> {
+                    this.setState(()=> ({url}))
+                    console.log(url)
                 });
             });
 
+        }
+
+        onSubmit(e){
+            e.preventDefault();
+            var {name,conten,textAria,url,imageName} = this.state;
+            var {history} = this.props;
+
+            
                 callApi('create', 'POST', {
                     name:name,
                     conten:conten,
                     textAria:textAria,
-                    url:url
+                    url:url,
+                    imageName:imageName
                 }).then(res =>{
+
                     history.goBack('/');
+
                 })
 
             }
@@ -179,10 +190,21 @@ import {
                                     </div>
                                     <div className="form-group">
                                         <label>Image</label>
-                                        <input className="form-control file"
-                                               type="file" 
-                                               onChange={this.onChangeImage}
-                                            />
+                                        <div className="row"  >
+                                            <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                                <input className="form-control file imageFile"
+                                                       type="file" 
+                                                       onChange={this.onChangeImage}
+                                                    />
+                                            </div>
+                                            <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                                <button type="button" onClick={this.handleUpload}>Thêm Ảnh </button>
+                                            </div>
+                                            <br/>
+                                            <progress value={this.state.progress} />
+                                            <br/>
+                                            <img src={this.state.url || "https://via.placeholder.com/400x300"} height="300" width="400" />
+                                        </div>
                                     </div>
 
                                     <div className="form-group">
