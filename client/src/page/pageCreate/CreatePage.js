@@ -2,6 +2,7 @@ import React from 'react';
 import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager'
+import {storage} from './../../firebaseConfig/firebaseConfig'
 import {
   Link
 } from "react-router-dom";
@@ -18,7 +19,9 @@ import {
                 meau:"",
                 name:"",
                 conten:"",
-                imgeFile:""	,
+                image:null,
+                url:"",
+                progress:"",
                 textAria:""        
             }
 
@@ -61,22 +64,40 @@ import {
         }
 
         onChangeImage(e){
-            this.setState({
-                imgeFile: e.target.files[0]
-            });
-            console.log(e.target.files[0])
+            if(e.target.files[0]){
+                const image = e.target.files[0];
+                this.setState(()=> ({image}))
+            }
+
         }
 
         onSubmit(e){
             e.preventDefault();
-            var {name,conten,imgeFile,textAria} = this.state;
+            var {name,conten,textAria,image} = this.state;
             var {history} = this.props;
-            // const fd = new FormData();
-            // fd.append('image', this.state.imgeFile, this.state.imgeFile.name)
+
+
+            const uploadTask = storage.ref(`image/${image.name}`).put(image);
+            console.log(storage.ref('images'))
+            uploadTask.on('state_changed',
+                (snapshot)=>{
+
+                },
+                (error)=>{
+                    console.log(error)
+                },
+                ()=>{
+                    storage.ref('images').child(image.name).getDownloadURL().then(url =>{
+                        console.log(this.state.url)
+                         this.setState({
+                            url: url
+                        });
+                    })
+                } );
+
                 callApi('create', 'POST', {
                     name:name,
                     conten:conten,
-                    imgeFile:imgeFile,
                     textAria:textAria
                 }).then(res =>{
                     history.goBack('/');
@@ -161,7 +182,6 @@ import {
                                         <label>Image</label>
                                         <input className="form-control file"
                                                type="file" 
-                                               name="imgeFile" 
                                                onChange={this.onChangeImage}
                                             />
                                     </div>
