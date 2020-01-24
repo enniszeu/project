@@ -24,7 +24,6 @@ app.get('/', function(req, res){
     var start = (page - 1) * perPage;
     var end = page * perPage;
     
-    var post = await Post.find();
     Post.find()
         .then(posts => res.json(posts.slice(start, end)))
         .catch(err => res.status(400).json('Err :' + err))
