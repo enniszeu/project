@@ -4,6 +4,7 @@ import Banner from '../../Components/header/Banner';
 import About from '../../Components/main/About';
 import Service from '../../Components/main/Service';
 import MyTeam from '../../Components/main/MyTeam';
+import BlogPost from '../../Components/main/BlogPost';
 import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 
@@ -46,6 +47,7 @@ class HomePage extends React.Component{
                                 <Banner />
                                 <About />
                                 <Service />
+                                <BlogPost />
                                 <MyTeam />
                             </div>
                         </div>

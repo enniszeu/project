@@ -443,6 +443,15 @@ nav{
 	top: 0px;
 	color: #000;
 }
+.blogConten{
+	width: 100%;
+	height: 400px;
+	background: blue;
+}
+.blogConten img{
+	width: 100%;
+	height: 150px;
+}
 
 
 @media (max-width: 1139px){

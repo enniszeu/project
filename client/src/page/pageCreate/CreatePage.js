@@ -23,7 +23,13 @@ import {
                 url:"",
                 imageName:"",
                 progress:0,
-                textAria:""        
+                err:"",
+                textAria:"",
+                errName:"",
+                errConten:"",
+                errText:"",
+                acess:"",
+                acessing:""        
             }
 
             this.onChangeName = this.onChangeName.bind(this);
@@ -47,6 +53,10 @@ import {
         //         })
         //     }
         // }
+        imageUp = () =>{
+            const imageUp = document.getElementById("imageInput");
+            imageUp.click();
+        }
 
         onChangeName(e){
             this.setState({
@@ -75,23 +85,31 @@ import {
 
         handleUpload(e){
 
-             var {image} = this.state;
-             var imageName = image.name
-            const uploadTask = storage.ref(`image/${image.name}`);
-            this.setState(()=> ({imageName}))
+             var {image,err} = this.state;
+             if(image){
+                var imageName = image.name
+                const uploadTask = storage.ref(`image/${image.name}`);
+                this.setState(()=> ({imageName}))
 
-            uploadTask.put(image).then((snapshot)=> {
+                uploadTask.put(image).then((snapshot)=> {
 
-                var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                this.setState(()=> ({progress}))
-                console.log('Upload is ' + progress + '% done');
+                    var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    this.setState(()=> ({progress}))
+                    // console.log('Upload is ' + progress + '% done');
+                        if(progress == 100){
+                            this.setState({acess:"Thêm Thành Công", acessing:"  "})
+                        }
 
-            }).then(()=> {
-                uploadTask.getDownloadURL().then((url)=> {
-                    this.setState(()=> ({url}))
-                    console.log(url)
+                }).then(()=> {
+                    uploadTask.getDownloadURL().then((url)=> {
+                        this.setState(()=> ({url}))
+                    });
                 });
-            });
+                
+            }else{
+                this.setState({err:"Plee Choose Image"})
+            }
+            
 
         }
 
@@ -101,17 +119,31 @@ import {
             var {history} = this.props;
 
             
-                callApi('create', 'POST', {
-                    name:name,
-                    conten:conten,
-                    textAria:textAria,
-                    url:url,
-                    imageName:imageName
-                }).then(res =>{
+                if(name === ""){
+                    this.setState({errName:"name khong dc de trong"})
+                    }
+                    else if(conten === ""){
+                        this.setState({errConten:"conten khong dc de trong"})
+                        }
+                        else if(textAria === ""){
+                            this.setState({errText:"textAria khong dc de trong"})
+                            }
+                            else if(imageName === ""){
+                            this.setState({err:"imageName khong dc de trong"})
+                                }else{
+                                    callApi('create', 'POST', {
+                                        name:name,
+                                        conten:conten,
+                                        textAria:textAria,
+                                        url:url,
+                                        imageName:imageName
+                                    }).then(res =>{
 
-                    history.goBack('/');
+                                        history.goBack('/');
 
-                })
+                                    })
+                                    
+                                }
 
             }
         meau = () =>{
@@ -129,8 +161,8 @@ import {
         }
 
         render(){
-
-            
+            var { url,html,meauAdd,meau,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing } = this.state
+        
 
         	 setInterval(() => {
 	             this.setState({ html: "html" });
@@ -138,7 +170,7 @@ import {
             return(
             	<div>
             		<Loading />
-                        <div className={` wapperManager ${this.state.html}`}>
+                        <div className={` wapperManager ${html}`}>
                             <div className="side-nav" id="side-nav">
                                 <div className="logo">
                                     <Link to="/manager">
@@ -147,69 +179,104 @@ import {
                                 </div>
                                 <ContactManager />
                             </div>
-                            <div className={`conten-mana ${this.state.meauAdd}`} >
+                            <div className={`conten-mana ${meauAdd}`} >
                                 <div className="nav-title">
-                                    <div className={`meau-click ${this.state.meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
+                                    <div className={`meau-click ${meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
                                         <i className="fas fa-bars fa-2x"></i>
                                     </div>
                                     <div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
                                         <i className="fas fa-times"></i>
                                     </div>
+                                    <h3>Create Post</h3>
                                 </div>
         	                	
                                 <form onSubmit={this.onSubmit}>
+                                     <div className="form-group">
+                                        <label> Anh Bài Viết </label>
+                                        <div className="row"  >
+                                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <img src={url || "http://blogdep.mywibes.com/images/d360749ebc4d4b4bd07e42f40ef6a79c.gif" } onClick={this.imageUp} className="imageUp"
+                                                        />
+                                                        <div className="image-add" onClick={this.imageUp}>{`${acessing || " Click Để Thêm Anh "} `}</div>
+                                                        <div type="button" className="button-add" onClick={this.handleUpload}> {`${acess || " Xác Nhận Thêm "} `} </div>
+                                                        <div className="progress">
+                                                          <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{width:`${progress}%`}}>{progress}%</div>
+                                                        </div>
+                                                <input className="form-control file imageFile"
+                                                       type="file" 
+                                                       onChange={this.onChangeImage}
+                                                       id="imageInput"
+                                                    />
+                                            </div>
+                                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <p>{`Tiêu Đề : ${name}`}</p>
+                                                <p>{`Nội dung : ${conten}`}</p>
+                                                <br/>
+                                                <p style={{color:"red", fontSize:"30px"}}>{`${err}`}</p>
+                                                
+                                            </div>
+                                            <br/>
+                                            
+                                           
+                                            {/*<p>{`uploading ${progress} %`}</p>*/}
+                                            <br/>
+                                           
+                                  
+                                            <br/>
+                                            
+                                            
+                                        </div>
+                                    </div>
                                     <div className="form-group">
                                         <label>Name:</label>
                                         <input type="text" 
-                                               className="form-control"
+                                               className="form-control input-custom"
                                                name="name"
-                                               value={this.state.name}
+                                               value={name}
                                                onChange={this.onChangeName}
                                         />
+                                        <p style={{color:"red", fontSize:"30px"}}>{`${errName}`}</p>
                                     </div>
                                     <div className="form-group">
                                         <label>Conten:</label>
                                         <input type="text" 
-                                               className="form-control"
+                                               className="form-control input-custom"
                                                name="conten"
-                                               value={this.state.conten}
+                                               value={conten}
                                                onChange={this.onChangeConten}
                                         />
+                                        <p style={{color:"red", fontSize:"30px"}}>{`${errConten}`}</p>
                                     </div>
                                     <div className="form-group">
                                         <label>Text:</label>
                                          <textarea 
-                                             className="form-control" 
+                                             className="form-control text-custom" 
                                              id="exampleFormControlTextarea1" 
-                                             rows="3"
+                                             rows="6"
                                              name="textAria"
-                                             value={this.state.textAria}
+                                             value={textAria}
                                              onChange={this.onChangeTextAria}
                                              >
                                          </textarea>
+                                         <p style={{color:"red", fontSize:"30px"}}>{`${errText}`}</p>
                                     </div>
-                                    <div className="form-group">
-                                        <label>Image</label>
-                                        <div className="row"  >
-                                            <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                                <input className="form-control file imageFile"
-                                                       type="file" 
-                                                       onChange={this.onChangeImage}
-                                                    />
-                                            </div>
-                                            <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                                <button type="button" onClick={this.handleUpload}>Thêm Ảnh </button>
-                                            </div>
-                                            <br/>
-                                            <progress value={this.state.progress} />
-                                            <br/>
-                                            <img src={this.state.url || "https://via.placeholder.com/400x300"} height="300" width="400" />
-                                        </div>
-                                    </div>
+                                   
 
                                     <div className="form-group">
-                                        <button type="submit" value="Create post" className="btn btn-primary">Add</button>
-                                        <Link to="/manager" className="btn btn-success">Tre Lai</Link>
+                                        <button type="submit" 
+                                                value="Create post" 
+                                                className="btn btn-primary"
+
+                                                >Lưu Lại
+                                                <i className="fas fa-check fa-lg check"></i>
+                                        </button>
+
+                                        <Link to="/manager" 
+                                              className="btn btn-success"
+                                              style={{marginLeft:"20px"}}
+                                              >Tre Lai
+                                              <i class="fas fa-arrow-left fa-lg check"></i>
+                                        </Link>
                                     </div>
                                 </form> 
         	                </div>

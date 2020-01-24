@@ -18,8 +18,15 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 app.get('/', function(req, res){
+    var page = parseInt(req.query.page) || 1;
+    var perPage = 3;
+
+    var start = (page - 1) * perPage;
+    var end = page * perPage;
+    
+    var post = await Post.find();
     Post.find()
-        .then(posts => res.json(posts))
+        .then(posts => res.json(posts.slice(start, end)))
         .catch(err => res.status(400).json('Err :' + err))
 })
 

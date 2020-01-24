@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
+.wapper{
+}
 .meauAdd{
 	margin-left: 4.375pc !important;
 	display: block !important;
@@ -8,11 +11,23 @@
 }
 .wapperManager{
 	opacity: 0;
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 2px;
 }
-
+.input-custom{
+	width: 50% !important;
+}
+.text-custom{
+	width: 80% !important;
+}
+.progress{
+	width: 100%;
+	margin-top: 14px;
+}
 form{
 	background: #000 !important;
 	padding: 68px;
+	background-image: u
 }
 progress{
 	width: 100% !important;
@@ -20,8 +35,57 @@ progress{
 	background: red;
 	margin: 15px;
 }
+.imageUp{
+	width: 100%;
+	height: 400px;
+	background-size: cover;
+}
+.button-add{
+	width: 100%;
+	color: red;
+	text-align: center;
+	padding: 10px;
+	background-color: #fff;
+    border-top:1px solid #000 !important;
+    transition: 0.5s;
+}
+.button-add:hover{
+	letter-spacing: 8px;
+	background: #c7c2c2;
+}
+.bg-info {
+    background-color: #4a0e14!important;
+}
+.btn-primary {
+    background-color: #4a0e14 !important;
+    border-color: #4a0e14;
+}
+.btn-success {
+    background-color: #25402b;
+    border-color: #25402b;
+}
+.custom-icon{
+	color: #e63636 !important;
+}
+.custom-icon-edit{
+	color: #389c98 !important;
+}
+.check{
+	margin-left: 10px;
+}
+.nav-title h3{
+	text-align: center;
+    padding: 20px;
+    font-weight: 700;
+}
 .imageFile{
-	width: 30% !important;
+	height: 0px;
+	background: #000 !important;
+	border:none;
+	width: 0px !important;
+	position: absolute;
+	opacity: 0;
+	
 }
 .side-nav{
 	background: #fff;
@@ -67,8 +131,9 @@ progress{
 }
 .nav-title{
 	width: 100%;
-	height: 4.375pc;
-	background: #aaa;
+	border-bottom: 1px solid red;
+    height: 4.375pc;
+    background: #080808
 
 }
 .meau-click{
@@ -85,6 +150,19 @@ progress{
     position: absolute;
     padding: 20px;
 }
+.close i{
+	color: #fff;
+}
+.image-add{
+	position: absolute;
+    color: #000;
+    font-size: 22px;
+    top: 231px;
+    color: red;
+    height: 1px;
+    width: 94%;
+    text-align: center;
+}
 
 
 @media (max-width: 992px){
@@ -100,5 +178,24 @@ progress{
 	.conten-mana {
      	margin-left: 0px;
 	}
+	.imageUp{
+		height: 300px;
+	}
 
 }
+@media (max-width: 576px) { 
+	
+	form {
+    	padding: 10px;
+	}
+	.progress {
+    	width: 100%;
+	}
+	.input-custom {
+    	width: 100% !important;
+	}
+	.text-custom {
+    	width: 100% !important;
+	}
+}
+

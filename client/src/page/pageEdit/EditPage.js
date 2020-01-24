@@ -14,11 +14,13 @@ import {
 	        this.state = {
 	            html:"",
                 name:"",
-                conten:""
+                conten:"",
+                textAria:""
 	        }
 
             this.onChangeName = this.onChangeName.bind(this);
             this.onChangeConten = this.onChangeConten.bind(this);
+            this.onChangeTextAria = this.onChangeTextAria.bind(this);
             this.onSubmit = this.onSubmit.bind(this);
 	    }
 
@@ -30,7 +32,8 @@ import {
                     var data = res.data;
                     this.setState({
                         name: data.name,
-                        conten: data.conten
+                        conten: data.conten,
+                        textAria: data.textAria
                     })
                 })
             }
@@ -47,16 +50,22 @@ import {
                 conten: e.target.value
             });
         }
+        onChangeTextAria(e){
+            this.setState({
+                textAria: e.target.value
+            });
+        }
 
         onSubmit(e){
             e.preventDefault();
-            var {name,conten} = this.state;
+            var {name,conten,textAria} = this.state;
             var {history} = this.props;
             var {match} = this.props;
             var id = match.params.id;
                 callApi(`upload/${id}`, 'POST', {
                     name:name,
-                    conten:conten
+                    conten:conten,
+                    textAria:textAria
                 }).then(res =>{
                     history.goBack('/');
                 })
@@ -93,6 +102,18 @@ import {
                                        value={this.state.conten}
                                        onChange={this.onChangeConten}
                                 />
+                            </div>
+                            <div className="form-group">
+                                <label>textAria:</label>
+                                <textarea 
+                                     className="form-control" 
+                                     id="exampleFormControlTextarea1" 
+                                     rows="3"
+                                     name="textAria"
+                                     value={this.state.textAria}
+                                     onChange={this.onChangeTextAria}
+                                     >
+                                 </textarea>
                             </div>
                             <div className="form-group">
                                 <button type="submit" value="Create post" className="btn btn-primary">Edit</button>

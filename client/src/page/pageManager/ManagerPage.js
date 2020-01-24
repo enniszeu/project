@@ -31,20 +31,21 @@ class ManagerPage extends React.Component{
 		})
 	}
 
-	onDelete = (id) =>{
+	onDelete = (id, url) =>{
 
 		var {posts} = this.state;
-
 	   	if(confirm('ban co chan chan muon xoa ? ')){ // eslint-disable-line
-
-	   		var desertRef = storage.ref('images').child(posts.imageName);
+	   		var desertRef = storage.refFromURL(url);
 	   		desertRef.delete().then(()=> {
 			  // File deleted successfully
 			}).catch((err)=> {
 			  console.log(err)
 			});
+			
 
 	   		callApi(`delete/${id}`, 'GET', null).then(res =>{
+
+
 	   			if( res.status === 200){
 	   				var index = this.findIndex(posts, id);
 	   				if(index !== -1){
@@ -110,6 +111,7 @@ class ManagerPage extends React.Component{
 							<div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
 								<i className="fas fa-times"></i>
 							</div>
+							<h3>Manager Post</h3>
 						</div>
 						<table className="table table-dark">
 						  <thead>
@@ -145,15 +147,15 @@ class ManagerPage extends React.Component{
 				      	<img src={post.url} width="50" height="50" />
 				      </td>
 				      <td><button type="button" 
-				      			  className="btn btn-danger"
-				      			  onClick={()=> this.onDelete(post._id)}
+				      			  className="btn "
+				      			  onClick={()=> this.onDelete(post._id, post.url)}
 				      			  >
-				      			  	delete
+				      			  	<i className="fas fa-trash fa-lg custom-icon"></i>
 				      		</button>
 				      		<Link to={`/upload/${post._id}`} 
-				      			  className="btn btn-success"
+				      			  className="btn"
 				      			  >
-				      			  	edit
+				      			  	<i className="fas fa-pencil-alt fa-lg custom-icon-edit"></i>
 				      		</Link>
 				      </td>
 				    </tr>
