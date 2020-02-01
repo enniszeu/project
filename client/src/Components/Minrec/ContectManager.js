@@ -5,7 +5,7 @@ import {
 const icons =[
         {
             name:<i className="far fa-play-circle fa-lt"></i>,
-            link:""
+            link:"/manager"
         },
         {
             name:<i className="far fa-calendar-alt fa-lt"></i>,
@@ -13,11 +13,11 @@ const icons =[
         },
         {
             name:<i className="far fa-calendar-alt fa-lt"></i>,
-            link:""
+            link:"/"
         },
         {
             name:<i className="fas fa-receipt fa-lt"></i>,
-            link:""
+            link:"/"
         }
     ]
 

@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+.display-4 {
+    font-size: 1.5rem !important;
+}
+
 
 .wapper{
 }
@@ -10,7 +14,7 @@
 	display: none !important;
 }
 .wapperManager{
-	opacity: 0;
+	opacity: 1;
 	font-family: 'Montserrat', sans-serif;
 	letter-spacing: 2px;
 }
@@ -163,8 +167,149 @@ progress{
     width: 94%;
     text-align: center;
 }
+.baner-view{
+	width: 100%;
+	height: 220px;
+	background-image: url("../image/banar.png");
+	background-size: cover;
+	text-align: center;
 
+}
+.baner-view h2{
+	padding: 64px;
+    font-weight: 600;
+}
+.baner-view p{
+	font-weight: 300;
+	font-size: 20px;
+}
+.blogMain{
+	background-size: cover;
+	background-image: url("../image/blog_bg.png");
+	transition: 0.5s;
+}
+.blogTable{
+	margin-left: 60px;
+	margin-right: 60px;
+}
+.blogConten{
+	width: 100%;
+	height: 400px;
+	background: #fff;
+}
+.blogConten img{
+	width: 100%;
+	height: 200px;
+	background-size: cover;
+}
+.blogTitle h3{
+	color: #aaa;
+	padding-left: 20px;
+	padding-top: 20px;
+	font-weight: 600;
+	font-size: 20px;
+}
+.blogTitle p{
+	color: #aaa;
+	padding-left: 20px;
+	height: 70px;
+}
 
+.viewBlog{
+	text-align: center;
+}
+.viewBlog a{
+	width: 150px;
+	height: 50px;
+	background: #ff4b4e;
+	color: #fff;
+	font-weight: 300;
+}
+.btn-default{
+	background: #ff4b4e !important;
+	margin: 30px;
+	width: 133px;
+    height: 45px;
+	margin-bottom: 70px;
+
+}
+
+.blogTitle a{
+	padding: 20px;
+	color: #000;
+}
+.blogTitle a:hover{
+	color: #ff4b4e;
+	text-decoration: none;
+	font-weight: 600;
+}
+.blogConten{
+	margin-top: 20px;	
+}
+.blogDate{
+	width: 80px;
+	height: 100px;
+	background: #212529;
+	position: absolute;
+	top: 152px;
+    left: 30px;
+}
+.blogDate1{
+	background: #ff4b4e;
+}
+.blogDate p{
+	text-align: center;
+	padding: 1px;
+	height: 61px;
+	font-weight: 600;
+}
+.blogDate h5{
+	text-align: center;
+    margin-top: -14px;
+    font-size: 16px;
+    margin-top: -5px;
+}
+.postMeau{
+	width: 80%;
+}
+.postMeau img{
+	width: 100%;
+	height: 400px;
+	margin-bottom: 30px;
+}
+.postMeau h4,a{
+	width: 80%;
+	text-align: left;
+	font-weight: 200;
+	color: #fff;
+	padding: 5px;
+	font-size: 14px;
+}
+.postMeau a:hover{
+	color: #ff4b4e;
+}
+.display-4:hover{
+	color: #ff4b4e;	
+}
+.postMeau p{
+	font-size: 14px;
+	padding-top: 12px;
+}
+.blogDatePost{
+	width: 80px;
+    height: 100px;
+    background: #212529;
+
+}
+.meauPost{
+	text-align: left;
+}
+.meauPost ul li{
+	padding: 10px;
+}
+.meauPost hr{
+	background: #fff;
+}
 @media (max-width: 992px){
 	.side-nav{
 		width: 0pc;
@@ -183,6 +328,18 @@ progress{
 	}
 
 }
+@media (max-width: 768px) { 
+	.blogConten img {
+    	height: 250px;
+	}
+	.blogTitle p {
+    	height: 20px;
+    }
+    .blogDate{
+	    top: 186px;
+	}
+
+}
 @media (max-width: 576px) { 
 	
 	form {
@@ -197,5 +354,26 @@ progress{
 	.text-custom {
     	width: 100% !important;
 	}
+	.blogConten{
+		height: 450px;
+	}
+	.blogTable {
+     margin-left: 0px; 
+     margin-right: 0px; 
+	}
+	.blogTitle p {
+    	height: 70px;
+    }
+    .blogDate{
+	    top: 200px;
+	}
+	.postMeau{
+		width: 100%;
+	}
+	.conten{
+		padding: 0px;
+	}
+	
+	
 }
 

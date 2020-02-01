@@ -96,7 +96,7 @@ import {
                     var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                     this.setState(()=> ({progress}))
                     // console.log('Upload is ' + progress + '% done');
-                        if(progress == 100){
+                        if(progress === 100){
                             this.setState({acess:"Thêm Thành Công", acessing:"  "})
                         }
 
@@ -275,7 +275,7 @@ import {
                                               className="btn btn-success"
                                               style={{marginLeft:"20px"}}
                                               >Tre Lai
-                                              <i class="fas fa-arrow-left fa-lg check"></i>
+                                              <i className="fas fa-arrow-left fa-lg check"></i>
                                         </Link>
                                     </div>
                                 </form> 

@@ -144,6 +144,7 @@ nav{
 	margin: 11px;
 	position: absolute;
 	padding-left: 11px;	
+	color: #fff;
 }
 .button-title:hover{
 	border: 1px solid red;
@@ -443,15 +444,6 @@ nav{
 	top: 0px;
 	color: #000;
 }
-.blogConten{
-	width: 100%;
-	height: 400px;
-	background: blue;
-}
-.blogConten img{
-	width: 100%;
-	height: 150px;
-}
 
 
 @media (max-width: 1139px){
@@ -529,7 +521,7 @@ nav{
 		margin-left: 72%;
 	}
 	.baner-title {
-    	margin: 0px;
+    	margin: -33px;
     	margin-top: 103px;
 	}
 	.meau-mobie ul{

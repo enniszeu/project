@@ -1,8 +1,10 @@
 import React from 'react';
 import HomePage from './page/pageHome/HomePage';
+import PostPage from './page/pagePost/PostPage';
 import ManagerPage from './page/pageManager/ManagerPage';
 import CreatePage from './page/pageCreate/CreatePage';
 import EditPage from './page/pageEdit/EditPage';
+import ViewPage from './page/pageView/ViewPage';
 import NotFoud from './page/notFoud/NotFoud';
 
 
@@ -11,6 +13,11 @@ const routes = [
 		path:"/",
 		exact:true,
 		main: () => <HomePage />
+	},
+	{
+		path:"/post",
+		exact:true,
+		main: () => <PostPage />
 	},
 	{
 		path:"/manager",
@@ -26,6 +33,11 @@ const routes = [
 		path:"/upload/:id",
 		exact:true,
 		main: ({match, history}) => <EditPage match={match} history={history} />
+	},
+	{
+		path:"/post/:id",
+		exact:true,
+		main: ({match})=> <ViewPage match={match} />
 	},
 	{
 		path:"",

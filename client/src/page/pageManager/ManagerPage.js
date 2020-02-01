@@ -1,6 +1,6 @@
 import React from 'react';
 import '../public/style/manager.css';
-import Loading from '../../Components/loader/Loading';
+// import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager'
 import {storage} from './../../firebaseConfig/firebaseConfig'
@@ -85,19 +85,19 @@ class ManagerPage extends React.Component{
     render(){
 
     	var {posts} = this.state
-    	 setInterval(() => {
-	             this.setState({ html: "html" });
-	         }, 1000);
+    	 // setInterval(() => {
+	     //         this.setState({ html: "html" });
+	     //     }, 1000);
 
     		    	
 
         return(
         	<div>
-        		<Loading />
+        		{/*<Loading />*/}
 	        	<div className={` wapperManager ${this.state.html}`}>
 	           		<div className="side-nav" id="side-nav">
 						<div className="logo">
-							<Link to="/manager">
+							<Link to="/">
 								<i className="fab fa-airbnb fa-2x"></i>
 							</Link>
 						</div>
