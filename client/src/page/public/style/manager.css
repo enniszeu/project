@@ -29,9 +29,9 @@
 	margin-top: 14px;
 }
 form{
-	background: #000 !important;
+	background: #f5f7f9 !important;
 	padding: 68px;
-	background-image: u
+	color: #000;
 }
 progress{
 	width: 100% !important;
@@ -53,10 +53,7 @@ progress{
     border-top:1px solid #000 !important;
     transition: 0.5s;
 }
-.button-add:hover{
-	letter-spacing: 8px;
-	background: #c7c2c2;
-}
+
 .bg-info {
     background-color: #4a0e14!important;
 }
@@ -106,7 +103,7 @@ progress{
 .logo, .side-nav ul li{
 	align-items: center;
 	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-bottom: 23px;
 	padding-right: 0;
 	    
 }
@@ -114,7 +111,8 @@ progress{
 	margin-left: -16px;
 }
 .logo{
-	background: #f9f9f9;
+	background: #f5f7f9;
+	border-bottom: 1px solid #000;
 }
 .logo i{
 	margin-left: 20px;
@@ -135,9 +133,10 @@ progress{
 }
 .nav-title{
 	width: 100%;
-	border-bottom: 1px solid red;
+	border-bottom: 1px solid #000;
     height: 4.375pc;
-    background: #080808
+    background:#f5f7f9 !important;
+    color: #000;
 
 }
 .meau-click{
@@ -153,10 +152,9 @@ progress{
     height: 30%;
     position: absolute;
     padding: 20px;
+    left: -72px;
 }
-.close i{
-	color: #fff;
-}
+
 .image-add{
 	position: absolute;
     color: #000;
@@ -170,8 +168,7 @@ progress{
 .baner-view{
 	width: 100%;
 	height: 220px;
-	background-image: url("../image/banar.png");
-	background-size: cover;
+	background:#fff;
 	text-align: center;
 
 }
@@ -225,6 +222,18 @@ progress{
 	color: #fff;
 	font-weight: 300;
 }
+.text-aria{
+	text-align: left;
+	color: #000;
+    background: #fff;
+}
+.text-aria p{
+    padding: 30px;
+}
+.text-aria img{
+	width: 100%;
+	height: 420px;
+}
 .btn-default{
 	background: #ff4b4e !important;
 	margin: 30px;
@@ -269,47 +278,7 @@ progress{
     font-size: 16px;
     margin-top: -5px;
 }
-.postMeau{
-	width: 80%;
-}
-.postMeau img{
-	width: 100%;
-	height: 400px;
-	margin-bottom: 30px;
-}
-.postMeau h4,a{
-	width: 80%;
-	text-align: left;
-	font-weight: 200;
-	color: #fff;
-	padding: 5px;
-	font-size: 14px;
-}
-.postMeau a:hover{
-	color: #ff4b4e;
-}
-.display-4:hover{
-	color: #ff4b4e;	
-}
-.postMeau p{
-	font-size: 14px;
-	padding-top: 12px;
-}
-.blogDatePost{
-	width: 80px;
-    height: 100px;
-    background: #212529;
 
-}
-.meauPost{
-	text-align: left;
-}
-.meauPost ul li{
-	padding: 10px;
-}
-.meauPost hr{
-	background: #fff;
-}
 @media (max-width: 992px){
 	.side-nav{
 		width: 0pc;
@@ -317,14 +286,14 @@ progress{
 	.meau-click{
 		display: block;
 	}
-	.conten{
-		margin-left: 0pc;
-	}
 	.conten-mana {
      	margin-left: 0px;
 	}
 	.imageUp{
 		height: 300px;
+	}
+	.sivba{
+		width: 4.375pc;
 	}
 
 }
@@ -344,6 +313,7 @@ progress{
 	
 	form {
     	padding: 10px;
+
 	}
 	.progress {
     	width: 100%;
@@ -370,8 +340,14 @@ progress{
 	.postMeau{
 		width: 100%;
 	}
-	.conten{
-		padding: 0px;
+	.btn-success {
+		width: 33% !important;
+	}
+	.text-aria img{
+		height: 300px;
+	}
+	.postaria{
+		padding: 16px;
 	}
 	
 	

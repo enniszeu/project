@@ -1,5 +1,6 @@
 import React from 'react';
 import HomePage from './page/pageHome/HomePage';
+import LoginPage from './page/pageLogin/LoginPage';
 import PostPage from './page/pagePost/PostPage';
 import ManagerPage from './page/pageManager/ManagerPage';
 import CreatePage from './page/pageCreate/CreatePage';
@@ -13,6 +14,11 @@ const routes = [
 		path:"/",
 		exact:true,
 		main: () => <HomePage />
+	},
+	{
+		path:"/login",
+		exact:true,
+		main: () => <LoginPage />
 	},
 	{
 		path:"/post",

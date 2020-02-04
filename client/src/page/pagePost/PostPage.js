@@ -1,6 +1,7 @@
 import React from 'react';
-import Loading from '../../Components/loader/Loading';
+// import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
+import '../public/style/post.css';
 import {
   Link
 } from "react-router-dom";
@@ -13,7 +14,10 @@ import {
 
             this.state = {
                 html:"",
-                posts : []
+                posts : [],
+                random1:"",
+                random2:"",
+                random3:""
     
             }
 
@@ -23,7 +27,10 @@ import {
         componentDidMount(){
             callApi('manager', 'GET', null).then(res =>{
                 this.setState({
-                    posts : res.data
+                    posts : res.data,
+                    random1 : res.data[Math.floor(Math.random() * res.data.length)],
+                    random2 : res.data[Math.floor(Math.random() * res.data.length)],
+                    random3 : res.data[Math.floor(Math.random() * res.data.length)]
                 })
             })
         }
@@ -62,21 +69,22 @@ import {
 
         render(){
 
-             const {posts} = this.state
-             setInterval(() => {
-                 this.setState({ html: "html" });
-             }, 1000);
+             const {posts,random1,random2,random3} = this.state
+
+             // setInterval(() => {
+             //     this.setState({ html: "html" });
+             // }, 1000);
             return(
                 <div>
-                    <Loading />
+                   {/* <Loading />*/}
                     <div className="baner-view">
                         <h2>{posts.name}
                         <p>Single Post</p>
                         </h2>
 
                     </div>
-                    <div className={` conten container-fluid wapperManager ${this.state.html}`}>
-                        <div className="row"  >
+                    <div className={`postBackground container-fluid wapperManager ${this.state.html}`}>
+                        <div className="row "   >
                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <div className="header">
                                     <div className="row"  >
@@ -84,15 +92,35 @@ import {
                                             {this.showposts(posts)}
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                            <div className="meauPost">
-                                                <h1>Categories</h1>
+                                            <div className="meauPost ">
+                                                <div className="input-group mb-3 input-search">
+                                                    <input type="text" className="form-control" placeholder="Search" />
+                                                </div>
+                                                <h2>Categories</h2>
                                                 <hr/>
+                                                <br/>
                                                 <ul>
                                                     <li>Web Design (12)</li>
                                                     <li>Web Development (9)</li>
                                                     <li>Grapics Design (7)</li>
                                                     <li>Grapics Design (7)</li>
                                                 </ul>
+                                                <h2>Recent Posts</h2>
+                                                <hr/>
+                                                <br/>
+                                                <br/>
+                                                <Link to={`post/${random1._id}`}>
+                                                    <img src={random1.url} width="90px" height="90px" />
+                                                    <p>{random1.name}</p>
+                                                </Link>
+                                                <Link to={`post/${random2._id}`}>
+                                                    <img src={random2.url} width="90px" height="90px" />
+                                                    <p>{random2.name}</p>
+                                                </Link>
+                                                <Link to={`post/${random3._id}`}>
+                                                    <img src={random3.url} width="90px" height="90px" />
+                                                    <p>{random3.name}</p>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

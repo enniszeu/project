@@ -18,6 +18,7 @@ import {
                 meauAdd:"",
                 meau:"",
                 name:"",
+                sivba:"",
                 conten:"",
                 image:null,
                 url:"",
@@ -85,7 +86,17 @@ import {
 
         handleUpload(e){
 
-             var {image,err} = this.state;
+             
+
+        }
+
+        onSubmit(e){
+            e.preventDefault();
+            
+
+            var {name,conten,url,textAria,imageName} = this.state;
+            var {history} = this.props;
+            var {image,err} = this.state;
              if(image){
                 var imageName = image.name
                 const uploadTask = storage.ref(`image/${image.name}`);
@@ -99,10 +110,32 @@ import {
                         if(progress === 100){
                             this.setState({acess:"Thêm Thành Công", acessing:"  "})
                         }
-
                 }).then(()=> {
                     uploadTask.getDownloadURL().then((url)=> {
                         this.setState(()=> ({url}))
+                        if(name === ""){
+                            this.setState({errName:"name khong dc de trong"})
+                            }
+                            else if(conten === ""){
+                                this.setState({errConten:"conten khong dc de trong"})
+                                }
+                                else if(textAria === ""){
+                                    this.setState({errText:"textAria khong dc de trong"})
+                                    }
+                                    else if(imageName === ""){
+                                    this.setState({err:"imageName khong dc de trong"})
+                                        }else{
+                                            callApi('create', 'POST', {
+                                            name:name,
+                                            conten:conten,
+                                            textAria:textAria,
+                                            url:url,
+                                            imageName:imageName
+                                            }).then(res =>{
+                                                history.goBack('/');
+                                            })
+
+                                        }
                     });
                 });
                 
@@ -110,46 +143,14 @@ import {
                 this.setState({err:"Plee Choose Image"})
             }
             
-
-        }
-
-        onSubmit(e){
-            e.preventDefault();
-            var {name,conten,textAria,url,imageName} = this.state;
-            var {history} = this.props;
-
-            
-                if(name === ""){
-                    this.setState({errName:"name khong dc de trong"})
-                    }
-                    else if(conten === ""){
-                        this.setState({errConten:"conten khong dc de trong"})
-                        }
-                        else if(textAria === ""){
-                            this.setState({errText:"textAria khong dc de trong"})
-                            }
-                            else if(imageName === ""){
-                            this.setState({err:"imageName khong dc de trong"})
-                                }else{
-                                    callApi('create', 'POST', {
-                                        name:name,
-                                        conten:conten,
-                                        textAria:textAria,
-                                        url:url,
-                                        imageName:imageName
-                                    }).then(res =>{
-
-                                        history.goBack('/');
-
-                                    })
-                                    
-                                }
+                
 
             }
         meau = () =>{
         this.setState({ 
             meauAdd: "meauAdd",
-            meau:"meau" 
+            meau:"meau",
+            sivba:"sivba"
         });
         }
 
@@ -161,7 +162,7 @@ import {
         }
 
         render(){
-            var { url,html,meauAdd,meau,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing } = this.state
+            var { url,html,meauAdd,meau,sivba,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing } = this.state
         
 
         	 setInterval(() => {
@@ -171,7 +172,7 @@ import {
             	<div>
             		<Loading />
                         <div className={` wapperManager ${html}`}>
-                            <div className="side-nav" id="side-nav">
+                            <div className={`side-nav ${sivba}`}>
                                 <div className="logo">
                                     <Link to="/manager">
                                         <i className="fab fa-airbnb fa-2x"></i>
@@ -198,7 +199,6 @@ import {
                                                         <img src={url || "http://blogdep.mywibes.com/images/d360749ebc4d4b4bd07e42f40ef6a79c.gif" } onClick={this.imageUp} className="imageUp"
                                                         />
                                                         <div className="image-add" onClick={this.imageUp}>{`${acessing || " Click Để Thêm Anh "} `}</div>
-                                                        <div type="button" className="button-add" onClick={this.handleUpload}> {`${acess || " Xác Nhận Thêm "} `} </div>
                                                         <div className="progress">
                                                           <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{width:`${progress}%`}}>{progress}%</div>
                                                         </div>
@@ -273,7 +273,7 @@ import {
 
                                         <Link to="/manager" 
                                               className="btn btn-success"
-                                              style={{marginLeft:"20px"}}
+                                              style={{marginLeft:"20px", width:"14%"}}
                                               >Tre Lai
                                               <i className="fas fa-arrow-left fa-lg check"></i>
                                         </Link>
