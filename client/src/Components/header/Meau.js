@@ -6,7 +6,7 @@ import {
 const meaus =[
 		{
 			name:"Admin",
-			link:"/manager"
+			link:"/login"
 		},
 		{
 			name:"About",

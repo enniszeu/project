@@ -122,6 +122,13 @@
 .in{
 	color: #2392e0;
 }
+.kep-login-facebook {
+	font-size: calc(.27548vw + -6.28926px) !important;
+	position: absolute;
+    left: 132px;
+    top: 160px;
+    opacity: 0;
+}
 
 @media (max-width: 576px) {
 	.container-fluid-css {
@@ -147,5 +154,9 @@
 		padding: 19px;
 		margin-top: 72px;
 		border-radius: 11px;
+	}
+	.kep-login-facebook{
+		left: 103px;
+    	top: -109px;
 	}
 }

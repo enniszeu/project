@@ -2,7 +2,7 @@ import React from 'react';
 import '../public/style/manager.css';
 // import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
-import ContactManager from '../../Components/Minrec/ContectManager'
+import ContactManager from '../../Components/Minrec/ContectManager';
 import {storage} from './../../firebaseConfig/firebaseConfig'
 import {
   Link
@@ -111,7 +111,11 @@ class ManagerPage extends React.Component{
 							<div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
 								<i className="fas fa-times"></i>
 							</div>
+							<div className="admin">
+								<img src={this.props.picture} />
+							</div>
 							<h3>Manager Post</h3>
+
 						</div>
 						<table className="table table-dark">
 						  <thead>
