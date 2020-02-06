@@ -1,11 +1,6 @@
 import React from 'react';
 import '../public/style/home.css';
 import Banner from '../../Components/header/Banner';
-import About from '../../Components/main/About';
-import Service from '../../Components/main/Service';
-import MyTeam from '../../Components/main/MyTeam';
-import BlogPost from '../../Components/main/BlogPost';
-import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 
     
@@ -40,15 +35,10 @@ class HomePage extends React.Component{
 
         return(
                 <div>
-                <Loading />
-                    <div className={` ${this.state.html} container-fluid`} id="html" >
+                    <div className="container-fluid">
                         <div className="row">
                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <Banner />
-                                <About />
-                                <Service />
-                                <BlogPost />
-                                <MyTeam />
                             </div>
                         </div>
                     </div>

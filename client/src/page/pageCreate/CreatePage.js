@@ -1,5 +1,4 @@
 import React from 'react';
-import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager'
 import {storage} from './../../firebaseConfig/firebaseConfig'
@@ -14,7 +13,6 @@ import {
 	        super(props);
 
 	        this.state = {
-	            html:"",
                 meauAdd:"",
                 meau:"",
                 name:"",
@@ -163,15 +161,10 @@ import {
 
         render(){
             var { url,html,meauAdd,meau,sivba,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing } = this.state
-        
-
-        	 setInterval(() => {
-	             this.setState({ html: "html" });
-	         }, 1000);
+    
             return(
             	<div>
-            		<Loading />
-                        <div className={` wapperManager ${html}`}>
+                        <div className="wapperManager">
                             <div className={`side-nav ${sivba}`}>
                                 <div className="logo">
                                     <Link to="/manager">

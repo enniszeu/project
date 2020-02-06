@@ -1,5 +1,4 @@
 import React from 'react';
-// import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 
 
@@ -9,7 +8,6 @@ import callApi from './../../utils/apicaller';
             super(props);
 
             this.state = {
-                html:"",
                 posts : []
     
             }
@@ -33,9 +31,6 @@ import callApi from './../../utils/apicaller';
         render(){
 
              const {posts} = this.state
-             // setInterval(() => {
-             //     this.setState({ html: "html" });
-             // }, 1000);
             return(
                 <div>
                 
@@ -45,7 +40,7 @@ import callApi from './../../utils/apicaller';
                         </h2>
 
                     </div>
-                    <div className={`postBackground postaria conten container-fluid wapperManager ${this.state.html}`}>
+                    <div className="postBackground postaria conten container-fluid wapperManager">
                         <div className="row"   >
                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <div className="header">

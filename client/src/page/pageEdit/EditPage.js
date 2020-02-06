@@ -1,5 +1,4 @@
 import React from 'react';
-import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 import {
   Link
@@ -12,7 +11,6 @@ import {
 	        super(props);
 
 	        this.state = {
-	            html:"",
                 name:"",
                 conten:"",
                 textAria:""
@@ -73,16 +71,9 @@ import {
             }
 
         render(){
-
-            
-
-        	 setInterval(() => {
-	             this.setState({ html: "html" });
-	         }, 1000);
             return(
             	<div>
-            		<Loading />
-	            	<div className={` conten ${this.state.html}`}>
+	            	<div className="conten">
 	                	<h1>editr</h1>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">

@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Icons/Button';
 import {
   Link
 } from "react-router-dom";
@@ -23,29 +24,30 @@ class BannerTitle extends React.Component{
     render(){
     	setInterval(() => {
   			this.setState({ title1: "title1-1" });
-		}, 1500);
+		}, 500);
 		setInterval(() => {
   			this.setState({ title2: "title2-2" });
-		}, 2000);
+		}, 1000);
 		setInterval(() => {
   			this.setState({ button: "button" });
-		}, 2500);
+		}, 1500);
 
 	
         return(
             <div className="row row-title"  >
-				<div className="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-				</div>
-				<div className="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+				
+				<div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
 					<div className="baner-title">
-						<p className={` ${this.state.title1} title1`} > HI, MY NAME IS TUAN AND I LOVE</p>
-						<p className={` ${this.state.title2} title2`} > DESIGN &</p>
-						<p className="title3" > CODEINGRAVERY</p>
+						<p className={` ${this.state.title1} title1`} > Hi, My Name Is Tuan And I Love</p>
+						<p className={` ${this.state.title2} title2`} > Design</p>
 						<div className={` ${this.state.button} button-title`}>
-							<Link to="">MY PROFIRE</Link>
+							<Button />
 						</div>
+						
 					</div>
 					
+				</div>
+				<div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
 				</div>
 			</div>
         )

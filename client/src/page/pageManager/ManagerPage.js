@@ -1,6 +1,5 @@
 import React from 'react';
 import '../public/style/manager.css';
-// import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager';
 import {storage} from './../../firebaseConfig/firebaseConfig'
@@ -16,7 +15,6 @@ class ManagerPage extends React.Component{
 	        super(props);
 
 	        this.state = {
-	        	html:"",
 	        	meauAdd:"",
 	        	meau:"",
 	            posts : []
@@ -85,15 +83,9 @@ class ManagerPage extends React.Component{
     render(){
 
     	var {posts} = this.state
-    	 // setInterval(() => {
-	     //         this.setState({ html: "html" });
-	     //     }, 1000);
-
-    		    	
 
         return(
         	<div>
-        		{/*<Loading />*/}
 	        	<div className={` wapperManager ${this.state.html}`}>
 	           		<div className="side-nav" id="side-nav">
 						<div className="logo">

@@ -1,5 +1,5 @@
 import React from 'react';
-import Meau from './Meau';
+import Meaus from './Meaus';
 import BannerTitle from './BannerTitle';
 
 
@@ -9,7 +9,7 @@ class Banner extends React.Component{
     render(){
         return(
             <div className="baner" id="baner" >
-            	<Meau/>
+            	<Meaus/>
             	<BannerTitle />
             </div>    
         )

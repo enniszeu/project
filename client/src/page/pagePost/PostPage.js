@@ -1,5 +1,4 @@
 import React from 'react';
-// import Loading from '../../Components/loader/Loading';
 import callApi from './../../utils/apicaller';
 import '../public/style/post.css';
 import {
@@ -13,7 +12,6 @@ import {
             super(props);
 
             this.state = {
-                html:"",
                 posts : [],
                 random1:"",
                 random2:"",
@@ -40,7 +38,6 @@ import {
             resule = posts.map((post, index)=>{
                 return (
                         <div className="postMeau" key={index}>
-
                             <img src={post.url} />
                             <div className="row"  >
                                 <div className="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
