@@ -11,7 +11,6 @@ class HomePage extends React.Component{
         super(props);
 
         this.state = {
-            html:"",
             name:"",
             conten:""
         }
@@ -28,11 +27,6 @@ class HomePage extends React.Component{
             }
 
     render(){
-
-        setInterval(() => {
-            this.setState({ html: "html" });
-        }, 1000);
-
         return(
                 <div>
                     <div className="container-fluid">

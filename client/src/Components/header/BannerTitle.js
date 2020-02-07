@@ -35,7 +35,6 @@ class BannerTitle extends React.Component{
 	
         return(
             <div className="row row-title"  >
-				
 				<div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
 					<div className="baner-title">
 						<p className={` ${this.state.title1} title1`} > Hi, My Name Is Tuan And I Love</p>
@@ -48,6 +47,7 @@ class BannerTitle extends React.Component{
 					
 				</div>
 				<div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+				
 				</div>
 			</div>
         )
