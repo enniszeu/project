@@ -1,20 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Poiret+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 
-.html{
-	opacity: 1 !important;
+
+.nav-meau ul a{
+	color: #fff;
 }
-.title1-1{
-	opacity: 1 !important;
-	margin-top: -28px;
+.on a{
+	color: #fff;
 }
-.title2-2{
-	opacity: 1 !important;
-	margin-top: 23px;
-}
-.button{
-	opacity: 1 !important;
-	margin-top: 23px;
+#onActive a{
+	color: #7072f7;
 }
 .onMeau{
 	margin-left: -2% !important;
@@ -22,90 +17,29 @@
 .closeMeau{
 	margin-left: 100% !important;
 }
-.MuiAppBar-colorPrimary {
-    background-color: #fff !important;
-}
-.MuiIconButton-colorInherit {
-	display: none !important;
-    color: #000 !important;
-}
-.makeStyles-title-4 {
-   color: #000 !important;
-}
-.MuiPaper-elevation4 {
-	box-shadow: none !important;
-}
+
 body{
 	font-family: 'Poiret One', cursive;
 
 }
 
-.display-4{
-	font-size: 2.5rem !important;
-}
-/*.baner{
-	background-image: url("../image/enniszeu1.jpg");
-	background-size: cover;
-	height: 100vh;
-}*/
-#baner{
-	transition: 1s;
-}
 
-.row-title{
-	width: 100%;
-	font-family: 'Roboto Mono', monospace;
-}
-.baner-title{
-	width: 100%;
-	height: 600px;
-	padding: 120px;
-	text-align: left;
-}
-.title1{
-	color: #aaa;
-	font-size: 0px;
-	transition: 1s;
-	font-size: 16px;
-	opacity: 0;
-}
-.title2{
-	font-size: 0px;
-	transition: 1s;
-	font-size: 40px;
-	opacity: 0;
-}
-.title3{
-	font-size: 48px;
-	color: #FA58D0;
-
-}
-.button-title{
-
-	opacity: 0;
-
-}
-.button-title a{
-	margin: 11px;
-	position: absolute;
-	padding-left: 11px;	
-	color: #000;
-}
 /*nav-bar*/
 .nav-bar{
 	width: 100%;
 	height: 70px;
-	background: #000;
 	padding: 4px;
+	position: relative;
 }
 .button-icon{
 	width: 50px;
 	height: 100%;
 	float: right;
 	margin-right: 40px;
+	display: none;
 }
 .icon-bar{
-	background: #fff;
+	background: #000;
 	width: 40px;
 	height: 3px;
 	margin-top: 13px;
@@ -126,46 +60,266 @@ body{
 	display: none;
 }
 .nav-meau{
-	width: 60%;
+	width: 85%;
 }
 .nav-meau ul li{
-	float: left;
+	float: right;
 	position: relative;
 	list-style: none;
-	margin: 26px;
-	font-size: 16px;
+	margin: 10px;
+	font-size: 20px;
 	font-weight: 600;
+	padding-left: 40px;
+}
+/*section*/
+
+section{
+	width: 100%;
+	position: fixed;
+	height: 20px;
+	bottom: 423px;
+	left: -100%;
+	transition: 0.5s;
+}
+
+.activeHome{
+	left: 0;
+}
+.timeHome{
+	bottom: 0;
+	height:100vh;
+}
+.activeAbout{
+	left: 0;
+}
+.timeAbout{
+	bottom: 0;
+	height:100vh;
+}
+.activeAction{
+	left: 0;
+}
+.timeAction{
+	bottom: 0;
+	height:100vh;
+}
+.sec-home{
+	background: #F9E2D6;
+}
+.sec-about{
+	background:rgb(46, 207,222);
+	opacity: 0.5;
+
+}
+.sec-active{
+	background:#272727;
+}
+
+.sec-img{
+	width: 100%;
+	height: 100vh;
+}
+.img-true {
+    position: absolute;
+    width: 67%;
+    top: 32%;
+    height:300px;
+    left: -273px;
+    opacity: 0;
+    -webkit-box-shadow: 1px 2px 19px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 2px 19px -5px rgba(0,0,0,0.75);
+	box-shadow: 1px 2px 19px -5px rgba(0,0,0,0.75);
+	transition: 0.5s;
+}
+.img-one{
+	width: 100%;
+	height: 100vh;
+	margin-top: -900px;
+	transition: 0.5s;
+		
+}
+.Home1{
+	background-image: url("https://malina.artstudioworks.net/wp-content/uploads/2018/11/liana-mikah-698524-unsplash-570x410.jpg");
+    background-size: cover;
+}
+.Home2{
+	background-image:  url("https://malina.artstudioworks.net/wp-content/uploads/2018/11/imani-clovis-476079-unsplash-845x550.jpg");
+    background-size: cover;
+}
+.About1{
+	background-image:  url(".././image/laptop.png");
+    background-size: cover;
+    animation: action 1.5s infinite alternate;
+}
+.Active{
+	background-image:  url(".././image/04.jpg");
+    background-size: cover;
+    animation: action 1.5s infinite alternate;
+}
+@keyframes action{
+	0% {
+    	transform: translateY(0);
+	}
+	100% {
+    	transform: translateY(-40px);
+	}
+}
+.About2{
+	background-image:  url(".././image/02.png");
+    background-size: cover;
 
 }
 
+.sec-conten{
+	padding: 175px;
+	color:#2b2828;
+}
 
+.sec-conten h1 {
+    color: rgb(255, 255, 255);
+}
+.sec-row{
+	opacity: 0;
+	transition: 1s;
+}
+.rowActive{
+	opacity: 1;
+}
+.img2Active{
+	margin-top: 0;
+}
 
+.img1Active{
+	left: 273px;
+	opacity: 1;
+}
+.rowActiveAbout{
+	opacity: 1;
+}
+.img2ActiveAbout{
+	margin-top: 0;
+	width: 108%;
+}
+.img2ActiveActive{
+	margin-top: 0;
+	    opacity: 0.5;
+}
+.rowActiveActive{
+	opacity: 1;
+}
+
+.ennis{
+	position: absolute;
+    top: 389%;
+    left: 33%;
+
+}
+.button-about {	
+	border-color:rgb(151, 231, 239) !important;
+	background: rgb(151, 231, 239) !important;
+   }
+.button-about a,.button-active a{
+	color: rgb(46, 207,222);
+	font-weight: 600;
+	text-decoration: none;
+	font-size: 19px;
+    padding: 24px;
+}
+.button-active{
+	background-color: #7072f7;
+	border-color:#7072f7 !important;
+}
+.button-active:hover{
+	background-color: #7072f7;
+
+}
 @media (max-width: 1139px){
-
+	.img2ActiveAbout{
+	width: 143%;
+}
 }
 @media (max-width: 992px) {	
-	.MuiIconButton-colorInherit {
-		display: block !important;
-	}
+	
 	.nav-meau{
-		display: none;
+		/*display: none;*/
+		left: 100%;
+		transition: 0.5s;
+		position: fixed;
+		top: 12px;
 	}
+	.nav-meau ul li{
+		margin: 0;
+	}
+
+	.navShow{
+		left: -47px;
+	}
+	.button-icon{
+		display: block;
+	}
+	.img2ActiveAbout{
+		width: 194%;
+	}
+	.sec-conten {
+    	padding: 76px;
+    	margin-top: 145px;
+}
+
 
 }
 @media (max-width: 768px) { 
 
-	
+	.sec-img{
+		position: absolute;
+
+	}
+	.sec-conten{
+		padding: 72px;
+	}
+	.img-true {
+		left: 469px;
+}
+	.img2Active{
+	height: 56vh;
+}
+.img2ActiveAbout{
+		width: 91%;
+	}
+
 
 	
 }
 @media (max-width: 576px) { 
 
-	.baner-title{
-	
-		margin-top: 200px;
-		padding: 0px;
-		text-align: center;
+	.button-icon{
+		margin-right: 0px;
+	}	
+	.nav-meau{
+		top: 22px;
 	}
-	
+	section{
+		bottom: 296px;
+	}
+	.img-true {
+    	position: absolute;
+		height: 225px;
+		left: -125px;
+		top: 44%;
+}
+	.sec-conten{
+		margin-top: 139px;
+	}
+	.sec-conten h1{
+	color:rgb(249, 226, 214);
+}
+.img2ActiveAbout{
+		width: 93%;
+	}
+
+
+
 
 }
+
+
+

@@ -15,7 +15,8 @@ import {
                 posts : [],
                 random1:"",
                 random2:"",
-                random3:""
+                random3:"",
+                loading12:""
     
             }
 
@@ -63,26 +64,37 @@ import {
             })
             return resule;
         }
-
+ 
         render(){
-
+            var ab = <div className="loading-custom loading">
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                     </div>
              const {posts,random1,random2,random3} = this.state
 
-             // setInterval(() => {
-             //     this.setState({ html: "html" });
-             // }, 1000);
+             setInterval(() => {
+                 this.setState({ loading12: "loading12" });
+             }, 1000);
             return(
                 <div>
-                   {/* <Loading />*/}
-                    <div className="baner-view">
-                        <h2>{posts.name}
-                        <p>Single Post</p>
-                        </h2>
-
+                    <div className="">
+                        {this.state.loading12 === "loading12" ? "" : ab}
                     </div>
-                    <div className={`postBackground container-fluid wapperManager ${this.state.html}`}>
+                    
+                    <div className={`postBackground container-fluid wapperManager ${this.state.loading12}`}>
                         <div className="row "   >
                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div className="baner-view">
+                                    <h2>{posts.name}
+                                    <p>Single Post</p>
+                                    </h2>
+
+                                </div>
                                 <div className="header">
                                     <div className="row"  >
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
@@ -104,6 +116,7 @@ import {
                                                 </ul>
                                                 <h2>Recent Posts</h2>
                                                 <hr/>
+                                                <br/>
                                                 <br/>
                                                 <br/>
                                                 <Link to={`post/${random1._id}`}>

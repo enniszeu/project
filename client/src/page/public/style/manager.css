@@ -19,10 +19,15 @@
 	letter-spacing: 2px;
 }
 .input-custom{
-	width: 50% !important;
+    height: 50px;
+    font-size: 19px;
+}
+.form-control:focus{
+	border-color: rgb(112, 114, 247) !important;
+	box-shadow: inset 0 1px 1px rgba(208, 25, 25, 0.075), 0 0 8px rgb(112, 114, 247) !important;
 }
 .text-custom{
-	width: 80% !important;
+	
 }
 .progress{
 	width: 100%;
@@ -41,7 +46,8 @@ progress{
 }
 .imageUp{
 	width: 100%;
-	height: 400px;
+	padding: 26px;
+	height: 326px;
 	background-size: cover;
 }
 .button-add{
@@ -55,11 +61,12 @@ progress{
 }
 
 .bg-info {
-    background-color: #4a0e14!important;
+    background-color: rgb(112, 114, 247) !important;
 }
 .btn-primary {
-    background-color: #4a0e14 !important;
-    border-color: #4a0e14;
+    background-color: rgb(112, 114, 247) !important;
+    border-color: rgb(112, 114, 247);
+    font-weight: 800;
 }
 .btn-success {
     background-color: #25402b;
@@ -80,16 +87,11 @@ progress{
     font-weight: 700;
 }
 .imageFile{
-	height: 0px;
-	background: #000 !important;
-	border:none;
-	width: 0px !important;
-	position: absolute;
-	opacity: 0;
+	display: none !important;
 	
 }
 .side-nav{
-	background: #fff;
+	background: #000;
 	width: 4.375pc;
 	position: fixed;
 	height: 100%;
@@ -111,8 +113,9 @@ progress{
 	margin-left: -16px;
 }
 .logo{
-	background: #f5f7f9;
-	border-bottom: 1px solid #000;
+	background-image:  url(".././image/enniszeu.png");
+    background-size: cover;
+	border-bottom: 1px solid rgb(112, 114, 247);
 }
 .logo i{
 	margin-left: 20px;
@@ -133,37 +136,79 @@ progress{
 }
 .nav-title{
 	width: 100%;
-	border-bottom: 1px solid #000;
-    height: 4.375pc;
-    background:#f5f7f9 !important;
+	border-bottom: 1px solid rgb(112, 114, 247);
+    height:59px;
+    background:#000 !important;
     color: #000;
 
+}
+.table-dark {
+    color: rgb(112, 114, 247) !important;
+    background-color: #000 !important;
+    font-size: 20px;
+}
+tbody{
+	color: #fff;
+}
+.delete-button svg{
+	font-size: 30px;
+	color: #da3030;
+}
+.MuiSvgIcon-root{
+	font-size: 3.5rem !important;
+	color: rgb(112, 114, 247);
+	margin-left: -6px;
+}
+.meau-click path{
+	color: #fff;
+}
+.close path{
+	color: #fff !important;
+}
+.edit-button svg{
+	font-size: 30px;
+	color: #aaa;
 }
 .meau-click{
 	display: none;
 	width: 8%;
-    height: 100%;
-    padding: 20px;
+    padding: 12px;
     position: absolute;
 }
 .close{
 	display: none;
 	width: 8%;
-    height: 30%;
     position: absolute;
-    padding: 20px;
+    padding: 12px;
     left: -72px;
 }
-
+.imageUp{
+	background: #fff;
+	box-shadow: 0 0 0 1px rgba(63,63,68,0.05), 0 1px 3px 0 rgba(63,63,68,0.15);
+}
+.image-add:hover{
+	opacity: 0.5;
+}
 .image-add{
 	position: absolute;
     color: #000;
     font-size: 22px;
-    top: 231px;
-    color: red;
-    height: 1px;
-    width: 94%;
+    top: 98px;
+    left: 284px;
+    background-image: url("../image/05.svg");
+    background-size: cover;
+    width: 130px;
+    height: 143px;
     text-align: center;
+}
+.image-text{
+	position: absolute;
+    font-size: 28px;
+    top: 148px;
+    left: 415px;
+    font-weight: 600;
+    opacity: 0.5;
+    color: #504848;
 }
 .baner-view{
 	width: 100%;
@@ -286,6 +331,212 @@ progress{
 .admin img{
 	border-radius: 50px;
 }
+.valueInput{
+	position: absolute;
+	top: 70%;
+	font-size: 20px;
+	left: 71px;
+}
+.title-input{
+	background: #fff;
+    padding: 31px;
+	box-shadow: 0 0 0 1px rgba(63,63,68,0.05), 0 1px 3px 0 rgba(63,63,68,0.15);
+	margin-bottom: 35px;
+}
+.alert{
+	font-size: 17px;
+    font-weight: 600;
+}
+.display-5{
+	font-size: 22px;
+	font-weight: 600;
+}
+.rdt {
+    position: relative;
+}
+.rdt input.form-control, .rdt input.form-control:focus {
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#9c27b0),to(#9c27b0)),-webkit-gradient(linear,left top,left bottom,from(#d2d2d2),to(#d2d2d2));
+    background-image: linear-gradient(#9c27b0,#9c27b0),linear-gradient(#d2d2d2,#d2d2d2);
+    box-shadow: none;
+}
+.rdt input.form-control {
+    border: 0;
+    background-size: 0 2px,100% 1px;
+    background-repeat: no-repeat;
+    background-position: bottom,50% calc(100% - 1px);
+    background-color: transparent;
+    -webkit-transition: background 0s ease-out;
+    transition: background 0s ease-out;
+    float: none;
+    border-radius: 0;
+    height: 36px;
+    padding: 7px 0;
+    font-size: 14px;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    line-height: 1.42857;
+    display: block;
+    width: 100%;
+    color: #555;
+}
+.rdt .rdtPicker {
+    -webkit-transition: all .15s linear;
+    transition: all .15s linear;
+    margin-top: -20px;
+    visibility: hidden;
+    display: block;
+    opacity: 0;
+ }
+ .rdtPicker {
+    display: block;
+    top: 40px;
+}
+.rdtPicker {
+    display: none;
+    position: absolute;
+    width: 260px;
+    padding: 4px;
+    margin-top: 1px;
+    z-index: 99999!important;
+    background: #fff;
+    border-radius: .125rem;
+    box-shadow: 0 10px 50px 0 rgba(0,0,0,.2);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    min-width: 160px;
+}
+.rdtPicker:after, .rdtPicker:before {
+    display: inline-block;
+    position: absolute;
+    content: "";
+    top: -5px;
+    left: 10px;
+    border-right: .4em solid transparent;
+    border-left: .4em solid transparent;
+}
+.rdtPicker:before {
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+    right: auto;
+    color: #fff;
+    border-bottom: .4em solid;
+}
+.rdtPicker:after {
+    border-bottom: .4em solid #fff;
+}
+.rdtPicker:after, .rdtPicker:before {
+    display: inline-block;
+    position: absolute;
+    content: "";
+    top: -5px;
+    left: 10px;
+    border-right: .4em solid transparent;
+    border-left: .4em solid transparent;
+}
+.rdtPicker table {
+    width: 100%;
+    margin: 0;
+    border-color: #fff!important;
+    border-collapse: collapse;
+}
+.rdtDays tr .dow {
+    border-bottom: 1px solid #e3e3e3;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: inherit;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+.rdtPicker .dow {
+    width: 14.2857%;
+    border-bottom: none;
+}
+.rdtPicker thead tr:first-child th {
+    cursor: pointer;
+}
+.rdtPicker .dow, .rdtPicker .rdtTimeToggle, .rdtPicker th.rdtNext, .rdtPicker th.rdtPrev, .rdtPicker th.rdtSwitch {
+    color: #9c27b0;
+}
+.rdtPicker th.rdtNext, .rdtPicker th.rdtPrev {
+    font-size: 21px;
+    vertical-align: top;
+    border-radius: 50%;
+    line-height: 33px;
+}
+.rdtPicker td, .rdtPicker th {
+    text-align: center;
+    padding: 1px;
+
+}
+.rdtPicker td{
+	color: #000;
+}
+.rdt.rdtOpen .rdtPicker {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+}
+.rdtDays tr .rdtNew, .rdtDays tr .rdtOld {
+    color: #bdbdbd;
+}
+.rdtDay {
+    height: 30px;
+    line-height: 33px;
+    width: 30px;
+    text-align: center;
+    padding: 0;
+    border-radius: 50%;
+}
+.rdtCounters {
+    display: inline-block;
+}
+.rdtCounters>div {
+    float: left;
+    width: 40px;
+    font-weight: inherit;
+    margin: 3px;
+    border-radius: 50%;
+}
+.rdtCounter {
+    height: 100px;
+    width: 40px;
+}
+.rdtCounters .rdtCounterSeparator {
+    width: 0;
+    border: 1px solid transparent;
+}
+.rdtCounters>div {
+    float: left;
+    width: 40px;
+    font-weight: inherit;
+    margin: 3px;
+    border-radius: 50%;
+}
+.rdtCounterSeparator {
+    padding: 7px;
+    line-height: 100px;
+}
+.rdtCounter .rdtBtn {
+    line-height: 40px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50%;
+    color: #eee;
+    -webkit-transition: all 60ms ease-in;
+    transition: all 60ms ease-in;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.rdtDay.rdtActive, .rdtDay.rdtActive:hover, .rdtDay.rdtToday.rdtActive {
+    background-color: #9c27b0!important;
+    color: #fff;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
+}
 @media (max-width: 992px){
 	.side-nav{
 		width: 0pc;
@@ -314,6 +565,14 @@ progress{
     .blogDate{
 	    top: 186px;
 	}
+	
+	.image-add{
+		top: 54px;
+    	left: 155px;
+	}
+	.image-text{
+		display: none;
+	}
 
 }
 @media (max-width: 576px) { 
@@ -329,7 +588,7 @@ progress{
     	width: 100% !important;
 	}
 	.text-custom {
-    	width: 100% !important;
+    	
 	}
 	.blogConten{
 		height: 450px;
@@ -356,7 +615,12 @@ progress{
 	.postaria{
 		padding: 16px;
 	}
-	
-	
+	.image-add{
+		top: 54px;
+    	left: 122px;
+	}
+	.image-text{
+		display: none;
+	}
 }
 

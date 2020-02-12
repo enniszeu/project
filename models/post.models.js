@@ -9,7 +9,8 @@ var postSchema = new mongoose.Schema({
 	password:String,
 	url:String,
 	textAria:String,
-	imageName:String
+	imageName:String,
+	date:String
 });
 
 var Post = mongoose.model('Post', postSchema, 'post');

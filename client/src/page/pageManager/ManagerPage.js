@@ -2,7 +2,11 @@ import React from 'react';
 import '../public/style/manager.css';
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager';
-import {storage} from './../../firebaseConfig/firebaseConfig'
+import {storage} from './../../firebaseConfig/firebaseConfig';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 import {
   Link
 } from "react-router-dom";
@@ -17,7 +21,8 @@ class ManagerPage extends React.Component{
 	        this.state = {
 	        	meauAdd:"",
 	        	meau:"",
-	            posts : []
+	            posts : [],
+	            sivba:""
 	        }
 	    }
 
@@ -70,7 +75,8 @@ class ManagerPage extends React.Component{
 	meau = () =>{
 		this.setState({ 
 			meauAdd: "meauAdd",
-			meau:"meau" 
+			meau:"meau" ,
+			sivba:"sivba"
 		});
 	}
 	close = () =>{
@@ -82,12 +88,12 @@ class ManagerPage extends React.Component{
 
     render(){
 
-    	var {posts} = this.state
+    	var {posts, sivba} = this.state
 
         return(
         	<div>
-	        	<div className={` wapperManager ${this.state.html}`}>
-	           		<div className="side-nav" id="side-nav">
+	        	<div className={` wapperManagerActive ${this.state.html}`}>
+	           		 <div className={`side-nav ${sivba}`}>
 						<div className="logo">
 							<Link to="/">
 								<i className="fab fa-airbnb fa-2x"></i>
@@ -98,10 +104,10 @@ class ManagerPage extends React.Component{
 					<div className={`conten-mana ${this.state.meauAdd}`} >
 						<div className="nav-title">
 							<div className={`meau-click ${this.state.meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
-								<i className="fas fa-bars fa-2x"></i>
+								<MenuIcon />
 							</div>
 							<div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
-								<i className="fas fa-times"></i>
+								<CloseIcon />
 							</div>
 							<div className="admin">
 								<img src={this.props.picture} />
@@ -143,15 +149,15 @@ class ManagerPage extends React.Component{
 				      	<img src={post.url} width="50" height="50" />
 				      </td>
 				      <td><button type="button" 
-				      			  className="btn "
+				      			  className="btn delete-button"
 				      			  onClick={()=> this.onDelete(post._id, post.url)}
 				      			  >
-				      			  	<i className="fas fa-trash fa-lg custom-icon"></i>
+				      			  	<DeleteIcon/>
 				      		</button>
 				      		<Link to={`/upload/${post._id}`} 
-				      			  className="btn"
+				      			  className="btn edit-button"
 				      			  >
-				      			  	<i className="fas fa-pencil-alt fa-lg custom-icon-edit"></i>
+				      			  	<EditIcon/>
 				      		</Link>
 				      </td>
 				    </tr>

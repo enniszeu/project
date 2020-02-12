@@ -1,18 +1,26 @@
 import React from 'react';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import MessageIcon from '@material-ui/icons/Message';
+import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import {
   Link
 } from "react-router-dom";
 const icons =[
         {
-            name:<i className="far fa-play-circle fa-lt"></i>,
-            link:"/manager"
+            name:<InsertInvitationIcon/>,
+            link:"/5e104b921de3cc0017f7ca42-yuhftb-juyx-rsezxzd-jytv-8714762ghj7g"
         },
         {
-            name:<i className="far fa-calendar-alt fa-lt"></i>,
-            link:"/create"
+            name:<PostAddIcon/>,
+            link:"/56grfg4543-75egr653-753dffs3-786ygh-6ygfdrg5-785g456571-dffxr7sszsv-7645ff"
         },
         {
-            name:<i className="far fa-calendar-alt fa-lt"></i>,
+            name:<PersonOutlineIcon/>,
+            link:"/profile"
+        },
+        {
+            name:<MessageIcon/>,
             link:"/"
         },
         {
