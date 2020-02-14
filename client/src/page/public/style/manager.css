@@ -13,10 +13,10 @@
 .meau{
 	display: none !important;
 }
-.wapperManager{
-	opacity: 1;
-	font-family: 'Montserrat', sans-serif;
+.wapperManagerActive {
+	opacity: 0;
 	letter-spacing: 2px;
+	position: fixed;
 }
 .input-custom{
     height: 50px;
@@ -144,15 +144,20 @@ progress{
 }
 .table-dark {
     color: rgb(112, 114, 247) !important;
-    background-color: #000 !important;
+    background-color: #f5f7f9 !important;
     font-size: 20px;
 }
 tbody{
-	color: #fff;
+	color: #000;
 }
+
 .delete-button svg{
 	font-size: 30px;
 	color: #da3030;
+
+}
+td, th{
+	border: 1px solid #f5f7f9 !important;
 }
 .MuiSvgIcon-root{
 	font-size: 3.5rem !important;
@@ -213,7 +218,9 @@ tbody{
 .baner-view{
 	width: 100%;
 	height: 220px;
-	background:#fff;
+	background-size: cover;
+	background-image: url("../image/07.jpg");
+	transition: 0.5s;
 	text-align: center;
 
 }
@@ -272,13 +279,7 @@ tbody{
 	color: #000;
     background: #fff;
 }
-.text-aria p{
-    padding: 30px;
-}
-.text-aria img{
-	width: 100%;
-	height: 420px;
-}
+
 .btn-default{
 	background: #ff4b4e !important;
 	margin: 30px;
@@ -537,6 +538,60 @@ tbody{
     color: #fff;
     box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
 }
+.alertCustom{
+	opacity: 0.6;
+	position: fixed;
+}
+.proces{
+	height: 719px;
+    width: 100%;
+    position: fixed;
+    background: #12141552;
+}
+.MuiCircularProgress-colorSecondary {
+    color: #673AB7 !important;
+    position: absolute;
+    left: 45%;
+    top: 35%;
+}
+.custom-suc{
+	height: 728px;
+    background: #0000006b;
+    position: fixed;
+    width: 100%;
+}
+.absub svg{
+	color: #8BC34A !important;
+}
+.absub1 svg{
+	color: rgb(210, 83, 74) !important;
+}
+.absub1 a{
+	color: rgb(210, 83, 74)	!important;
+}
+.absub2 svg{
+	color: #03A9F4 !important;
+}
+.form-control{
+	font-size: 22px;
+}
+.delete-mana{
+	position: fixed;
+	right: -147px;
+	transition: 0.5s;
+}
+.showdelete{
+	right: 0;
+	position: fixed;
+	transition: 0.5s;
+}
+
+.checkbox{
+	width: 30px !important;
+	height: 30px !important;
+	visibility: unset !important;
+}
+
 @media (max-width: 992px){
 	.side-nav{
 		width: 0pc;
@@ -622,5 +677,141 @@ tbody{
 	.image-text{
 		display: none;
 	}
+	label:active:after {
+	    width: 20px;
+	}
+	.none-td{
+		display: none;
+	}
 }
+
+
+
+
+
+
+/*proces*/
+@-webkit-keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  -webkit-animation-duration: 0.75s;
+  -moz-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: rotate-forever;
+  -moz-animation-name: rotate-forever;
+  animation-name: rotate-forever;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  animation-timing-function: linear;
+  height: 30px;
+  width: 30px;
+  border: 8px solid #0e0e0eb5;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+.loading-spinner {
+  position: absolute;
+  top: 40%;
+  right: 0;
+  bottom: 0;
+  left: 45%;
+  margin: -15px 0 -15px;
+}
+
+
+/*lable*/
+input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 60px;
+  height: 30px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+label:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+input:checked + label {
+  background:  rgb(112, 114, 247);
+}
+
+input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+label:active:after {
+  width: 130px;
+}
+
 

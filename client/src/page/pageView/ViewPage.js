@@ -40,18 +40,21 @@ import callApi from './../../utils/apicaller';
                         </h2>
 
                     </div>
-                    <div className="postBackground postaria conten container-fluid wapperManager">
+                    <div className="postBackground postaria conten container-fluid wapperManagerView">
                         <div className="row"   >
                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <div className="header">
                                     <div className="row "  >
-                                        <div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
                                             <div className="text-aria">
+                                                <h2>{posts.name}</h2>
+
+                                                <h4>Chu de: {posts.conten} <br/><br/> Date: {posts.date}</h4>
                                                 <img src={posts.url} />
                                                 <p>{posts.textAria}</p>
                                             </div>
                                         </div>
-                                        <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
                                             <div className="meauPost-aria ">
                                                 <h1>Categories</h1>
                                                 <hr/>

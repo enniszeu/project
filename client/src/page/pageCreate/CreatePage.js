@@ -1,17 +1,19 @@
 import React from 'react';
-
+import Proce from './Proce';
 
 // react component plugin for creating a beautiful datetime dropdown picker
 import Datetime from "react-datetime";
 // material-ui components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
+import FormControl from "@material-ui/core/FormControl"; 
 
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager'
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import  { Redirect } from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
@@ -44,7 +46,8 @@ import {
                 acess:"",
                 acessing:"",
                 valueInput:"" ,
-                date:""       
+                date:"",
+                loading12:""
             }
 
             this.onChangeName = this.onChangeName.bind(this);
@@ -56,19 +59,7 @@ import {
             this.onChangeDate = this.onChangeDate.bind(this);
 	    }
 
-        // componentDidMount(){
-        //     var {match} = this.props;
-        //     if(match){
-        //         var id = match.params.id;
-        //         callApi(`post/${id}`, 'GET', null).then(res =>{
-        //             var data = res.data;
-        //             this.setState({
-        //                 name: data.name,
-        //                 conten: data.conten
-        //             })
-        //         })
-        //     }
-        // }
+
         imageUp = () =>{
             const imageUp = document.getElementById("imageInput");
             imageUp.click();
@@ -84,14 +75,12 @@ import {
             this.setState({
                 conten: e.target.value
             });
-            console.log(e.target.value)
         }
           onChangeDate = (e) =>{
               const date = document.getElementById("date");
               this.setState({
                 date:date.value
               })
-              console.log(this.state.date)
         }
 
         onChangeTextAria(e){
@@ -106,9 +95,9 @@ import {
                 this.setState(()=> ({image}))
             }
             this.setState({
-                valueInput:e.target.files[0].name
+                valueInput:e.target.files[0].name,
             })
-            console.log(e.target.files[0])
+           
 
 
         }
@@ -130,6 +119,7 @@ import {
                 var imageName = image.name
                 const uploadTask = storage.ref(`image/${image.name}`);
                 this.setState(()=> ({imageName}))
+                 
 
                 uploadTask.put(image).then((snapshot)=> {
 
@@ -142,7 +132,7 @@ import {
                 }).then(()=> {
                     uploadTask.getDownloadURL().then((url)=> {
                         this.setState(()=> ({url}))
-                        history.goBack('/');
+                        
                         if(name === ""){
                             this.setState({errName:"name khong dc de trong"})
                             }
@@ -163,7 +153,7 @@ import {
                                             imageName:imageName,
                                             date:date
                                             }).then(res =>{
-                                                history.goBack('/');
+                                                
                                             })
 
                                         }
@@ -194,10 +184,25 @@ import {
 
 
         render(){
-            var { date,url,html,meauAdd,meau,sivba,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing, valueInput } = this.state
+            var {imageName, loading12, date,url,html,meauAdd,meau,sivba,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing, valueInput } = this.state
+            var ab = <div className="loading-custom loading">
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                     </div>
+            setInterval(() => {
+                 this.setState({ loading12: "loading12" });
+             }, 1000);
             return(
             	<div>
-                        <div className="wapperManagerActive">
+                        <div className="">
+                            {this.state.loading12 === "loading12" ? "" : ab}
+                        </div>
+                        <div className={` wapperManagerActive ${loading12}`}>
                             <div className={`side-nav ${sivba}`}>
                                 <div className="logo">
                                     <Link to="/manager">
@@ -216,10 +221,10 @@ import {
                                     </div>
                                     <h3>Create Post</h3>
                                 </div>
-        	                	{progress === 100 ? <div className="alert alert-success" role="alert">
-                                  Thêm Thành Công
-                                </div> : ""}
-                                <form onSubmit={this.onSubmit}>
+        	                	 
+                                    
+                                
+                                <form onSubmit={this.onSubmit} className={imageName != "" ? "alertCustom" : ""}>
                                     <div className="title-input">
                                         <div className="form-group">
                                             <p className="display-5">About this post</p>
@@ -246,22 +251,20 @@ import {
                                                    onChange={this.onChangeConten}
                                             />
                                             
-                                            
                                             <div>
-                                                <InputLabel >
-                                                    Datetime Picker
-                                                </InputLabel>
-                                                <br />
+                                                
+                                               
                                                 <FormControl fullWidth>
-                                                    <input type="checkbox" 
+                                                    
+                                                    <Datetime
+                                                      inputProps={{ placeholder: "Datetime Picker Here", id:"date", name:"date" }}            
+                                                    />
+                                                    <input type="checkbox"
+                                                           className="checkbox" 
                                                            value={date} 
                                                            name="date" 
                                                            onChange={this.onChangeDate}/>
-                                                    <Datetime
-                                                      inputProps={{ placeholder: "Datetime Picker Here", id:"date", name:"date" }}
 
-                                                      
-                                                    />
                                                 </FormControl>
                                             </div>
 
@@ -281,7 +284,7 @@ import {
                                         <div className="row"  >
                                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                                         <div onClick={this.imageUp} className="imageUp">
-                                                         <label> Anh Bài Viết </label>
+                                                         <p> Anh Bài Viết </p>
                                                         <div className="valueInput">
                                                             <p>{valueInput ? <FileCopyIcon/> : ""}<span>{valueInput}</span></p>
                                                             
@@ -289,7 +292,7 @@ import {
                                                         
                                                         </div>
                                                         <div>
-                                                            <Link to="56grfg4543-75egr653-753dffs3-786ygh-6ygfdrg5-785g456571-dffxr7sszsv-7645ff">
+                                                            <Link to="create">
                                                             <div className="image-add" onClick={this.imageUp}></div>
                                                             <div className="image-text">
                                                                 <p>Select file</p>
@@ -320,11 +323,11 @@ import {
                                     </div>
                                     <div className="title-input">
                                         <div className="form-group">
-                                            <label>Text:</label>
+                                            <p>Text:</p>
                                              <textarea 
                                                  className="form-control text-custom" 
                                                  id="exampleFormControlTextarea1" 
-                                                 rows="20"
+                                                 rows="15"
                                                  name="textAria"
                                                  value={textAria}
                                                  onChange={this.onChangeTextAria}
@@ -332,11 +335,11 @@ import {
                                              </textarea>
                                              <p style={{color:"red", fontSize:"30px"}}>{`${errText}`}</p>
                                         </div>
-                                        <div className="progress">
-                                          <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{width:`${progress}%`}}>{progress === 100 ? progress : ""}%</div>
-                                        </div>
+                                        
                                     </div>
-                                   
+                                   <div className="progress">
+                                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{width:`${progress}%`}}>{progress === 100 ? progress : ""}%</div>
+                                    </div>
 
                                     <div className="form-group">
                                         <button type="submit" 
@@ -355,6 +358,24 @@ import {
                                         </Link>
                                     </div>
                                 </form> 
+                                {progress === 100 ? <div className="alert alert-success custom-suc" role="alert">
+                                    <div className="alert alert-success absub" role="alert">
+                                        
+                                      <CheckCircleIcon/> Thêm Thành Công
+                                    </div>
+                                    <div className="alert alert-danger absub1" role="alert">
+                                         <ErrorOutlineIcon/> 
+                                         <Link to="manager">
+                                          Go to Back page Manager
+                                        </Link>
+                                    </div>
+                                    <div className="alert alert-info absub2" role="alert">
+                                         <PlayCircleFilledIcon/> 
+                                         <Redirect to='manager'  /> Continue Add
+                                    </div>
+
+                                </div> : ""}
+                                {imageName != "" ? <div className="proces"><Proce /></div> : ""}
         	                </div>
                        	</div>
                     </div>

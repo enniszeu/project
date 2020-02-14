@@ -9,11 +9,11 @@ import {
 const icons =[
         {
             name:<InsertInvitationIcon/>,
-            link:"/5e104b921de3cc0017f7ca42-yuhftb-juyx-rsezxzd-jytv-8714762ghj7g"
+            link:"/manager"
         },
         {
             name:<PostAddIcon/>,
-            link:"/56grfg4543-75egr653-753dffs3-786ygh-6ygfdrg5-785g456571-dffxr7sszsv-7645ff"
+            link:"/create"
         },
         {
             name:<PersonOutlineIcon/>,

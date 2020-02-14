@@ -26,12 +26,12 @@ const routes = [
 		main: () => <PostPage />
 	},
 	{
-		path:"/5e104b921de3cc0017f7ca42-yuhftb-juyx-rsezxzd-jytv-8714762ghj7g",
+		path:"/manager",
 		exact:true,
-		main: () => <ManagerPage />
+		main: () =><ManagerPage />
 	},
 	{
-		path:"/56grfg4543-75egr653-753dffs3-786ygh-6ygfdrg5-785g456571-dffxr7sszsv-7645ff",
+		path:"/create",
 		exact:true,
 		main: ({history}) => <CreatePage history={history} />
 	},

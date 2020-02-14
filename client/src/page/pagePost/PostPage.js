@@ -44,9 +44,10 @@ import {
                                 <div className="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
                                     <div className="blogDatePost">
                                         <div className="blogDate1">
-                                            <p>12 <br/>Thu hai</p>
+                                            <p>{(post.date).slice(3,5)} <br/>{`Thang ${(post.date).slice(1,2)}`}</p>
                                         </div>
-                                        <h5>2016</h5>
+                                        <h5>{(post.date).slice(6,10)}</h5>
+                                        <h3>{(post.date).slice(12,19)}</h3>
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
@@ -97,16 +98,17 @@ import {
                                 </div>
                                 <div className="header">
                                     <div className="row"  >
-                                        <div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
                                             {this.showposts(posts)}
                                         </div>
-                                        <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
                                             <div className="meauPost ">
                                                 <div className="input-group mb-3 input-search">
                                                     <input type="text" className="form-control" placeholder="Search" />
                                                 </div>
                                                 <h2>Categories</h2>
                                                 <hr/>
+                                                <br/>
                                                 <br/>
                                                 <ul>
                                                     <li>Web Design (12)</li>

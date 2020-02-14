@@ -12,9 +12,9 @@
 	background: #f6f8fa;
 }
 .postMeau{
-	width:80%;
-    float: right;
+  	width:80%;
     margin-top: 30px;
+    margin: 93px;
     background: #fff;
     padding-bottom: 30px;
 }
@@ -42,12 +42,21 @@
 	padding-top: 12px;
 }
 .blogDatePost{
-	width: 80px;
+	 width: 80px;
     height: 100px;
     background: #212529;
     margin-top: -75px;
     margin-left: 32px;
 
+}
+.blogDatePost h5{
+  color: #fff;
+}
+.blogDatePost h3{
+  color: #fff;
+      color: #fff;
+    font-size: 10px;
+    margin: 10px;
 }
 .meauPost{
 	background: #fff;
@@ -103,20 +112,46 @@
 	top: 300px;
     left: 50%;
 }
+
+.text-aria p{
+    padding: 30px;
+    font-size: 17px
+}
+.text-aria h2{
+    text-align: center;
+    margin-top: 0;
+}
+.text-aria h4{
+    padding: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.text-aria img{
+    width: 100%;
+    height: 420px;
+}
+
 @media (max-width: 992px) { 
 	.postMeau{
 		width:90%;
-	    float: left;
+	    margin: 30px;
 	    padding-left: 80px;
 	    padding-right: 0px;
 	}
 	
 }
+@media (max-width: 768px) {
+    .postMeau{
+        margin: 20px;
+    }
+ }                           
 @media (max-width: 560px) { 
 	.postMeau{
 		width:100%;
 	    padding-left: 0px;
 	    padding-right: 0px;
+      margin: 0;
 	}
 	.postMeau img {
 	    height: 300px;
@@ -124,11 +159,14 @@
 	.postMeau h4, .postMeau a{
 		width: 100%;
 		padding-left: 39px;
-    	padding-right: 39px;
+    padding-right: 39px;
 	}
 	.loading-custom{
 	    left: 38%;
 	}
+    .text-aria img{
+        height: 306px;
+    }
 
 
 	

@@ -22,7 +22,9 @@ class ManagerPage extends React.Component{
 	        	meauAdd:"",
 	        	meau:"",
 	            posts : [],
-	            sivba:""
+	            sivba:"",
+	            loading12:"",
+	            showdelete:true
 	        }
 	    }
 
@@ -85,14 +87,39 @@ class ManagerPage extends React.Component{
 			meau:"" 
 		});
 	}
+	showDelete= () =>{
+		if(this.state.showdelete === true){
+			this.setState({ 
+			showdelete:false
+		});
+		}else{
+			this.setState({ 
+			showdelete:true
+		});
+		}
+	}
 
     render(){
 
-    	var {posts, sivba} = this.state
-
+    	var {posts, sivba, html, loading12} = this.state
+    	var ab = <div className="loading-custom loading">
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                      <div className='loading__square'></div>
+                     </div>
+    	setInterval(() => {
+	         this.setState({ loading12: "loading12" });
+	     }, 1000);
         return(
         	<div>
-	        	<div className={` wapperManagerActive ${this.state.html}`}>
+        		<div className="">
+                    {this.state.loading12 === "loading12" ? "" : ab}
+                </div>
+	        	<div className={` wapperManagerActive ${loading12}`}>
 	           		 <div className={`side-nav ${sivba}`}>
 						<div className="logo">
 							<Link to="/">
@@ -119,10 +146,11 @@ class ManagerPage extends React.Component{
 						  <thead>
 						    <tr>
 						      <th scope="col">Stt</th>
-						      <th scope="col">Name</th>
-						      <th scope="col">Conten</th>
-						      <th scope="col">Image</th>
-						      <th scope="col">Manager</th>
+												      <th scope="col">Post</th>
+						      <th scope="col" >Theme</th>
+						      <th scope="col">
+						      	<input type="checkbox" id="switch" onClick={this.showDelete} /> <label htmlFor="switch">Toggle</label>
+						      </th>
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -143,12 +171,11 @@ class ManagerPage extends React.Component{
                 return (
                     <tr key={index}>
 				      <th scope="row">{index + 1}</th>
-				      <td>{post.name}</td>
-				      <td>{post.conten}</td>
-				      <td>
-				      	<img src={post.url} width="50" height="50" />
-				      </td>
-				      <td><button type="button" 
+				      
+				      <td><img src={post.url} width="50" height="50" /> {post.name}</td>
+				      <td className="none-td">{post.conten}</td>
+
+				      <td className={this.state.showdelete === true ? "delete-mana ": "showdelete" }><button type="button" 
 				      			  className="btn delete-button"
 				      			  onClick={()=> this.onDelete(post._id, post.url)}
 				      			  >
