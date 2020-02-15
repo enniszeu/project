@@ -8,8 +8,7 @@ import callApi from './../../utils/apicaller';
             super(props);
 
             this.state = {
-                posts : []
-    
+                posts : []    
             }
 
 
@@ -21,7 +20,7 @@ import callApi from './../../utils/apicaller';
                 var id = match.params.id;
                 callApi(`post/${id}`, 'GET', null).then(res =>{
                     this.setState({
-                        posts : res.data
+                        posts : res.data,
                     })
                 })
             }
@@ -31,6 +30,7 @@ import callApi from './../../utils/apicaller';
         render(){
 
              const {posts} = this.state
+             console.log(String(posts))
             return(
                 <div>
                 
@@ -51,8 +51,11 @@ import callApi from './../../utils/apicaller';
 
                                                 <h4>Chu de: {posts.conten} <br/><br/> Date: {posts.date}</h4>
                                                 <img src={posts.url} />
-                                                <p>{posts.textAria}</p>
+                                                {posts.textAria}
+                                                    
+
                                             </div>
+                                                
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
                                             <div className="meauPost-aria ">

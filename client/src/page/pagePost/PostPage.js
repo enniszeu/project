@@ -47,7 +47,7 @@ import {
                                             <p>{(post.date).slice(3,5)} <br/>{`Thang ${(post.date).slice(1,2)}`}</p>
                                         </div>
                                         <h5>{(post.date).slice(6,10)}</h5>
-                                        <h3>{(post.date).slice(12,19)}</h3>
+                                        <h3>{(post.date).slice(11,19)}</h3>
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">

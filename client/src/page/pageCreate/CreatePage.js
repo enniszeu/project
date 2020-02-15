@@ -47,7 +47,8 @@ import {
                 acessing:"",
                 valueInput:"" ,
                 date:"",
-                loading12:""
+                loading12:"",
+                customFont:"customFont"
             }
 
             this.onChangeName = this.onChangeName.bind(this);
@@ -106,6 +107,16 @@ import {
 
              
 
+        }
+        customH1 = () =>{
+            this.setState({
+                customFont:"h1"
+            })
+        }
+        customH2 = () =>{
+            this.setState({
+                customFont:"h2"
+            })
         }
 
         onSubmit(e){
@@ -184,7 +195,7 @@ import {
 
 
         render(){
-            var {imageName, loading12, date,url,html,meauAdd,meau,sivba,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing, valueInput } = this.state
+            var {customFont, imageName, loading12, date,url,html,meauAdd,meau,sivba,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing, valueInput } = this.state
             var ab = <div className="loading-custom loading">
                       <div className='loading__square'></div>
                       <div className='loading__square'></div>
@@ -324,14 +335,23 @@ import {
                                     <div className="title-input">
                                         <div className="form-group">
                                             <p>Text:</p>
+                                            <div className="fontSeting">
+                                                <ul>
+                                                    <li onClick={this.customH1}>H1</li>
+                                                    <li onClick={this.customH2}>H2</li>
+                                                    <li>H3</li>
+                                                    <li>H4</li>
+                                                </ul>
+                                             </div>
                                              <textarea 
-                                                 className="form-control text-custom" 
+                                                 className={`form-control text-custom ${customFont}`} 
                                                  id="exampleFormControlTextarea1" 
                                                  rows="15"
                                                  name="textAria"
                                                  value={textAria}
                                                  onChange={this.onChangeTextAria}
                                                  >
+                                                 
                                              </textarea>
                                              <p style={{color:"red", fontSize:"30px"}}>{`${errText}`}</p>
                                         </div>
