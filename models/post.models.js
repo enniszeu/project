@@ -8,7 +8,7 @@ var postSchema = new mongoose.Schema({
 	email:String,
 	password:String,
 	url:String,
-	textAria:Boolean,
+	textAria:Boolean, 
 	imageName:String,
 	date:String
 });
