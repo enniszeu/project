@@ -1,6 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import "mixin";
+
+
 .display-4 {
-    font-size: 1.5rem !important;
+    font-size: 2.5rem !important;
 }
 
 
@@ -218,11 +220,19 @@ td, th{
 .baner-view{
 	width: 100%;
 	height: 220px;
-	background-size: cover;
-	background-image: url("../image/07.jpg");
+	background: #fff;
 	transition: 0.5s;
 	text-align: center;
+  opacity: 0;
 
+}
+.baner-title{
+  width: 200px;
+  height: 200px;
+  position: absolute  ;
+  left: 40%;
+  background-size: cover;
+  background-image: url("../image/enniszeu2.png");
 }
 .baner-view h2{
 	padding: 64px;
@@ -274,11 +284,7 @@ td, th{
 	color: #fff;
 	font-weight: 300;
 }
-.text-aria{
-	text-align: left;
-	color: #000;
-    background: #fff;
-}
+
 
 .btn-default{
 	background: #ff4b4e !important;
@@ -334,7 +340,7 @@ td, th{
 }
 .valueInput{
 	position: absolute;
-	top: 70%;
+	top: 80%;
 	font-size: 20px;
 	left: 71px;
 }
@@ -591,127 +597,134 @@ td, th{
 	height: 30px !important;
 	visibility: unset !important;
 }
-.fontSeting ul li{
-  float: left;
-  padding: 10px;
-  list-style: none;
-  margin: 5px;
+.MuiPaper-elevation4 {
+    height: 43px;
+    color: #d0782a !important;
+    background: #000 !important;
+    padding: 10px;
 }
-.fontSeting ul li:hover{
-  background: #aaa;
-}
-.customFont{
-  font-size: 22px;
-}
-.h1 {
-    color: #263238;
-    font-size: 35px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 500;
-    line-height: 40px;
-    letter-spacing: -0.24px;
-}
-.h2 {
-    color: #263238;
-    font-size: 29px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 500;
-    line-height: 32px;
-    letter-spacing: -0.24px;
-}
-
-@media (max-width: 992px){
-	.side-nav{
-		width: 0pc;
-	}
-	.meau-click{
-		display: block;
-	}
-	.conten-mana {
-     	margin-left: 0px;
-	}
-	.imageUp{
-		height: 300px;
-	}
-	.sivba{
-		width: 4.375pc;
-	}
-
-}
-@media (max-width: 768px) { 
-	.blogConten img {
-    	height: 250px;
-	}
-	.blogTitle p {
-    	height: 20px;
+.MuiTypography-h6 {
+    font-size: 1.5rem !important;
+    font-weight: 600;
     }
-    .blogDate{
-	    top: 186px;
-	}
-	
-	.image-add{
-		top: 54px;
-    	left: 155px;
-	}
-	.image-text{
-		display: none;
-	}
-
+.makeStyles-root-14 {
+    height: 107px !important;
 }
-@media (max-width: 576px) { 
-	
-	form {
-    	padding: 10px;
+.MuiSwitch-colorSecondary.Mui-checked {
+    color: rgb(112, 114, 247) !important;
+}
+.MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
+    background-color:rgb(112, 114, 247) !important;
+    }
+/*.setImage img{
+    position: absolute;
+    top: 54px;
+    height: 44%;
+}*/
+@include responsive_sm{
+    form {
+        padding: 10px;
 
-	}
-	.progress {
-    	width: 100%;
-	}
-	.input-custom {
-    	width: 100% !important;
-	}
-	.text-custom {
-    	
-	}
-	.blogConten{
-		height: 450px;
-	}
-	.blogTable {
+    }
+    .progress {
+        width: 100%;
+    }
+    .input-custom {
+        width: 100% !important;
+    }
+    .text-custom {
+        
+    }
+    .blogConten{
+        height: 450px;
+    }
+    .blogTable {
      margin-left: 0px; 
      margin-right: 0px; 
-	}
-	.blogTitle p {
-    	height: 70px;
+    }
+    .blogTitle p {
+        height: 70px;
     }
     .blogDate{
-	    top: 200px;
-	}
-	.postMeau{
-		width: 100%;
-	}
-	.btn-success {
-		width: 33% !important;
-	}
-	.text-aria img{
-		height: 300px;
-	}
-	.postaria{
-		padding: 16px;
-	}
-	.image-add{
-		top: 54px;
-    	left: 122px;
-	}
-	.image-text{
-		display: none;
-	}
-	label:active:after {
-	    width: 20px;
-	}
-	.none-td{
-		display: none;
-	}
+        top: 200px;
+    }
+    .postMeau{
+        width: 100%;
+    }
+    .btn-success {
+        width: 33% !important;
+    }
+    .text-aria img{
+        height: 300px;
+    }
+    .postaria{
+        padding: 16px;
+    }
+    .image-add{
+        top: 54px;
+        left: 122px;
+    }
+    .image-text{
+        display: none;
+    }
+    label:active:after {
+        width: 20px;
+    }
+    .none-td{
+        display: none;
+    }
+  .baner-title{
+    left: 13%;
+  }
 }
+ 
+@include responsive_md{
+    .blogConten img {
+        height: 250px;
+    }
+    .blogTitle p {
+        height: 20px;
+    }
+    .blogDate{
+        top: 186px;
+    }
+    
+    .image-add{
+        top: 54px;
+        left: 155px;
+    }
+    .image-text{
+        display: none;
+    }
+}
+ 
+@include responsive_lg{
+    .wapper{
+       .side-nav{
+            width: -65px;
+        } 
+    }
+    
+    .meau-click{
+        display: block;
+    }
+    .conten-mana {
+        margin-left: 0px;
+    }
+    .imageUp{
+        height: 300px;
+    }
+    .sivba{
+        width: 4.375pc;
+    }
+}
+
+ 
+@include responsive_xl{
+
+
+}
+
 
 
 
@@ -798,48 +811,4 @@ td, th{
   margin: -15px 0 -15px;
 }
 
-
-/*lable*/
-input[type=checkbox] {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
-
-label {
-  cursor: pointer;
-  text-indent: -9999px;
-  width: 60px;
-  height: 30px;
-  background: grey;
-  display: block;
-  border-radius: 100px;
-  position: relative;
-}
-
-label:after {
-  content: '';
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  border-radius: 90px;
-  transition: 0.3s;
-}
-
-input:checked + label {
-  background:  rgb(112, 114, 247);
-}
-
-input:checked + label:after {
-  left: calc(100% - 5px);
-  transform: translateX(-100%);
-}
-
-label:active:after {
-  width: 130px;
-}
-
-
+/**/

@@ -1,8 +1,6 @@
 import React from 'react';
-import '../public/style/manager.css';
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager';
-import {storage} from './../../firebaseConfig/firebaseConfig';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -36,21 +34,11 @@ class ManagerPage extends React.Component{
 		})
 	}
 
-	onDelete = (id, url) =>{
+	onDelete = (id) =>{
 
 		var {posts} = this.state;
 	   	if(confirm('ban co chan chan muon xoa ? ')){ // eslint-disable-line
-	   		var desertRef = storage.refFromURL(url);
-	   		desertRef.delete().then(()=> {
-			  // File deleted successfully
-			}).catch((err)=> {
-			  console.log(err)
-			});
-			
-
 	   		callApi(`delete/${id}`, 'GET', null).then(res =>{
-
-
 	   			if( res.status === 200){
 	   				var index = this.findIndex(posts, id);
 	   				if(index !== -1){
@@ -84,24 +72,14 @@ class ManagerPage extends React.Component{
 	close = () =>{
 		this.setState({ 
 			meauAdd: "",
-			meau:"" 
+			meau:"",
+			sivba:""
 		});
-	}
-	showDelete= () =>{
-		if(this.state.showdelete === true){
-			this.setState({ 
-			showdelete:false
-		});
-		}else{
-			this.setState({ 
-			showdelete:true
-		});
-		}
 	}
 
     render(){
 
-    	var {posts, sivba, html, loading12} = this.state
+    	var {posts, sivba, html, loading12, meau, meauAdd} = this.state
     	var ab = <div className="loading-custom loading">
                       <div className='loading__square'></div>
                       <div className='loading__square'></div>
@@ -120,17 +98,17 @@ class ManagerPage extends React.Component{
                     {this.state.loading12 === "loading12" ? "" : ab}
                 </div>
 	        	<div className={` wapperManagerActive ${loading12}`}>
-	           		 <div className={`side-nav ${sivba}`}>
-						<div className="logo">
-							<Link to="/">
-								<i className="fab fa-airbnb fa-2x"></i>
-							</Link>
-						</div>
-						<ContactManager />
-					</div>
-					<div className={`conten-mana ${this.state.meauAdd}`} >
+	           		<div className={`side-nav ${sivba}`}>
+                        <div className="logo">
+                            <Link to="/manager">
+                                <i className="fab fa-airbnb fa-2x"></i>
+                            </Link>
+                        </div>
+                        <ContactManager />
+                    </div>
+					<div className="conten-mana meauAdd" >
 						<div className="nav-title">
-							<div className={`meau-click ${this.state.meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
+							<div className={`meau-click ${meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
 								<MenuIcon />
 							</div>
 							<div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
@@ -149,13 +127,12 @@ class ManagerPage extends React.Component{
 												      <th scope="col">Post</th>
 						      <th scope="col" >Theme</th>
 						      <th scope="col">
-						      	<input type="checkbox" id="switch" onClick={this.showDelete} /> <label htmlFor="switch">Toggle</label>
+						      	mansa
 						      </th>
 						    </tr>
 						  </thead>
 						  <tbody>
 						    {this.showtable(posts)}
-						    
 						  </tbody>
 						</table>
 						</div>
@@ -172,12 +149,12 @@ class ManagerPage extends React.Component{
                     <tr key={index}>
 				      <th scope="row">{index + 1}</th>
 				      
-				      <td><img src={post.url} width="50" height="50" /> {post.name}</td>
+				      <td><img src={post.imageName} width="50" height="50" /> {post.name}</td>
 				      <td className="none-td">{post.conten}</td>
 
-				      <td className={this.state.showdelete === true ? "delete-mana ": "showdelete" }><button type="button" 
+				      <td className="showdelete"><button type="button" 
 				      			  className="btn delete-button"
-				      			  onClick={()=> this.onDelete(post._id, post.url)}
+				      			  onClick={()=> this.onDelete(post._id)}
 				      			  >
 				      			  	<DeleteIcon/>
 				      		</button>

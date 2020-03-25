@@ -8,7 +8,7 @@ import EditPage from './page/pageEdit/EditPage';
 import ViewPage from './page/pageView/ViewPage';
 import NotFoud from './page/notFoud/NotFoud';
 
-
+ 
 const routes = [
 	{
 		path:"/",

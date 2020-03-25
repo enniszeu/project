@@ -177,6 +177,7 @@ class Banner extends React.Component{
 			},200);
 			
 		}
+		console.log("ab")
 
 		}
 	
@@ -250,6 +251,7 @@ class Banner extends React.Component{
 			},200);
 			
 		}
+		console.log("acti")
 
 		}
 	
@@ -290,6 +292,7 @@ class Banner extends React.Component{
                 					</div>
 		                		</div>
                    				 <div className="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+
 		                			<div className="sec-conten">
 		                				<h1>Góc chia sẽ kinh nghiệm lập trình</h1>
 		                				<p>Beginners & Professionals Have

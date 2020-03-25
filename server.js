@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
 const Post = require('./models/post.models');
 const bodyParser = require('body-parser');
@@ -53,7 +53,7 @@ app.post('/create', function(req, res){
     const imageName = req.body.imageName;
 
     const newUser = new Post({name,conten,date,textAria,url,imageName})
-
+    console.log(newUser)
     newUser.save()
         .then(() => res.json('User add'))
         .catch(err => res.status(400).json('Err: ' + err));

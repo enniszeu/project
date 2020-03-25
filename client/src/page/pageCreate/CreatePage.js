@@ -1,13 +1,8 @@
 import React from 'react';
 import Proce from './Proce';
-
-// react component plugin for creating a beautiful datetime dropdown picker
 import Datetime from "react-datetime";
-// material-ui components
-import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl"; 
-
 import callApi from './../../utils/apicaller';
 import ContactManager from '../../Components/Minrec/ContectManager'
 import FileCopyIcon from '@material-ui/icons/FileCopy';
@@ -17,9 +12,8 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import  { Redirect } from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import {storage} from './../../firebaseConfig/firebaseConfig'
 import {
-  Link
+  Link 
 } from "react-router-dom";
 
 
@@ -29,26 +23,24 @@ import {
 	        super(props);
 
 	        this.state = {
-                meauAdd:"",
-                meau:"",
                 name:"",
                 sivba:"",
                 conten:"",
-                image:null,
-                url:"",
                 imageName:"",
-                progress:0,
                 err:"",
                 textAria:"",
                 errName:"",
                 errConten:"",
                 errText:"",
-                acess:"",
-                acessing:"",
                 valueInput:"" ,
                 date:"",
                 loading12:"",
-                customFont:"customFont"
+                file:"",
+                start:0,
+                redirct:0,
+                meauAdd:"",
+                meau:""
+
             }
 
             this.onChangeName = this.onChangeName.bind(this);
@@ -56,7 +48,6 @@ import {
             this.onChangeImage = this.onChangeImage.bind(this);
             this.onChangeTextAria = this.onChangeTextAria.bind(this);
             this.onSubmit = this.onSubmit.bind(this);
-            this.handleUpload = this.handleUpload.bind(this);
             this.onChangeDate = this.onChangeDate.bind(this);
 	    }
 
@@ -82,108 +73,88 @@ import {
               this.setState({
                 date:date.value
               })
+              console.log(date.value)
         }
 
         onChangeTextAria(e){
-            this.setState({
-                textAria: e.target.value
-            });
+            // this.setState({
+            //     textAria: e.target.value
+            // });
+        }
+        key=(e)=>{
+            var eKey = e.key;
+            var value = e.target.value;
+            var enter = this.addEnter();
+            if(eKey === "Enter"){
+                var textAria = e.target.value += enter;
+                    this.setState({
+                    textAria: textAria
+                });
+            }
+            console.log(textAria)
+            
+            
+        }
+
+        addEnter=()=>{
+            let result = "";
+            return result += " <br/> ";
         }
 
         onChangeImage(e){
-            if(e.target.files[0]){
-                const image = e.target.files[0];
-                this.setState(()=> ({image}))
-            }
-            this.setState({
-                valueInput:e.target.files[0].name,
-            })
-           
-
-
+          let file = e.target.files[0];
+          if(file === undefined){
+            
+          }else{
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                this.setState({
+                  file: file,
+                  valueInput:file.name,
+                  imageName: reader.result
+                })
+              }
+              reader.readAsDataURL(file)
+          }
         }
 
-        handleUpload(e){
-
-             
-
+        callApiFunc = (body) => {
+          callApi('create', 'POST', body).then(res =>{
+            this.setState({redirct : res.status})
+             // history.goBack()
+          }) 
         }
-        customH1 = () =>{
-            this.setState({
-                customFont:"h1"
-            })
-        }
-        customH2 = () =>{
-            this.setState({
-                customFont:"h2"
-            })
-        }
-
         onSubmit(e){
             e.preventDefault();
-            
-
-            var {name,conten,url,textAria,imageName, date} = this.state;
+            var {name,conten,url,textAria,imageName, date, file, err} = this.state;
             var {history} = this.props;
-            var {image,err} = this.state;
-             if(image){
-                var imageName = image.name
-                const uploadTask = storage.ref(`image/${image.name}`);
-                this.setState(()=> ({imageName}))
-                 
-
-                uploadTask.put(image).then((snapshot)=> {
-
-                    var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                    this.setState(()=> ({progress}))
-                    // console.log('Upload is ' + progress + '% done');
-                        if(progress === 100){
-                            this.setState({acess:"Thêm Thành Công", acessing:"  "})
-                        }
-                }).then(()=> {
-                    uploadTask.getDownloadURL().then((url)=> {
-                        this.setState(()=> ({url}))
-                        
-                        if(name === ""){
-                            this.setState({errName:"name khong dc de trong"})
-                            }
-                            else if(conten === ""){
-                                this.setState({errConten:"conten khong dc de trong"})
-                                }
-                                else if(textAria === ""){
-                                    this.setState({errText:"textAria khong dc de trong"})
-                                    }
-                                    else if(imageName === ""){
-                                    this.setState({err:"imageName khong dc de trong"})
-                                        }else{
-                                            callApi('create', 'POST', {
-                                            name:name,
-                                            conten:conten,
-                                            textAria:textAria,
-                                            url:url,
-                                            imageName:imageName,
-                                            date:date
-                                            }).then(res =>{
-                                                
-                                            })
-
-                                        }
-                    });
-                });
-                
-            }else{
-                this.setState({err:"Plee Choose Image"})
-            }
             
-                
-
+            if(!file){
+              this.setState({err:"Plee Choose Image"})
+              return true;
             }
+            {this.thenGetDownloadUrl()}
+            this.setState({start:200})      
+      
+        }
+
+        thenGetDownloadUrl = () =>{
+          var {name,conten,url,textAria,imageName, date} = this.state;
+          this.callApiFunc({
+            name:name,
+            conten:conten,
+            textAria:textAria, 
+            imageName:imageName,
+            date:date
+          });
+        }
+
         meau = () =>{
-        this.setState({ 
-            meauAdd: "meauAdd",
-            meau:"meau",
-            sivba:"sivba"
-        });
+          this.setState({ 
+              meauAdd: "meauAdd",
+              meau:"meau",
+              sivba:"sivba"
+          });
         }
 
         close = () =>{
@@ -192,10 +163,10 @@ import {
                 meau:"" 
             });
         }
-
+        
 
         render(){
-            var {customFont, imageName, loading12, date,url,html,meauAdd,meau,sivba,name,conten,textAria,err,progress,errName,errConten,errText,acess,acessing, valueInput } = this.state
+            var { imageName, loading12, date,sivba,name,meauAdd,meau,conten,textAria,err,errName,errConten,errText, valueInput, start, redirct } = this.state
             var ab = <div className="loading-custom loading">
                       <div className='loading__square'></div>
                       <div className='loading__square'></div>
@@ -207,7 +178,7 @@ import {
                      </div>
             setInterval(() => {
                  this.setState({ loading12: "loading12" });
-             }, 1000);
+             }, 500);
             return(
             	<div>
                         <div className="">
@@ -232,10 +203,7 @@ import {
                                     </div>
                                     <h3>Create Post</h3>
                                 </div>
-        	                	 
-                                    
-                                
-                                <form onSubmit={this.onSubmit} className={imageName != "" ? "alertCustom" : ""}>
+                                <form onSubmit={this.onSubmit} className={start === 200 ? "alertCustom" : ""}>
                                     <div className="title-input">
                                         <div className="form-group">
                                             <p className="display-5">About this post</p>
@@ -266,26 +234,16 @@ import {
                                                 
                                                
                                                 <FormControl fullWidth>
-                                                    
                                                     <Datetime
-                                                      inputProps={{ placeholder: "Datetime Picker Here", id:"date", name:"date" }}            
+                                                      inputProps={{ placeholder: Date(), id:"date", name:"date" }}            
                                                     />
                                                     <input type="checkbox"
                                                            className="checkbox" 
                                                            value={date} 
                                                            name="date" 
                                                            onChange={this.onChangeDate}/>
-
                                                 </FormControl>
                                             </div>
-
-
-
-
-
-
-
-
 
                                             <p style={{color:"red", fontSize:"30px"}}>{`${errConten}`}</p>
                                         </div>
@@ -321,46 +279,30 @@ import {
                                                     />
                                             </div>
                                             <br/>
-                                            
-                                           
-                                            {/*<p>{`uploading ${progress} %`}</p>*/}
                                             <br/>
-                                           
-                                  
                                             <br/>
-                                            
-                                            
                                         </div>
                                     </div>
                                     <div className="title-input">
                                         <div className="form-group">
                                             <p>Text:</p>
                                             <div className="fontSeting">
-                                                <ul>
-                                                    <li onClick={this.customH1}>H1</li>
-                                                    <li onClick={this.customH2}>H2</li>
-                                                    <li>H3</li>
-                                                    <li>H4</li>
-                                                </ul>
                                              </div>
+                                            
                                              <textarea 
-                                                 className={`form-control text-custom ${customFont}`} 
+                                                 className={`form-control text-custom`} 
                                                  id="exampleFormControlTextarea1" 
                                                  rows="15"
-                                                 name="textAria"
-                                                 value={textAria}
+                                                 name="textAria"            
                                                  onChange={this.onChangeTextAria}
+                                                 onKeyPress={this.key}
                                                  >
-                                                 
+                                               
                                              </textarea>
+
                                              <p style={{color:"red", fontSize:"30px"}}>{`${errText}`}</p>
                                         </div>
-                                        
                                     </div>
-                                   <div className="progress">
-                                      <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{width:`${progress}%`}}>{progress === 100 ? progress : ""}%</div>
-                                    </div>
-
                                     <div className="form-group">
                                         <button type="submit" 
                                                 value="Create post" 
@@ -378,30 +320,28 @@ import {
                                         </Link>
                                     </div>
                                 </form> 
-                                {progress === 100 ? <div className="alert alert-success custom-suc" role="alert">
+                                {redirct === 200 ? <div className="alert alert-success custom-suc" role="alert">
                                     <div className="alert alert-success absub" role="alert">
-                                        
                                       <CheckCircleIcon/> Thêm Thành Công
                                     </div>
                                     <div className="alert alert-danger absub1" role="alert">
                                          <ErrorOutlineIcon/> 
-                                         <Link to="manager">
+                                         <Link to="manager"> 
                                           Go to Back page Manager
                                         </Link>
                                     </div>
                                     <div className="alert alert-info absub2" role="alert">
                                          <PlayCircleFilledIcon/> 
-                                         <Redirect to='manager'  /> Continue Add
+                                          <Redirect to='manager'  /> Continue Add
                                     </div>
 
                                 </div> : ""}
-                                {imageName != "" ? <div className="proces"><Proce /></div> : ""}
+                                {start === 200 ? <div className="proces"><Proce /></div> : ""}
         	                </div>
                        	</div>
                     </div>
             )
         }
     }
-
 export default CreatePage;
 

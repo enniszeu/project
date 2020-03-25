@@ -1,6 +1,5 @@
 import React from 'react';
 import callApi from './../../utils/apicaller';
-import '../public/style/post.css';
 import {
   Link
 } from "react-router-dom";
@@ -13,23 +12,14 @@ import {
 
             this.state = {
                 posts : [],
-                random1:"",
-                random2:"",
-                random3:"",
                 loading12:""
-    
             }
-
-
         }
 
         componentDidMount(){
             callApi('manager', 'GET', null).then(res =>{
                 this.setState({
-                    posts : res.data,
-                    random1 : res.data[Math.floor(Math.random() * res.data.length)],
-                    random2 : res.data[Math.floor(Math.random() * res.data.length)],
-                    random3 : res.data[Math.floor(Math.random() * res.data.length)]
+                    posts : res.data
                 })
             })
         }
@@ -39,7 +29,7 @@ import {
             resule = posts.map((post, index)=>{
                 return (
                         <div className="postMeau" key={index}>
-                            <img src={post.url} />
+                            <img src={post.imageName} />
                             <div className="row"  >
                                 <div className="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
                                     <div className="blogDatePost">
@@ -76,7 +66,7 @@ import {
                       <div className='loading__square'></div>
                       <div className='loading__square'></div>
                      </div>
-             const {posts,random1,random2,random3} = this.state
+             const {posts} = this.state
 
              setInterval(() => {
                  this.setState({ loading12: "loading12" });
@@ -90,10 +80,13 @@ import {
                     <div className={`postBackground container-fluid wapperManager ${this.state.loading12}`}>
                         <div className="row "   >
                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <div className="baner-view">
-                                    <h2>{posts.name}
-                                    <p>Single Post</p>
-                                    </h2>
+                                <div className={` baner-view ${this.state.loading12}`}>
+                                    <Link to="/">
+                                    <div className="baner-title">
+                                    </div>
+                                    </Link>
+
+
 
                                 </div>
                                 <div className="header">
@@ -116,23 +109,6 @@ import {
                                                     <li>Grapics Design (7)</li>
                                                     <li>Grapics Design (7)</li>
                                                 </ul>
-                                                <h2>Recent Posts</h2>
-                                                <hr/>
-                                                <br/>
-                                                <br/>
-                                                <br/>
-                                                <Link to={`post/${random1._id}`}>
-                                                    <img src={random1.url} width="90px" height="90px" />
-                                                    <p>{random1.name}</p>
-                                                </Link>
-                                                <Link to={`post/${random2._id}`}>
-                                                    <img src={random2.url} width="90px" height="90px" />
-                                                    <p>{random2.name}</p>
-                                                </Link>
-                                                <Link to={`post/${random3._id}`}>
-                                                    <img src={random3.url} width="90px" height="90px" />
-                                                    <p>{random3.name}</p>
-                                                </Link>
                                             </div>
                                         </div>
                                     </div>

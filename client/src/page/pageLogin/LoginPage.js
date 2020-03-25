@@ -8,7 +8,6 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import '../public/style/login.css';
 
 import {
   Link

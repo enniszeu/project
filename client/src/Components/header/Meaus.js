@@ -61,15 +61,19 @@ class Meaus extends React.Component{
         return(
                 <div className="nav-bar">
                     <div className="button-icon" onClick={this.onMeau} id="showMeau">
-                        <div className={`icon-bar ${one}`}></div>
-                        <div className={`icon-bar ${tow}`}></div>
-                        <div className={`icon-bar ${tree}`}></div>
                     </div>
+
                     <div className={`nav-meau ${nav}`}>
                         <ul className={ this.props.isHome ? "" : "on"} id={this.props.isActive ? "" : "onActive"}>
-                            <Link to="" ><li onClick={this.showHome} id="showHome">Home</li></Link>
-                            <Link to="" ><li onClick={this.showAbout}>Docs</li></Link>
-                            <Link to="" ><li onClick={this.showActive}>Login</li></Link>
+                            <Link to="" ><li onClick={this.showHome} id="showHome">
+                                      <div class="arrow animated bounce" onClick={this.showHome}></div>
+                            </li></Link>
+                            <Link to="" ><li onClick={this.showAbout}>
+                                <div class="arrow animated bounce" onClick={this.showAbout}></div>
+                            </li></Link>
+                            <Link to="" ><li onClick={this.showActive}>
+                                <div class="arrow animated bounce" onClick={this.showActive}></div>
+                            </li></Link>
                         </ul>
                     </div>
                 </div>

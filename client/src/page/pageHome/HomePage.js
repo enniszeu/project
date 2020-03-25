@@ -1,12 +1,9 @@
 import React from 'react';
-import '../public/style/home.css';
+import '../public/scss/style.css';
 import Banner from '../../Components/header/Banner';
 import callApi from './../../utils/apicaller';
 
-    
-    
 class HomePage extends React.Component{
-
     constructor(props){
         super(props);
 
@@ -15,7 +12,6 @@ class HomePage extends React.Component{
             conten:""
         }
     }
-
     componentDidMount(){
                 callApi('', 'GET', null).then(res =>{
                     var data = res.data;
@@ -40,5 +36,4 @@ class HomePage extends React.Component{
            )
     }
 }
-
 export default HomePage;

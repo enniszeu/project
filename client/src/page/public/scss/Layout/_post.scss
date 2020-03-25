@@ -1,7 +1,23 @@
 
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 .wapperManager{
 	opacity: 0;
 	position:fixed;
+  
+}
+pre{
+  background-color: #1f1d1c;
+  color: #4CAF50;
+}
+b{
+  color: #cc99cd;
+}
+
+.wapperManagerView{
+  font-family: 'Roboto', sans-serif;
+  opacity: 0;
+  position: fixed;
 }
 .loading12{
 	opacity: 1;
@@ -120,6 +136,8 @@
 .text-aria h2{
     text-align: center;
     margin-top: 0;
+    padding-left: 13%;
+    padding-right: 13%;
 }
 .text-aria h4{
     padding: 30px;
@@ -130,6 +148,12 @@
 .text-aria img{
     width: 100%;
     height: 420px;
+}
+.text-aria{
+  text-align: left;
+  color: #000;
+  background: #fff;
+  padding-top: 40px;
 }
 
 @media (max-width: 992px) { 
@@ -163,6 +187,7 @@
 	}
 	.loading-custom{
 	    left: 38%;
+      top: 270px;
 	}
     .text-aria img{
         height: 306px;
