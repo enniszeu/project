@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: ennisszeu.web.app
+Token: 7a4a1f1980ace05cec33154de06591535b573d8d53a7ca69c0b55e661096dbae

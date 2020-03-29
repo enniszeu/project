@@ -61,6 +61,9 @@ body{
 .nav-meau{
 	width: 85%;
 }
+.nav-meau ul{
+	margin: 0;
+}
 .nav-meau ul li{
 	float: right;
 	position: relative;
@@ -252,7 +255,7 @@ section{
 	}
 
 	.navShow{
-		left: -47px;
+		left: -40px;
 	}
 	.button-icon{
 		display: block;
@@ -271,19 +274,21 @@ section{
 
 	.sec-img{
 		position: absolute;
-
 	}
 	.sec-conten{
 		padding: 72px;
 	}
 	.img-true {
 		left: 469px;
-}
+	}
 	.img2Active{
-	height: 56vh;
-}
-.img2ActiveAbout{
+		height: 56vh;
+	}
+	.img2ActiveAbout{
 		width: 91%;
+	}
+	.nav-meau{
+		top: 90%;
 	}
 
 
@@ -294,9 +299,7 @@ section{
 	.button-icon{
 		margin-right: 0px;
 	}	
-	.nav-meau{
-		top: 22px;
-	}
+	
 	section{
 		bottom: 296px;
 	}

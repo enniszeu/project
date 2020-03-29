@@ -177,7 +177,6 @@ class Banner extends React.Component{
 			},200);
 			
 		}
-		console.log("ab")
 
 		}
 	
@@ -251,9 +250,77 @@ class Banner extends React.Component{
 			},200);
 			
 		}
-		console.log("acti")
+	}
+	lose=()=>{
+		this.setState({
+		activeAction:"",
+		isAction:false
+		})
 
-		}
+		setTimeout(() => {
+			this.setState({
+				timeAction:""
+		})
+		},800);
+
+		this.setState({
+		activeHome:"",
+		isHome:true
+		})
+		setTimeout(() => {
+			this.setState({
+				timeHome:""
+		})
+		},800);
+
+		this.setState({
+		timeAbout:"",
+		isAbout:true
+		})
+		setTimeout(() => {
+			this.setState({
+				activeAbout:""
+		})
+		},800);
+
+
+		setTimeout(() => {
+		this.setState({
+			img2ActiveAbout:""
+		})
+		},100);
+		setTimeout(() => {
+			this.setState({
+				rowActiveAbout:""
+		})
+		},200);
+
+
+		setTimeout(() => {
+		this.setState({
+			rowActiveActive:""
+		})
+		},1200);
+		setTimeout(() => {
+			this.setState({
+				img2ActiveActive:""
+		})
+		},1400);
+
+		setTimeout(() => {
+		this.setState({
+			rowActive:""
+		})
+		},100);
+		setTimeout(() => {
+			this.setState({
+				img1Active:"",
+				img2Active:""
+		})
+		},200);
+	}
+
+		
 	
 	
     render(){
@@ -299,7 +366,7 @@ class Banner extends React.Component{
 											Made Avada Their OwnBeginners & Professionals Have
 											Made Avada Their Own</p>
 										<button type="button" className="btn btn-danger button-about">
-											<Link to="/post" > Go To</Link>
+											<Link to="/post" onClick={this.lose}> Go To</Link>
 										</button>
 		                			</div>
 

@@ -66,13 +66,13 @@ class Meaus extends React.Component{
                     <div className={`nav-meau ${nav}`}>
                         <ul className={ this.props.isHome ? "" : "on"} id={this.props.isActive ? "" : "onActive"}>
                             <Link to="" ><li onClick={this.showHome} id="showHome">
-                                      <div class="arrow animated bounce" onClick={this.showHome}></div>
+                                      <div className="arrow animated bounce" onClick={this.showHome}></div>
                             </li></Link>
                             <Link to="" ><li onClick={this.showAbout}>
-                                <div class="arrow animated bounce" onClick={this.showAbout}></div>
+                                <div className="arrow animated bounce" style={{backgroundColor:"#000"}} onClick={this.showAbout}></div>
                             </li></Link>
                             <Link to="" ><li onClick={this.showActive}>
-                                <div class="arrow animated bounce" onClick={this.showActive}></div>
+                                <div className="arrow animated bounce" style={{backgroundColor:"#7072f7"}} onClick={this.showActive}></div>
                             </li></Link>
                         </ul>
                     </div>

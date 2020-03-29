@@ -77,29 +77,29 @@ import {
         }
 
         onChangeTextAria(e){
-            // this.setState({
-            //     textAria: e.target.value
-            // });
+            this.setState({
+                textAria: e.target.value
+            });
         }
-        key=(e)=>{
-            var eKey = e.key;
-            var value = e.target.value;
-            var enter = this.addEnter();
-            if(eKey === "Enter"){
-                var textAria = e.target.value += enter;
-                    this.setState({
-                    textAria: textAria
-                });
-            }
-            console.log(textAria)
+        // key=(e)=>{
+        //     var eKey = e.key;
+        //     var value = e.target.value;
+        //     var enter = this.addEnter();
+        //     if(eKey === "Enter"){
+        //         var textAria = e.target.value += enter;
+        //             this.setState({
+        //             textAria: textAria
+        //         });
+        //     }
+        //     console.log(textAria)
             
             
-        }
+        // }
 
-        addEnter=()=>{
-            let result = "";
-            return result += " <br/> ";
-        }
+        // addEnter=()=>{
+        //     let result = "";
+        //     return result += " <br/> ";
+        // }
 
         onChangeImage(e){
           let file = e.target.files[0];
@@ -120,7 +120,6 @@ import {
 
         callApiFunc = (body) => {
           callApi('create', 'POST', body).then(res =>{
-            this.setState({redirct : res.status})
              // history.goBack()
           }) 
         }
@@ -167,179 +166,180 @@ import {
 
         render(){
             var { imageName, loading12, date,sivba,name,meauAdd,meau,conten,textAria,err,errName,errConten,errText, valueInput, start, redirct } = this.state
-            var ab = <div className="loading-custom loading">
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                     </div>
+            var ab = <div class="load-wrapp">
+                        <div class="load-6">
+                            <div class="letter-holder">
+                                <div class="l-1 letter">E</div>
+                                <div class="l-2 letter">N</div>
+                                <div class="l-3 letter">N</div>
+                                <div class="l-4 letter">I</div>
+                                <div class="l-5 letter">S</div>
+                                <div class="l-6 letter">Z</div>
+                                <div class="l-7 letter">E</div>
+                                <div class="l-8 letter">U</div>
+                                <div class="l-9 letter">.</div>
+                                <div class="l-10 letter">.</div>
+                                <div class="l-11 letter">.</div>
+                            </div>
+                        </div>
+                    </div>
             setInterval(() => {
                  this.setState({ loading12: "loading12" });
              }, 500);
             return(
             	<div>
-                        <div className="">
-                            {this.state.loading12 === "loading12" ? "" : ab}
+                    <div className="">
+                        {this.state.loading12 === "loading12" ? "" : ab}
+                    </div>
+                    <div className={` wapperManagerActive ${loading12}`}>
+                        <div className={`side-nav ${sivba}`}>
+                            <div className="logo">
+                                <Link to="/manager">
+                                    <i className="fab fa-airbnb fa-2x"></i>
+                                </Link>
+                            </div>
+                            <ContactManager />
                         </div>
-                        <div className={` wapperManagerActive ${loading12}`}>
-                            <div className={`side-nav ${sivba}`}>
-                                <div className="logo">
-                                    <Link to="/manager">
-                                        <i className="fab fa-airbnb fa-2x"></i>
+                        <div className={`conten-mana ${meauAdd}`} >
+                            <div className="nav-title">
+                                <div className={`meau-click ${meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
+                                    <MenuIcon />
+                                </div>
+                                <div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
+                                    <CloseIcon />
+                                </div>
+                                <h3>Create Post</h3>
+                            </div>
+                            <form onSubmit={this.onSubmit} className={start === 200 ? "alertCustom" : ""}>
+                                <div className="title-input">
+                                    <div className="form-group">
+                                        <p className="display-5">About this post</p>
+                                        <br/>
+                                        <div className="alert alert-primary" role="alert">
+                                          <ErrorOutlineIcon/> Once you choose the project name you can’t change it unless you contact customer support.
+                                        </div>
+                                        <input type="text" 
+                                               className="form-control input-custom"
+                                               name="name"
+                                               placeholder="Post Title"
+                                               value={name}
+                                               onChange={this.onChangeName}
+                                        />
+                                        <p style={{color:"red", fontSize:"30px"}}>{`${errName}`}</p>
+                                    </div>
+
+                                    <div className="form-group ">
+                                        <input type="text" 
+                                               className="form-control input-custom"
+                                               name="conten"
+                                               placeholder="Conten"
+                                               value={conten}
+                                               onChange={this.onChangeConten}
+                                        />
+                                        
+                                        <div>
+                                            
+                                           
+                                            <FormControl fullWidth>
+                                                <Datetime
+                                                  inputProps={{ placeholder: Date(), id:"date", name:"date" }}            
+                                                />
+                                                <input type="checkbox"
+                                                       className="checkbox" 
+                                                       value={date} 
+                                                       name="date" 
+                                                       onChange={this.onChangeDate}/>
+                                            </FormControl>
+                                        </div>
+
+                                        <p style={{color:"red", fontSize:"30px"}}>{`${errConten}`}</p>
+                                    </div>
+                                </div>
+                                 <div className="form-group">
+                                   
+                                    <div className="row"  >
+                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                    <div onClick={this.imageUp} className="imageUp">
+                                                     <p> Anh Bài Viết </p>
+                                                    <div className="valueInput">
+                                                        <p>{valueInput ? <FileCopyIcon/> : ""}<span>{valueInput}</span></p>
+                                                        
+                                                    </div>
+                                                    
+                                                    </div>
+                                                    <div>
+                                                        <Link to="create">
+                                                        <div className="image-add" onClick={this.imageUp}></div>
+                                                        <div className="image-text">
+                                                            <p>Select file</p>
+                                                            <h4>Drop files here or click</h4>
+                                                        </div>
+                                                        </Link>
+
+                                                    </div>
+
+                                                    
+                                            <input className="form-control file imageFile"
+                                                   type="file" 
+                                                   onChange={this.onChangeImage}
+                                                   id="imageInput"
+                                                />
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div className="title-input">
+                                    <div className="form-group">
+                                        <p>Text:</p>
+                                        <div className="fontSeting">
+                                         </div>
+                                        
+                                         <textarea 
+                                             className={`form-control text-custom`} 
+                                             id="exampleFormControlTextarea1" 
+                                             rows="15"
+                                             name="textAria"            
+                                             onChange={this.onChangeTextAria}
+                                             onKeyPress={this.key}
+                                             >
+                                           
+                                         </textarea>
+
+                                         <p style={{color:"red", fontSize:"30px"}}>{`${errText}`}</p>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <button type="submit" 
+                                            value="Create post" 
+                                            className="btn btn-primary"
+
+                                            >Upload
+                                            <i className="fas fa-check fa-lg check"></i>
+                                    </button>
+                                </div>
+                            </form> 
+                            {redirct === 200 ? <div className="alert alert-success custom-suc" role="alert">
+                                <div className="alert alert-success absub" role="alert">
+                                  <CheckCircleIcon/> Thêm Thành Công
+                                </div>
+                                <div className="alert alert-danger absub1" role="alert">
+                                     <ErrorOutlineIcon/> 
+                                     <Link to="manager"> 
+                                      Go to Back page Manager
                                     </Link>
                                 </div>
-                                <ContactManager />
-                            </div>
-                            <div className={`conten-mana ${meauAdd}`} >
-                                <div className="nav-title">
-                                    <div className={`meau-click ${meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
-                                        <MenuIcon />
-                                    </div>
-                                    <div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
-                                        <CloseIcon />
-                                    </div>
-                                    <h3>Create Post</h3>
+                                <div className="alert alert-info absub2" role="alert">
+                                     <PlayCircleFilledIcon/> 
+                                      <Redirect to='manager'  /> Continue Add
                                 </div>
-                                <form onSubmit={this.onSubmit} className={start === 200 ? "alertCustom" : ""}>
-                                    <div className="title-input">
-                                        <div className="form-group">
-                                            <p className="display-5">About this post</p>
-                                            <br/>
-                                            <div className="alert alert-primary" role="alert">
-                                              <ErrorOutlineIcon/> Once you choose the project name you can’t change it unless you contact customer support.
-                                            </div>
-                                            <input type="text" 
-                                                   className="form-control input-custom"
-                                                   name="name"
-                                                   placeholder="Post Title"
-                                                   value={name}
-                                                   onChange={this.onChangeName}
-                                            />
-                                            <p style={{color:"red", fontSize:"30px"}}>{`${errName}`}</p>
-                                        </div>
 
-                                        <div className="form-group ">
-                                            <input type="text" 
-                                                   className="form-control input-custom"
-                                                   name="conten"
-                                                   placeholder="Conten"
-                                                   value={conten}
-                                                   onChange={this.onChangeConten}
-                                            />
-                                            
-                                            <div>
-                                                
-                                               
-                                                <FormControl fullWidth>
-                                                    <Datetime
-                                                      inputProps={{ placeholder: Date(), id:"date", name:"date" }}            
-                                                    />
-                                                    <input type="checkbox"
-                                                           className="checkbox" 
-                                                           value={date} 
-                                                           name="date" 
-                                                           onChange={this.onChangeDate}/>
-                                                </FormControl>
-                                            </div>
-
-                                            <p style={{color:"red", fontSize:"30px"}}>{`${errConten}`}</p>
-                                        </div>
-                                    </div>
-                                     <div className="form-group">
-                                       
-                                        <div className="row"  >
-                                            <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                        <div onClick={this.imageUp} className="imageUp">
-                                                         <p> Anh Bài Viết </p>
-                                                        <div className="valueInput">
-                                                            <p>{valueInput ? <FileCopyIcon/> : ""}<span>{valueInput}</span></p>
-                                                            
-                                                        </div>
-                                                        
-                                                        </div>
-                                                        <div>
-                                                            <Link to="create">
-                                                            <div className="image-add" onClick={this.imageUp}></div>
-                                                            <div className="image-text">
-                                                                <p>Select file</p>
-                                                                <h4>Drop files here or click</h4>
-                                                            </div>
-                                                            </Link>
-
-                                                        </div>
-
-                                                        
-                                                <input className="form-control file imageFile"
-                                                       type="file" 
-                                                       onChange={this.onChangeImage}
-                                                       id="imageInput"
-                                                    />
-                                            </div>
-                                            <br/>
-                                            <br/>
-                                            <br/>
-                                        </div>
-                                    </div>
-                                    <div className="title-input">
-                                        <div className="form-group">
-                                            <p>Text:</p>
-                                            <div className="fontSeting">
-                                             </div>
-                                            
-                                             <textarea 
-                                                 className={`form-control text-custom`} 
-                                                 id="exampleFormControlTextarea1" 
-                                                 rows="15"
-                                                 name="textAria"            
-                                                 onChange={this.onChangeTextAria}
-                                                 onKeyPress={this.key}
-                                                 >
-                                               
-                                             </textarea>
-
-                                             <p style={{color:"red", fontSize:"30px"}}>{`${errText}`}</p>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <button type="submit" 
-                                                value="Create post" 
-                                                className="btn btn-primary"
-
-                                                >Upload
-                                                <i className="fas fa-check fa-lg check"></i>
-                                        </button>
-
-                                        <Link to="/manager" 
-                                              className="btn btn-success"
-                                              style={{marginLeft:"20px", width:"14%"}}
-                                              >Back
-                                              <i className="fas fa-arrow-left fa-lg check"></i>
-                                        </Link>
-                                    </div>
-                                </form> 
-                                {redirct === 200 ? <div className="alert alert-success custom-suc" role="alert">
-                                    <div className="alert alert-success absub" role="alert">
-                                      <CheckCircleIcon/> Thêm Thành Công
-                                    </div>
-                                    <div className="alert alert-danger absub1" role="alert">
-                                         <ErrorOutlineIcon/> 
-                                         <Link to="manager"> 
-                                          Go to Back page Manager
-                                        </Link>
-                                    </div>
-                                    <div className="alert alert-info absub2" role="alert">
-                                         <PlayCircleFilledIcon/> 
-                                          <Redirect to='manager'  /> Continue Add
-                                    </div>
-
-                                </div> : ""}
-                                {start === 200 ? <div className="proces"><Proce /></div> : ""}
-        	                </div>
-                       	</div>
-                    </div>
+                            </div> : ""}
+                            {start === 200 ? <div className="proces"><Proce /></div> : ""}
+    	                </div>
+                   	</div>
+                </div>
             )
         }
     }
