@@ -1,5 +1,10 @@
 import React from 'react';
 import callApi from './../../utils/apicaller';
+import Meau from './pageChild/Meau';
+import Loading from '../.././Loading/Loading';
+import Showposts from './pageChild/Showposts';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 import {
   Link
 } from "react-router-dom";
@@ -13,7 +18,13 @@ import {
             this.state = {
                 posts : [],
                 status:0,
-                loading12:""
+                loading12:"",
+                html:"",
+                css:"",
+                js:"",
+                linux:"",
+                onMeau:"",
+                disMeau:""
             }
         }
 
@@ -23,80 +34,73 @@ import {
                     posts : res.data,
                     status: res.status
                 })
+                console.log(res.data)
             })
         }
-
-
-        showposts = (posts) =>{
-        var resule = null;
-            resule = posts.map((post, index)=>{
-                return (
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 postCal" key={index}>
-                            <div className="postMeau">
-                                <img src={post.imageName}/>
-                                <div className="blogDatePost">
-                                    <div className="blogDate1">
-                                        <p>{(post.date).slice(3,5)} <br/>{`Thang ${(post.date).slice(1,2)}`}</p>
-                                    </div>
-                                    <h5>{(post.date).slice(6,10)}</h5>
-                                    <h3>{(post.date).slice(11,19)}</h3>
-                                </div>
-                                <div className="row"  >
-                                    <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                        <Link to={`/post/${post._id}`} ><h4 className="display-14">{post.name}</h4></Link>
-                                        <p className="p">{post.conten}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )
-            })
-            return resule;
+        home=()=>{
+            this.setState({html:"", css:"", js:"" ,loading12:"", linux:"", onMeau:"", disMeau:""})
         }
-
+        html=()=>{
+            this.setState({html:"html", css:"", js:"" ,loading12:"", linux:"", onMeau:"", disMeau:""})
+        }
+        css=()=>{
+            this.setState({css:"css", html:"", js:"" ,loading12:"", linux:"", onMeau:"", disMeau:""})
+        }
+        js=()=>{
+            this.setState({js:"js", css:"", html:"",loading12:"", linux:"", onMeau:"", disMeau:""})
+        }
+        linux=()=>{
+            this.setState({linux:"linux", js:"", css:"", html:"",loading12:"", onMeau:"", disMeau:""})
+        }
+        onMeau=()=>{
+            this.setState({onMeau:"onMeau", disMeau:"disMeau"})
+        }
+        ofMeau=()=>{
+            this.setState({onMeau:"", disMeau:""})
+        }
         render(){
-            var ab = <div class="load-wrapp">
-                        <div class="load-6">
-                            <div class="letter-holder">
-                                <div class="l-1 letter">E</div>
-                                <div class="l-2 letter">N</div>
-                                <div class="l-3 letter">N</div>
-                                <div class="l-4 letter">I</div>
-                                <div class="l-5 letter">S</div>
-                                <div class="l-6 letter">Z</div>
-                                <div class="l-7 letter">E</div>
-                                <div class="l-8 letter">U</div>
-                                <div class="l-9 letter">.</div>
-                                <div class="l-10 letter">.</div>
-                                <div class="l-11 letter">.</div>
-                            </div>
-                        </div>
-                    </div>
-             const {posts, status, loading12} = this.state
+             const {posts, status, loading12, html, css, js, linux, onMeau, disMeau} = this.state
              setInterval(() => {
                  this.setState({ loading12: "loading12" });
              }, 2000);
+                // console.log("res")
+             
             return(
                 <div>
                     <div className="">
-                       {loading12 === "loading12" ? "" : ab}
+                       {loading12 === "loading12" ? "" : <Loading />}
                     </div>
-                    
-                    <div className={`postBackground container-fluid wapperManager ${this.state.loading12}`}>
+                    <title>Chia sẽ kinh nghiệm lập trình</title>
+                    <div className="row custom_row">
+                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 custom_col">
+
+                                <div className="meau_mobie fixed-top">
+                                    <MenuIcon onClick={this.onMeau}/>
+                                    <div className={`nav_mobi ${onMeau} `}>
+                                        <CloseIcon onClick={this.ofMeau}/>
+                                        <ul>
+                                            <li onClick={this.home}><Link to="/post">home</Link></li>
+                                            <li onClick={this.html} ><Link to="/post" className={html === "html" ? "colorHtml" : ""}>html</Link></li>
+                                            <li onClick={this.css}><Link to="/post" className={css === "css" ? "colorCss" : ""}>css</Link></li>
+                                            <li onClick={this.js}><Link to="/post" className={js === "js" ? "colorJs" : ""}>js</Link></li>
+                                            <li onClick={this.linux}><Link to="/post" className={linux === "linux" ? "colorLinux" : ""}>Linux</Link></li>
+                                        </ul>
+                                    </div>  
+                                </div>
+
+                                <Meau html={html} css={css} js={js} linux={linux} loading12={loading12} setHtml={this.html} setHome={this.home} setCss={this.css} setJs={this.js} setLinux={this.linux}/>
+                                
+                            </div>
+                        </div>
+
+                    <div className={`postBackground container-fluid wapperManager ${disMeau} ${this.state.loading12}`}>
                         <div className="row "   >
                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <div className={` baner-view ${this.state.loading12}`}>
-                                    <Link to="/">
-                                    <div className="baner-title">
-                                    </div>
-                                    </Link>
-                                </div>
+
                                 <div className="wapper_header">
                                     <div className="row">
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                                            <div class="row">
-                                                {this.showposts(posts)}
-                                            </div>
+                                            <Showposts posts={posts} html={html} css={css} js={js} linux={linux}/>
                                         </div>
                                     </div>
                                 </div>

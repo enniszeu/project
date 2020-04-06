@@ -6,6 +6,11 @@ const Post = require('./models/post.models');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 var cors = require('cors');
+var cookieParser = require('cookie-parser')
+ 
+
+app.use(cookieParser())
+
 
 const uri = process.env.MONGO_URL
 mongoose.connect(uri ,{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
@@ -19,30 +24,35 @@ app.use(bodyParser.json({limit: '10000kb'}));
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+var routerAuth = require('./router/auth.router');
+var routerManager = require('./router/manager.router');
+
+
+// app.use('/login', routerAuth);
+// app.use('/manager', routerManager);
+
+
+
 app.get('/', function(req, res){
-    var page = parseInt(req.query.page) || 1;
-    var perPage = 3;
+    // var page = parseInt(req.query.page) || 1;
+    // var perPage = 3;
 
-    var start = (page - 1) * perPage;
-    var end = page * perPage;
+    // var start = (page - 1) * perPage;
+    // var end = page * perPage;
     
-    Post.find()
-        .then(posts => res.json(posts.slice(start, end)))
-        .catch(err => res.status(400).json('Err :' + err))
-})
-
-
-
-//home post
-app.get('/manager', async function(req, res){
     Post.find()
         .then(posts => res.json(posts))
         .catch(err => res.status(400).json('Err :' + err))
 })
 
+app.get('/manager', function(req, res, next){
+    Post.find()
+        .then(posts => res.json(posts))
+        .catch(err => res.status(400).json('Err :' + err))
+});
 
 //create
-
+ 
 
 app.post('/create', function(req, res){
     
@@ -86,7 +96,6 @@ app.post('/upload/:id', function(req, res){
         })
         .catch(err => res.status(400).json('Err: ' + err));
 })
-
 
 
 

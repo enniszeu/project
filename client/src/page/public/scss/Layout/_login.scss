@@ -1,27 +1,42 @@
 .container-fluid-css{
     padding:60px ;
-    background: #000;
+    background: #f7f9fb;
     opacity:0;
     position:fixed;
 }
+// .header{
+//     box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+//   	margin: 90px;
+
+//   /*  margin: 68px 250px 68px 250px;*/
+// }
 .header{
-    box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
-  	margin: 90px;
-
-  /*  margin: 68px 250px 68px 250px;*/
+    max-width: 498px;
+    margin: auto;
 }
-
 .login-left{
     width: 100%;
-    height: 500px;
-    background-image:  url(".././image/04.jpg");
+    height: 585px;
+    // background-image:  url(".././image/04.jpg");
     background-size: cover;
+    box-shadow: 0 0 35px rgba(0,0,0,0.1);
     text-align: center;
     padding: 70px;
+    .main_banner_e{
+            padding: 15px 109px;
+    }
+    .banner_e{
+        background-image: url(".././image/enniszeu2.png");
+        width: 100%;
+        height: 100px;
+        background-size: cover;
+        border-radius: 55px;
+    }
 }
 .login-left p{
-    color: rgb(112, 114, 247);
-    font-size: 26px;
+    color: #1f1f23;
+    font-size: 23px;
+    font-weight: 400;
 }
 .loginResend{
     width: 190px;
@@ -44,55 +59,40 @@
     color: #fff;
     margin: 10px;
     width: 100%;
+    height: 36px;
     padding: 13px;
-    background: rgba(23, 23, 23, 0.72)!important;
-    border: 1px solid #000;
+    border: 1px solid #dcdfe6;
+    border-radius: 3px;
 }
-
+.icone_user{
+    color: #909399;
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+    border-radius: 4px;
+    padding: 0 20px;
+    width: 100%;
+    white-space: nowrap;
+}
 .button-login{
     padding: 10px;
 }
 .button-login button{
     background: rgb(112, 114, 247) !important;
     color: #000;
+    width: 100%;
     padding-right: 40px;
     padding-left: 40px;
-    float: left;
     font-size: 18px;
+    height: 36px;
 }
 .button-login span{
     color: #fff;
     float: right;
     padding-top: 10px;
 }
-.login-right{
-    padding: 38px;
-}
-.box-right{
-    width: 100%;
-    height: 256px;
-    margin: -2px;
-    border: solid 5px #ffffff;
-    box-shadow: 0 0 35px rgb(112, 114, 247);
-    text-align: center;
-    padding: 32px;
-}
-.box-right h4{
-    color: #aaa;
-}
-.box-right h2{
-	text-align: center;
-    color: rgb(112, 114, 247);
-     animation: action 1.5s infinite alternate;
-     font-weight: 800;
-}
-.box-right ul li{
-    float: left;
-    margin: 10px;
-    width: 39px;
-    list-style: none;
 
-}
+
 .fb svg:hover {
 	color: #fff !important; 
 }
@@ -112,9 +112,7 @@
     left: 311px;
     opacity: 0;
 }
-.box-right ul li i{
-	margin-left: 6px;
-}
+
 .fb svg{
 	color: #4867aa !important;
 }
@@ -125,7 +123,7 @@
 	color: #db4437 !important;;
 }
 .in svg{
-	color: #fff !important;
+	color: #020202 !important
 }
 .kep-login-facebook {
 	font-size: calc(.27548vw + -6.28926px) !important;
@@ -139,43 +137,42 @@
     font-size: 31px;
 }
 .formLogin{
-    background: #aaa0 !important;
+    background: #fff !important;
     padding: 0;
-}
-@media (max-width: 576px) {
-	.container-fluid-css {
-    	padding: 0px;
-    	position: fixed;
-    }
-	.header{
-		margin: 0px
-	}
-	.box-right{
-		padding: 4px;
-	}
-	.box-right{
-		margin-top: -163px;
-		border: none;
-		box-shadow:none;
-		width: 109%;
-        margin-left: -18px;
-	}
-	.box-right h2, .box-right h4{
-		display: none;
-	}
-	.login-left{
-		padding: 19px;
-		margin-top: 72px;
-		border-radius: 11px;
-	}
-	.kep-login-facebook{
-		left: 103px;
-    	top: -109px;
-	}
-    .in button {
-        left: 263px;
-    }
-    .login-right{
-        position: fixed;
+    ul {
+        li{
+            float: left;
+           padding: 22px;
+            width: 39px;
+            list-style: none;
+        }
     }
 }
+.MuiSvgIcon-root{
+    width: 0.8em !important;
+}
+
+
+@include responsive_sm{
+    .login-left{
+        padding: 20px;
+    }
+    .container-fluid-css {
+         padding: 100px 0px;
+    }
+    .input-login input {
+        width: 90%;
+    }
+    .login-left .main_banner_e {
+        padding: 15px 91px;
+    }
+}
+@include responsive_md{
+    .input-login {
+        input {
+            
+        }
+    }
+}
+@include responsive_lg{}
+@include responsive_xl{}

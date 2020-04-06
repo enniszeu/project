@@ -12,6 +12,8 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import  { Redirect } from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import Loading from '../.././Loading/Loading';
+import ImageUploader from "react-images-upload";
 import {
   Link 
 } from "react-router-dom";
@@ -33,14 +35,17 @@ import {
                 errConten:"",
                 errText:"",
                 valueInput:"" ,
-                date:"",
+                date:Date(),
                 loading12:"",
                 file:"",
                 start:0,
                 redirct:0,
                 meauAdd:"",
-                meau:""
-
+                meau:"",
+                isTrueLogin:false,
+                image1:"",
+                image2:"",
+                pictures: []
             }
 
             this.onChangeName = this.onChangeName.bind(this);
@@ -57,6 +62,13 @@ import {
             imageUp.click();
         }
 
+        componentDidMount(){
+            const cookie = document.cookie
+             if(cookie === "0fe8cf3262d72131ec5d304cd3d8190b"){
+                this.setState({isTrueLogin : true})
+             }
+      }
+
         onChangeName(e){
             this.setState({
                 name: e.target.value
@@ -69,11 +81,7 @@ import {
             });
         }
           onChangeDate = (e) =>{
-              const date = document.getElementById("date");
-              this.setState({
-                date:date.value
-              })
-              console.log(date.value)
+    
         }
 
         onChangeTextAria(e){
@@ -82,24 +90,25 @@ import {
             });
         }
         // key=(e)=>{
+        //     var {image1} = this.state;
         //     var eKey = e.key;
         //     var value = e.target.value;
         //     var enter = this.addEnter();
-        //     if(eKey === "Enter"){
+        //     if(eKey === "`"){
         //         var textAria = e.target.value += enter;
         //             this.setState({
         //             textAria: textAria
         //         });
         //     }
-        //     console.log(textAria)
+        //     console.log(eKey)
             
             
         // }
 
-        // addEnter=()=>{
-        //     let result = "";
-        //     return result += " <br/> ";
-        // }
+        addEnter=()=>{
+            let result = "";
+            return result += `<img src="${this.state.image1}" />`;
+        }
 
         onChangeImage(e){
           let file = e.target.files[0];
@@ -116,11 +125,41 @@ import {
               }
               reader.readAsDataURL(file)
           }
+          // if (e.target.files && e.target.files[0]) {
+          //     let img = e.target.files[0];
+          //     this.setState({
+          //       imageName: URL.createObjectURL(img)
+          //     });
+          //     console.log(URL.createObjectURL(img))
+          //   }
         }
+
+          onDrop=(pictureFiles, pictureDataURLs)=> {
+            this.setState({
+              pictures: this.state.pictures.concat(pictureFiles),
+              image1:pictureDataURLs
+            });
+          }
+
+        // onChangeImageAdd=(e)=>{
+        //   let file = e.target.files[0];
+        //   if(file === undefined){
+            
+        //   }else{
+        //     let reader = new FileReader();
+        //     reader.onloadend = () => {
+        //         this.setState({
+        //           image1: reader.result
+        //         })
+        //       }
+        //       reader.readAsDataURL(file)
+        //   }
+        // }
 
         callApiFunc = (body) => {
           callApi('create', 'POST', body).then(res =>{
              // history.goBack()
+             this.setState({redirct : res.status})
           }) 
         }
         onSubmit(e){
@@ -128,12 +167,13 @@ import {
             var {name,conten,url,textAria,imageName, date, file, err} = this.state;
             var {history} = this.props;
             
-            if(!file){
+            /*if(!file){
               this.setState({err:"Plee Choose Image"})
               return true;
-            }
+            }*/
             {this.thenGetDownloadUrl()}
-            this.setState({start:200})      
+            this.setState({start:200})   
+
       
         }
 
@@ -142,7 +182,7 @@ import {
           this.callApiFunc({
             name:name,
             conten:conten,
-            textAria:textAria, 
+            textAria:textAria.replace("@", "<span style=color:red>@</span>"), 
             imageName:imageName,
             date:date
           });
@@ -165,182 +205,176 @@ import {
         
 
         render(){
-            var { imageName, loading12, date,sivba,name,meauAdd,meau,conten,textAria,err,errName,errConten,errText, valueInput, start, redirct } = this.state
-            var ab = <div class="load-wrapp">
-                        <div class="load-6">
-                            <div class="letter-holder">
-                                <div class="l-1 letter">E</div>
-                                <div class="l-2 letter">N</div>
-                                <div class="l-3 letter">N</div>
-                                <div class="l-4 letter">I</div>
-                                <div class="l-5 letter">S</div>
-                                <div class="l-6 letter">Z</div>
-                                <div class="l-7 letter">E</div>
-                                <div class="l-8 letter">U</div>
-                                <div class="l-9 letter">.</div>
-                                <div class="l-10 letter">.</div>
-                                <div class="l-11 letter">.</div>
+            var {image1, isTrueLogin, imageName, loading12, date,sivba,name,meauAdd,meau,conten,textAria,err,errName,errConten,errText, valueInput, start, redirct } = this.state
+            var notContent = <div style={{color:"#fff"}}><h3>Bạn không có quyền truy cập</h3></div>
+            var content = <div>
+                            <div className="">
+                                {this.state.loading12 === "loading12" ? "" : <Loading />}
+                            </div>
+                            <div className={` wapperManagerActive ${loading12}`}>
+                                <div className={`side-nav ${sivba}`}>
+                                    <div className="logo">
+                                        <Link to="/manager">
+                                            <i className="fab fa-airbnb fa-2x"></i>
+                                        </Link>
+                                    </div>
+                                    <ContactManager />
+                                </div>
+                                <div className={`conten-mana ${meauAdd}`} >
+                                    <div className="nav-title">
+                                        <div className={`meau-click ${meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
+                                            <MenuIcon />
+                                        </div>
+                                        <div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
+                                            <CloseIcon />
+                                        </div>
+                                        <h3>Create Post</h3>
+                                    </div>
+                                    <form onSubmit={this.onSubmit} className={start === 200 ? "alertCustom" : ""}>
+                                        <div className="title-input">
+                                            <div className="form-group">
+                                                <p className="display-5">About this post</p>
+                                                <br/>
+                                                <div className="alert alert-primary" role="alert">
+                                                  <ErrorOutlineIcon/> Once you choose the project name you can’t change it unless you contact customer support.
+                                                </div>
+                                                <input type="text" 
+                                                       className="form-control input-custom"
+                                                       name="date"
+                                                       placeholder="false"
+                                                       value={Date()}
+                                                       onChange={this.onChangeDate}
+                                                       style={{border:"none", background:"#fff", boxShadow:"none", fontSize:"16px", color:"#b3c0c8"}}
+                                                />
+                                                <br/>
+                                                <input type="text" 
+                                                       className="form-control input-custom"
+                                                       name="name"
+                                                       placeholder="Post Title"
+                                                       value={name}
+                                                       onChange={this.onChangeName}
+                                                />
+                                                <p style={{color:"red", fontSize:"30px"}}>{`${errName}`}</p>
+                                            </div>
+
+                                            <div className="form-group ">
+                                                {/*<input type="text" 
+                                                       className="form-control input-custom"
+                                                       name="conten"
+                                                       placeholder="Conten"
+                                                       value={conten}
+                                                       
+                                                />*/}
+                                                <div className="" >
+                                                  <select style={{width:"20%", height:"50px", background:"#cce5ff96", border:"none"}} defaultValue={'DEFAULT'} className="form-control input-custom" id="inlineFormCustomSelect" onChange={this.onChangeConten} name="conten">
+                                                    <option value="DEFAULT" disabled>section</option>
+                                                    <option defaultValue="1">HTML</option>
+                                                    <option defaultValue="1">LINUX</option>
+                                                    <option defaultValue="2">JAVASCRIPT</option>
+                                                    <option defaultValue="3">CSS</option>
+                                                  </select>
+                                                </div>
+
+                                                <p style={{color:"red", fontSize:"30px"}}>{`${errConten}`}</p>
+                                            </div>
+                                        </div>
+                                         <div className="form-group">
+                                           
+                                            <div className="row"  >
+                                                <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                            <div onClick={this.imageUp} className="imageUp">
+                                                             <p> Anh Bài Viết </p>
+                                                            <div className="valueInput">
+                                                                <p>{valueInput ? <FileCopyIcon/> : ""}<span>{valueInput}</span></p>
+                                                                
+                                                            </div>
+                                                            
+                                                            </div>
+                                                            <div>
+                                                                <Link to="create">
+                                                                <div className="image-add" onClick={this.imageUp}></div>
+                                                                <div className="image-text">
+                                                                    <p>Select file</p>
+                                                                    <h4>Drop files here or click</h4>
+                                                                </div>
+                                                                </Link>
+
+                                                            </div>
+
+                                                            
+                                                    <input className="form-control file imageFile"
+                                                           type="file" 
+                                                           onChange={this.onChangeImage}
+                                                           id="imageInput"
+                                                        />
+                                                </div>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </div>
+                                        </div>
+                                        <div style={{ marginRight: "15px" }}>
+                                            <ImageUploader
+                                              withIcon={false}
+                                              withPreview={true}
+                                              label=""
+                                              buttonText="Upload Images"
+                                              onChange={this.onDrop}
+                                              imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
+                                              maxFileSize={1048576}
+                                              fileSizeError=" file size is too big"
+                                            />
+                                          </div>
+                                        <div className="title-input">
+                                            <div className="form-group">
+                                                <p>Text:</p>
+                                                <div className="fontSeting">
+                                            {/*    <input type="file" onChange={this.onChangeImageAdd}/>*/}
+                                                 </div>
+                                                
+                                                 <textarea 
+                                                     className={`form-control text-custom`} 
+                                                     id="exampleFormControlTextarea1" 
+                                                     rows="15"
+                                                     name="textAria"            
+                                                     onChange={this.onChangeTextAria}
+                                                     onKeyPress={this.key}
+                                                     >
+                                                 
+                                                 </textarea>
+
+                                                 <p style={{color:"red", fontSize:"30px"}}>{`${errText}`}</p>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <button type="submit" 
+                                                    value="Create post" 
+                                                    className="btn btn-primary"
+
+                                                    >Upload
+                                                    <i className="fas fa-check fa-lg check"></i>
+                                            </button>
+                                        </div>
+                                    </form> 
+                                    {redirct === 200 ? <div className="alert alert-success custom-suc" role="alert">
+                                                        <div className="alert alert-info absub2" role="alert">
+                                                            <Redirect to='manager'  /> Continue Add
+                                                        </div>
+                                                      </div> 
+                                                    :
+                                                     ""
+                                   }
+                                    {start === 200 ? <div className="proces"><Proce /></div> : ""}
+                                </div>
                             </div>
                         </div>
-                    </div>
             setInterval(() => {
                  this.setState({ loading12: "loading12" });
              }, 500);
             return(
-            	<div>
-                    <div className="">
-                        {this.state.loading12 === "loading12" ? "" : ab}
-                    </div>
-                    <div className={` wapperManagerActive ${loading12}`}>
-                        <div className={`side-nav ${sivba}`}>
-                            <div className="logo">
-                                <Link to="/manager">
-                                    <i className="fab fa-airbnb fa-2x"></i>
-                                </Link>
-                            </div>
-                            <ContactManager />
-                        </div>
-                        <div className={`conten-mana ${meauAdd}`} >
-                            <div className="nav-title">
-                                <div className={`meau-click ${meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
-                                    <MenuIcon />
-                                </div>
-                                <div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
-                                    <CloseIcon />
-                                </div>
-                                <h3>Create Post</h3>
-                            </div>
-                            <form onSubmit={this.onSubmit} className={start === 200 ? "alertCustom" : ""}>
-                                <div className="title-input">
-                                    <div className="form-group">
-                                        <p className="display-5">About this post</p>
-                                        <br/>
-                                        <div className="alert alert-primary" role="alert">
-                                          <ErrorOutlineIcon/> Once you choose the project name you can’t change it unless you contact customer support.
-                                        </div>
-                                        <input type="text" 
-                                               className="form-control input-custom"
-                                               name="name"
-                                               placeholder="Post Title"
-                                               value={name}
-                                               onChange={this.onChangeName}
-                                        />
-                                        <p style={{color:"red", fontSize:"30px"}}>{`${errName}`}</p>
-                                    </div>
-
-                                    <div className="form-group ">
-                                        <input type="text" 
-                                               className="form-control input-custom"
-                                               name="conten"
-                                               placeholder="Conten"
-                                               value={conten}
-                                               onChange={this.onChangeConten}
-                                        />
-                                        
-                                        <div>
-                                            
-                                           
-                                            <FormControl fullWidth>
-                                                <Datetime
-                                                  inputProps={{ placeholder: Date(), id:"date", name:"date" }}            
-                                                />
-                                                <input type="checkbox"
-                                                       className="checkbox" 
-                                                       value={date} 
-                                                       name="date" 
-                                                       onChange={this.onChangeDate}/>
-                                            </FormControl>
-                                        </div>
-
-                                        <p style={{color:"red", fontSize:"30px"}}>{`${errConten}`}</p>
-                                    </div>
-                                </div>
-                                 <div className="form-group">
-                                   
-                                    <div className="row"  >
-                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                    <div onClick={this.imageUp} className="imageUp">
-                                                     <p> Anh Bài Viết </p>
-                                                    <div className="valueInput">
-                                                        <p>{valueInput ? <FileCopyIcon/> : ""}<span>{valueInput}</span></p>
-                                                        
-                                                    </div>
-                                                    
-                                                    </div>
-                                                    <div>
-                                                        <Link to="create">
-                                                        <div className="image-add" onClick={this.imageUp}></div>
-                                                        <div className="image-text">
-                                                            <p>Select file</p>
-                                                            <h4>Drop files here or click</h4>
-                                                        </div>
-                                                        </Link>
-
-                                                    </div>
-
-                                                    
-                                            <input className="form-control file imageFile"
-                                                   type="file" 
-                                                   onChange={this.onChangeImage}
-                                                   id="imageInput"
-                                                />
-                                        </div>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                    </div>
-                                </div>
-                                <div className="title-input">
-                                    <div className="form-group">
-                                        <p>Text:</p>
-                                        <div className="fontSeting">
-                                         </div>
-                                        
-                                         <textarea 
-                                             className={`form-control text-custom`} 
-                                             id="exampleFormControlTextarea1" 
-                                             rows="15"
-                                             name="textAria"            
-                                             onChange={this.onChangeTextAria}
-                                             onKeyPress={this.key}
-                                             >
-                                           
-                                         </textarea>
-
-                                         <p style={{color:"red", fontSize:"30px"}}>{`${errText}`}</p>
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <button type="submit" 
-                                            value="Create post" 
-                                            className="btn btn-primary"
-
-                                            >Upload
-                                            <i className="fas fa-check fa-lg check"></i>
-                                    </button>
-                                </div>
-                            </form> 
-                            {redirct === 200 ? <div className="alert alert-success custom-suc" role="alert">
-                                <div className="alert alert-success absub" role="alert">
-                                  <CheckCircleIcon/> Thêm Thành Công
-                                </div>
-                                <div className="alert alert-danger absub1" role="alert">
-                                     <ErrorOutlineIcon/> 
-                                     <Link to="manager"> 
-                                      Go to Back page Manager
-                                    </Link>
-                                </div>
-                                <div className="alert alert-info absub2" role="alert">
-                                     <PlayCircleFilledIcon/> 
-                                      <Redirect to='manager'  /> Continue Add
-                                </div>
-
-                            </div> : ""}
-                            {start === 200 ? <div className="proces"><Proce /></div> : ""}
-    	                </div>
-                   	</div>
-                </div>
+            	<div>{isTrueLogin === true ? content : notContent }</div>
             )
+            
         }
     }
 export default CreatePage;

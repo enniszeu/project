@@ -1,5 +1,4 @@
 body{
-  background: #000;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
@@ -9,12 +8,20 @@ body{
 	position:fixed;
   
 }
+.custom_col{
+    padding: 0;
+}
+.custom_row{
+    margin: 0;
+}
 pre{
-  background-color: #1f1d1c;
-  color: #4CAF50;
+    background: #2e2a58;
+    color: #fbfffb;
+    font-size: 14px;
+    font-weight: 700;
 }
 b{
-  color: #cc99cd;
+  color: #47dcdc !important;
 }
 
 .wapperManagerView{
@@ -199,7 +206,6 @@ b{
 
 .text-aria img{
     width: 100%;
-    height: 420px;
 }
 .text-aria{
     color: #000;
@@ -208,7 +214,60 @@ b{
     line-height: 2;
 
 }
-
+.view_pa{
+    max-width: 980px;
+    margin:auto;
+    max-width: 220px;
+}
+.meau_baner{
+    display: inline-block;
+    height: 63px;
+   
+    ul{
+        li{
+            float:left;
+            list-style: none;
+            font-style: 25px;
+            text-transform: uppercase;
+            padding: 20px;
+            font-weight: 400;
+            a{
+                color:#000;
+                text-decoration: none;
+            }
+        }
+    }
+}
+.css{
+    display: none;
+}
+.js{
+    display: none;
+}
+.html{
+    display: none;
+}
+.linux{
+    display: none;
+}
+.colorHtml{
+    color:#47dcdc !important;
+}
+.colorCss{
+    color:#47dcdc !important;
+}
+.colorJs{
+    color:#47dcdc !important;
+}
+.colorLinux{
+    color:#47dcdc !important;
+}
+.nav_mobi{
+    display: none;
+}
+.meau_mobie{
+    display: none;
+}
 @media (max-width: 992px) { 
 	.postMeau{
 		
@@ -233,6 +292,50 @@ b{
     .load-wrapp{
       left: 24% !important;
     }
+    .meau_mobie{
+        display: block;
+        width: 100%;
+        height: 50px;
+        padding: 7px 22px;
+        border-bottom: 1px solid rgba(0,0,0,.07);
+        background: #fff;
+        svg{
+            color: #000;
+        }
+        .nav_mobi{
+            display: block;
+            width: 260px;
+            height: 100vh;
+            left: -265px;
+            top: 0;
+            background: #fff;
+            position: fixed;
+            transition: 0.5s;
+            padding: 7px 15px;
+            ul{
+                padding: 0;
+                li{
+                    list-style: none;
+                    font-style: 25px;
+                    text-transform: uppercase;
+                    padding: 15px 20px;
+                    font-weight: 400;
+                    a{
+                        color:#000;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+        }
+        .onMeau{
+            left: 7px;
+        }
+    }
+ }
+ .disMeau{
+    position: fixed;
+    opacity:0.5;
  }                           
 @media (max-width: 560px) { 
 	.postMeau{
@@ -255,7 +358,6 @@ b{
       top: 270px;
 	}
     .text-aria img{
-        height: 306px;
     }
     .blogDatePost{
         left: 62px;
@@ -263,6 +365,13 @@ b{
     .text-aria p {
         padding: 40px 25px 50px;
     }
+    .meau_baner{
+        display: none;
+    }
+    .view_pa {
+        max-width: 251px;
+    }
+
 	
 }
 
@@ -322,7 +431,7 @@ b{
 .load-wrapp{
   position: absolute;
   left: 45%;
-  top: 50%;
+  top: 43%;
   font-family: 'EB Garamond', serif;
 }
 
@@ -386,15 +495,15 @@ b{
 
 .l-1 {animation-delay: .48s; color:#865fd8;}
 .l-2 {animation-delay: .6s; color:#25ccc3;}
-.l-3 {animation-delay: .72s; color:#fff;}
+.l-3 {animation-delay: .72s; color:#000;}
 .l-4 {animation-delay: .84s; color:#865fd8;}
-.l-5 {animation-delay: .96s; color:#fff;}
+.l-5 {animation-delay: .96s; color:#000;}
 .l-6 {animation-delay: 1.08s; color:#ffd522;}
 .l-7 {animation-delay: 1.2s; color:#865fd8;}
 .l-8 {animation-delay: 1.32s; color:#07a1e5;}
-.l-9 {animation-delay: 1.44s; color:#fff;}
-.l-10 {animation-delay: 1.56s; color:#fff;}
-.l-11 {animation-delay: 1.68s; color:#fff;}
+.l-9 {animation-delay: 1.44s; color:#000;}
+.l-10 {animation-delay: 1.56s; color:#000;}
+.l-11 {animation-delay: 1.68s; color:#000;}
 
 
 @keyframes loadingF {

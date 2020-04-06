@@ -1,5 +1,6 @@
 import React from 'react';
 import callApi from './../../utils/apicaller';
+import Loading from '../.././Loading/Loading';
 
     class ViewPage extends React.Component {
         constructor(props){
@@ -32,35 +33,22 @@ import callApi from './../../utils/apicaller';
         }
         
         render(){
-            var ab = <div class="load-wrapp">
-                        <div class="load-6">
-                            <div class="letter-holder">
-                                <div class="l-1 letter">E</div>
-                                <div class="l-2 letter">N</div>
-                                <div class="l-3 letter">N</div>
-                                <div class="l-4 letter">I</div>
-                                <div class="l-5 letter">S</div>
-                                <div class="l-6 letter">Z</div>
-                                <div class="l-7 letter">E</div>
-                                <div class="l-8 letter">U</div>
-                                <div class="l-9 letter">.</div>
-                                <div class="l-10 letter">.</div>
-                                <div class="l-11 letter">.</div>
-                            </div>
-                        </div>
-                    </div>
    
 
             const {posts, data} = this.state
-
         
             setInterval(() => {
                  this.setState({ loading12: "loading12" });
              }, 1000);
             return(
                 <div>
+                    <title>{posts.name}</title>
+                    <meta
+                      name="description"
+                      content={posts.name}
+                    />
                     <div className="">
-                        {this.state.loading12 === "loading12" ? "" : ab}
+                        {this.state.loading12 === "loading12" ? "" : <Loading />}
                     </div>
                     <div className={` baner-view ${this.state.loading12}`}>
 

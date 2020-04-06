@@ -3,6 +3,7 @@ import '../public/scss/style.css';
 import Banner from '../../Components/header/Banner';
 import callApi from './../../utils/apicaller';
 
+
 class HomePage extends React.Component{
     constructor(props){
         super(props);
@@ -25,6 +26,11 @@ class HomePage extends React.Component{
     render(){
         return(
                 <div>
+                    <title>enniszeu</title>
+                    <meta
+                      name="description"
+                      content="Web site created using enniszeu"
+                    />
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">

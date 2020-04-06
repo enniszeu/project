@@ -5,9 +5,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import Loading from '../.././Loading/Loading';
 import {
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
+const axios = require('axios');
 
 
 
@@ -22,16 +25,23 @@ class ManagerPage extends React.Component{
 	            posts : [],
 	            sivba:"",
 	            loading12:"",
-	            showdelete:true
+	            showdelete:true,
+	            isTrueLogin:false
 	        }
 	    }
 
+
 	componentDidMount(){
-		callApi('manager', 'GET', null).then(res =>{
+		 callApi('manager', 'GET', null).then(res =>{
 			this.setState({
 				posts : res.data
 			})
 		})
+		const cookie = document.cookie
+		 if(cookie === "0fe8cf3262d72131ec5d304cd3d8190b"){
+		 	this.setState({isTrueLogin : true})
+		 }
+
 	}
 
 	onDelete = (id) =>{
@@ -79,73 +89,58 @@ class ManagerPage extends React.Component{
 
     render(){
 
-    	var {posts, sivba, html, loading12, meau, meauAdd} = this.state
-    	var ab = <div class="load-wrapp">
-                        <div class="load-6">
-                            <div class="letter-holder">
-                                <div class="l-1 letter">E</div>
-                                <div class="l-2 letter">N</div>
-                                <div class="l-3 letter">N</div>
-                                <div class="l-4 letter">I</div>
-                                <div class="l-5 letter">S</div>
-                                <div class="l-6 letter">Z</div>
-                                <div class="l-7 letter">E</div>
-                                <div class="l-8 letter">U</div>
-                                <div class="l-9 letter">.</div>
-                                <div class="l-10 letter">.</div>
-                                <div class="l-11 letter">.</div>
-                            </div>
-                        </div>
-                    </div>
+    	var {posts, sivba, html, loading12, meau, meauAdd, isTrueLogin} = this.state
+        var content = <div>
+		        		<div className="">
+		                    {this.state.loading12 === "loading12" ? "" : <Loading />}
+		                </div>
+			        	<div className={` wapperManagerActive ${loading12}`}>
+			           		<div className={`side-nav ${sivba}`}>
+		                        <div className="logo">
+		                            <Link to="/manager">
+		                                <i className="fab fa-airbnb fa-2x"></i>
+		                            </Link>
+		                        </div>
+		                        <ContactManager />
+		                    </div>
+							<div className="conten-mana meauAdd" >
+								<div className="nav-title">
+									<div className={`meau-click ${meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
+										<MenuIcon />
+									</div>
+									<div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
+										<CloseIcon />
+									</div>
+									<div className="admin">
+										<img src={this.props.picture} />
+									</div>
+									<h3>Manager Post</h3>
+
+								</div>
+								<table className="table table-dark">
+								  <thead>
+								    <tr>
+								      <th scope="col">Stt</th>
+														      <th scope="col">Bài Đăng</th>
+								      <th scope="col" >Chủ Đề</th>
+								      <th scope="col">
+								      	Chỉnh Sữa
+								      </th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    {this.showtable(posts)}
+								  </tbody>
+								</table>
+								</div>
+							</div>
+			           </div>
+			var notContent = <div style={{color:"#fff"}}><h3>Bạn không có quyền truy cập</h3></div>
     	setInterval(() => {
 	         this.setState({ loading12: "loading12" });
 	     }, 1000);
         return(
-        	<div>
-        		<div className="">
-                    {this.state.loading12 === "loading12" ? "" : ab}
-                </div>
-	        	<div className={` wapperManagerActive ${loading12}`}>
-	           		<div className={`side-nav ${sivba}`}>
-                        <div className="logo">
-                            <Link to="/manager">
-                                <i className="fab fa-airbnb fa-2x"></i>
-                            </Link>
-                        </div>
-                        <ContactManager />
-                    </div>
-					<div className="conten-mana meauAdd" >
-						<div className="nav-title">
-							<div className={`meau-click ${meau}`} onClick={this.meau} >{/*onclick="meau()"*/}
-								<MenuIcon />
-							</div>
-							<div className={`close ${this.state.meauAdd}`} onClick={this.close} >{/*onclick="closes()"*/}
-								<CloseIcon />
-							</div>
-							<div className="admin">
-								<img src={this.props.picture} />
-							</div>
-							<h3>Manager Post</h3>
-
-						</div>
-						<table className="table table-dark">
-						  <thead>
-						    <tr>
-						      <th scope="col">Stt</th>
-												      <th scope="col">Post</th>
-						      <th scope="col" >Theme</th>
-						      <th scope="col">
-						      	mansa
-						      </th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						    {this.showtable(posts)}
-						  </tbody>
-						</table>
-						</div>
-					</div>
-	           </div>
+        	<div>{isTrueLogin === true ? content : notContent}</div>
         )
     }
 

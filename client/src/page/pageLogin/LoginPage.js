@@ -8,6 +8,10 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import Loading from '../.././Loading/Loading';
+import md5 from 'md5';
 
 import {
   Link
@@ -18,18 +22,9 @@ class LoginPage extends React.Component{
             super(props);
 
             this.state = {
-                isLoggedIn:false,
-                userID:"",
-                name:"",
                 email:'',
-                emailDb:'',
                 password:"",
-                passwordDb:"",
-                picture:"",
-                loading12:"",
-                showOn:null, 
-                security:null
-                
+                isTrueLogin: false
             }
 
             this.onChangeEmail = this.onChangeEmail.bind(this);           
@@ -38,36 +33,6 @@ class LoginPage extends React.Component{
 
         }
 
-        componentDidMount(){
-            callApi('manager', 'GET', null).then(res =>{
-                this.setState({
-                    emailDb : res.data[0].email,
-                    passwordDb:res.data[0].password,
-                    
-                })
-
-                
-            })
-        }
-
-    responseFacebook = (response) =>{
-        console.log(response)
-        this.setState({
-            isLoggedIn:true,
-            userID:response.userID,
-            name:response.name,
-            email:response.email,
-            picture:response.picture.data.url
-        })
-    }
-    onSuccess = (response) =>{
-        this.setState({
-            isLoggedIn:true,
-        })
-    }
-    onFailure = (response) =>{
-        console.error(response)
-    }
 
     onChangeEmail(e){
         const email = e.target.value;
@@ -82,134 +47,83 @@ class LoginPage extends React.Component{
             password:password
         })
     }
+
+
     onSubmit(e){
-        e.preventDefault()
-        const {email, password, emailDb, passwordDb,security} = this.state
-        
-
-        if(email === emailDb && password === passwordDb){
-            this.setState({
-                showOn:<div>
-                            <Redirect to="manager" />
-                        </div>,
-                
-            })
-           
-        }else{
-         
+        e.preventDefault();
+        var {email, password} = this.state;
+        document.cookie = `${md5(email)}`
+        document.cookie = `${md5(password)}`
+        var cookie = document.cookie
+        if(cookie === "0fe8cf3262d72131ec5d304cd3d8190b"){
+            this.setState({isTrueLogin : true})
         }
-
-
+        // this.setState({redirect : 200})
+        // var username = getCookie("username");
+  
     }
 
-   
+
+
+
+
 
 
     render(){
-            
-          
-        let fbContent;
-
-        if(this.state.isLoggedIn){
-            fbContent = (
-                <div>
-                    <Redirect to="manager" />
-                </div>
-                )
-        } else{
-            setInterval(() => {
-                 this.setState({ loading12: "loading12" });
-             }, 1000);
-            var ab = <div className="loading-custom loading">
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                      <div className='loading__square'></div>
-                     </div>
-            fbContent =(
-                    <div>
-                        <Redirect to="login" />
-                    </div>
-            )
-        }
-
-
+        setInterval(() => {
+             this.setState({ loading12: "loading12" });
+         }, 1000);
         return(
             <div>
-                
-
-                {fbContent}
-                {this.state.showOn}
                 <div className="">
-                    {this.state.loading12 === "loading12" ? "" : ab}
+                    {this.state.loading12 === "loading12" ? "" : <Loading />}
                 </div>
-                <div className={`container-fluid container-fluid-css ${this.state.loading12}`}>
-                    <div className="row ">
+                {this.state.isTrueLogin === true ? <Redirect to='/manager'  /> : ""}
+                <div className={`container-fluid container-fluid-css ${this.state.loading12}`}  style={{background:"#fff", position:"fixed", height:"100vh"}}>
+                    <div className="row header">
                         <div className="col-12 col-sm-12 col-lg-12 col-xl-12">
-                      
-                            <div className="row header">
-                                <div className="col-12 col-sm-12 col-lg-6 col-xl-6">
+                            <div className="login-left">
+                                <div className="main_banner_e">
+                                    <div className="banner_e"></div>
+                                </div>
 
-                                    <div className="login-left">
-                                        <p>Sign into your account</p>
+                                <form onSubmit={this.onSubmit} className="formLogin">
+                                    <div className="input-login">
+                                        <div className="icone_user">
+                                        <AccountCircleIcon />
+                                        <input 
+                                               type="email"
+                                               name="email"
+                                               placeholder="Username or email"
+                                               onChange={this.onChangeEmail}
+                                                />
+                                        </div>
                                         
-                                        <div className="loginResend">
-                                            <Link to="" className="border-left-css" >Login</Link>
-                                            <Link to="" >Resing</Link>
-                                        </div>
-                                        <form onSubmit={this.onSubmit} className="formLogin">
-                                            <div className="input-login">
-                                                <input placeholder="Usernam" 
-                                                       type="text"
-                                                       onChange={this.onChangeEmail}
-                                                        />
-                                                <br/>
-                                                <input placeholder="Password" 
-                                                       type="password"
-                                                       onChange={this.onChangePass}
-                                                        />
-                                            </div>
-                                            <div className="button-login">
-                                                <button type="submit" className="btn btn-primary btn-lg">Login</button>
-                                                <span>forget password</span>
-                                            </div>
-                                        </form>
-
-                                    </div>
-
-                                </div>
-                                <div className="col-12 col-sm-12 col-lg-6 col-xl-6">
-                                    <div className="login-right">
-                                        <div className="box-right">
-                                            <h2>enniszeu</h2>
-                                            <h4>welcome to have</h4>
-                                            <ul>
-                                                <li className="fb"><FacebookIcon />
-                                                    <FacebookLogin
-                                                        appId="629141364503084"
-                                                        autoLoad={true}
-                                                        fields="name,email,picture"
-                                                        onClick={this.componentClicked}
-                                                        callback={this.responseFacebook} />
-                                                </li>
-                                                <li className="tw"><Link to="login"> <TwitterIcon/></Link></li>
-                                                <li className="gg"><Link to="login"> <GTranslateIcon/></Link></li>
-                                                <li className="in"> <GitHubIcon/>
-                                                    <GitHubLogin
-                                                     clientId="94055a5f013487da24c6"
-                                                      redirectUri="https://ennisszeu.web.app/login" 
-                                                     onSuccess={this.onSuccess}
-                                                     onFailure={this.onFailure}
-                                                     />
-                                               </li>
-                                            </ul>
-
+                                        <br/>
+                                        <div className="icone_user">
+                                        <LockOpenIcon />
+                                        <input placeholder="Password" 
+                                               type="password"
+                                               name="password"
+                                               onChange={this.onChangePass}
+                                                />
                                         </div>
                                     </div>
-                                </div>
+                                    <div className="button-login">
+                                        <button type="submit" className="btn btn-primary">Login</button>
+                                        <span>forget password</span>
+                                    </div>
+                                    <div className="ul_">
+                                        <ul>
+                                            <li className="fb"><FacebookIcon />
+                                            </li>
+                                            <li className="tw"><Link to="login"> <TwitterIcon/></Link></li>
+                                            <li className="gg"><Link to="login"> <GTranslateIcon/></Link></li>
+                                            <li className="in"> <GitHubIcon/>
+                                           </li>
+                                        </ul>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
