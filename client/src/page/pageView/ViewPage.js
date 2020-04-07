@@ -43,10 +43,7 @@ import Loading from '../.././Loading/Loading';
             return(
                 <div>
                     <title>{posts.name}</title>
-                    <meta
-                      name="description"
-                      content={posts.name}
-                    />
+                    
                     <div className="">
                         {this.state.loading12 === "loading12" ? "" : <Loading />}
                     </div>

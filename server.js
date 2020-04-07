@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 var cors = require('cors');
 var cookieParser = require('cookie-parser')
+const fileUpload = require("express-fileupload")
  
 
 app.use(cookieParser())
@@ -18,6 +19,8 @@ mongoose.connect(uri ,{useUnifiedTopology: true, useNewUrlParser: true, useCreat
 
 app.use(express.static('puclic'));
 app.use(cors())
+
+app.use(fileUpload());
 
 app.use(bodyParser.json({limit: '10000kb'}));
 
@@ -53,6 +56,36 @@ app.get('/manager', function(req, res, next){
 
 //create
  
+app.post('/upload', function(req, res){
+    // const name = req.body.name;
+    // const imgeFile = req.body.imgeFile;
+    // const conten = req.body.conten;
+    // const textAria = req.body.textAria;
+    // const date = req.body.date;
+    // const url = req.body.url;
+    // const imageName = req.body.imageName;
+
+    // const newUser = new Post({name,conten,date,textAria,url,imageName})
+    // console.log(newUser)
+    // newUser.save()
+    //     .then(() => res.json('User add'))
+    //     .catch(err => res.status(400).json('Err: ' + err));
+    const file = req.files.file
+
+    file.mv(`${__dirname}/client/public/upload/${file.name}`)
+
+    const imageName = file.name
+    const filePath= `/upload/${file.name}`
+
+    const newUser = new Post({filePath, imageName})
+    console.log(newUser)
+
+    newUser.save()
+        .then(() => res.json('User add'))
+        .catch(err => res.status(400).json('Err: ' + err));
+})
+
+
 
 app.post('/create', function(req, res){
     

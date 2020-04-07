@@ -111,27 +111,22 @@ import {
         }
 
         onChangeImage(e){
-          let file = e.target.files[0];
-          if(file === undefined){
+          // let file = e.target.files[0];
+          // if(file === undefined){
             
-          }else{
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                this.setState({
-                  file: file,
-                  valueInput:file.name,
-                  imageName: reader.result
-                })
-              }
-              reader.readAsDataURL(file)
-          }
-          // if (e.target.files && e.target.files[0]) {
-          //     let img = e.target.files[0];
-          //     this.setState({
-          //       imageName: URL.createObjectURL(img)
-          //     });
-          //     console.log(URL.createObjectURL(img))
-          //   }
+          // }else{
+          //   let reader = new FileReader();
+          //   reader.onloadend = () => {
+          //       this.setState({
+          //         file: file,
+          //         valueInput:file.name,
+          //         imageName: reader.result
+          //       })
+          //     }
+          //     reader.readAsDataURL(file)
+          // }
+          this.setState({file : e.target.files[0], imageName: e.target.files[0].name})       
+
         }
 
           onDrop=(pictureFiles, pictureDataURLs)=> {
@@ -157,9 +152,13 @@ import {
         // }
 
         callApiFunc = (body) => {
-          callApi('create', 'POST', body).then(res =>{
+            const formData = new FormData();
+            formData.append("file", this.state.file)
+
+          callApi('upload', 'POST', formData).then(res =>{
              // history.goBack()
-             this.setState({redirct : res.status})
+             // this.setState({redirct : res.status})
+             console.log(res.data)
           }) 
         }
         onSubmit(e){
@@ -167,11 +166,13 @@ import {
             var {name,conten,url,textAria,imageName, date, file, err} = this.state;
             var {history} = this.props;
             
+
+
             /*if(!file){
               this.setState({err:"Plee Choose Image"})
               return true;
             }*/
-            {this.thenGetDownloadUrl()}
+             {this.thenGetDownloadUrl()}
             this.setState({start:200})   
 
       

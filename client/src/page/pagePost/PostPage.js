@@ -34,7 +34,6 @@ import {
                     posts : res.data,
                     status: res.status
                 })
-                console.log(res.data)
             })
         }
         home=()=>{

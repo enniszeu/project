@@ -36,6 +36,7 @@ class ManagerPage extends React.Component{
 			this.setState({
 				posts : res.data
 			})
+			console.log(res.data)
 		})
 		const cookie = document.cookie
 		 if(cookie === "0fe8cf3262d72131ec5d304cd3d8190b"){
@@ -152,7 +153,7 @@ class ManagerPage extends React.Component{
                     <tr key={index}>
 				      <th scope="row">{index + 1}</th>
 				      
-				      <td><img src={post.imageName} width="50" height="50" /> {post.name}</td>
+				      <td><img src={post.filePath} width="50" height="50" /> {post.name}</td>
 				      <td className="none-td">{post.conten}</td>
 
 				      <td className="showdelete"><button type="button" 

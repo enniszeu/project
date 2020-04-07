@@ -10,7 +10,9 @@ var postSchema = new mongoose.Schema({
 	url:String,
 	textAria:String, 
 	imageName:String,
-	date:String
+	date:String,
+	fileName:String,
+	filePath:String
 });
 
 var Post = mongoose.model('Post', postSchema, 'post');
