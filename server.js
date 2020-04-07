@@ -8,9 +8,12 @@ require('dotenv').config();
 var cors = require('cors');
 var cookieParser = require('cookie-parser')
 const fileUpload = require("express-fileupload")
- 
+const pug = require("pug");
 
 app.use(cookieParser())
+
+app.set('view engine', 'pug');
+app.set('views', './views');
 
 
 const uri = process.env.MONGO_URL
@@ -55,6 +58,9 @@ app.get('/manager', function(req, res, next){
 });
 
 //create
+app.get('/create', function(req, res, next){
+    res.render('create');
+});
  
 app.post('/upload', function(req, res){
     // const name = req.body.name;
@@ -74,10 +80,10 @@ app.post('/upload', function(req, res){
 
     file.mv(`${__dirname}/client/public/upload/${file.name}`)
 
-    const imageName = file.name
+    const fileName = file.name
     const filePath= `/upload/${file.name}`
 
-    const newUser = new Post({filePath, imageName})
+    const newUser = new Post({filePath, fileName})
     console.log(newUser)
 
     newUser.save()
