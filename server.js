@@ -8,19 +8,17 @@ require('dotenv').config();
 var cors = require('cors');
 var cookieParser = require('cookie-parser')
 const fileUpload = require("express-fileupload")
-const pug = require("pug");
+const path = require("path")
+ 
 
 app.use(cookieParser())
-
-app.set('view engine', 'pug');
-app.set('views', './views');
 
 
 const uri = process.env.MONGO_URL
 mongoose.connect(uri ,{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 
 
-app.use(express.static('puclic'));
+
 app.use(cors())
 
 app.use(fileUpload());
@@ -37,6 +35,12 @@ var routerManager = require('./router/manager.router');
 // app.use('/login', routerAuth);
 // app.use('/manager', routerManager);
 
+// if(process.evn.NODE_ENV === "production"){
+    app.use(express.static("client/build"));
+    app.get("*", (req, res)=>{
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+    })
+// }
 
 
 app.get('/', function(req, res){
@@ -58,9 +62,6 @@ app.get('/manager', function(req, res, next){
 });
 
 //create
-app.get('/create', function(req, res, next){
-    res.render('create');
-});
  
 app.post('/upload', function(req, res){
     // const name = req.body.name;
@@ -84,7 +85,7 @@ app.post('/upload', function(req, res){
     const filePath= `/upload/${file.name}`
 
     const newUser = new Post({filePath, fileName})
-    console.log(newUser)
+    console.log(filePath)
 
     newUser.save()
         .then(() => res.json('User add'))
