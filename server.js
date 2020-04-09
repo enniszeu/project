@@ -21,7 +21,7 @@ mongoose.connect(uri ,{useUnifiedTopology: true, useNewUrlParser: true, useCreat
 app.use(express.static('puclic'));
 app.use(cors())
 
-app.use(fileUpload());
+// app.use(fileUpload());
 
 app.use(bodyParser.json({limit: '10000kb'}));
 
