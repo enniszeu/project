@@ -10,7 +10,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-const axios = require('axios');
+import axios from 'axios';
 
 
 
@@ -38,6 +38,7 @@ class ManagerPage extends React.Component{
 			})
 			console.log(res.data)
 		})
+
 		const cookie = document.cookie
 		 if(cookie === "0fe8cf3262d72131ec5d304cd3d8190b"){
 		 	this.setState({isTrueLogin : true})
@@ -130,7 +131,7 @@ class ManagerPage extends React.Component{
 								    </tr>
 								  </thead>
 								  <tbody>
-								    {this.showtable(posts)}
+								   {this.showtable(posts)}
 								  </tbody>
 								</table>
 								</div>

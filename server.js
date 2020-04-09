@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 var cors = require('cors');
 var cookieParser = require('cookie-parser')
-const fileUpload = require("express-fileupload")
+// const fileUpload = require("express-fileupload")
 const path = require("path")
  
 
@@ -18,7 +18,7 @@ const uri = process.env.MONGO_URL
 mongoose.connect(uri ,{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 
 
-
+app.use(express.static('puclic'));
 app.use(cors())
 
 app.use(fileUpload());
@@ -32,24 +32,7 @@ var routerAuth = require('./router/auth.router');
 var routerManager = require('./router/manager.router');
 
 
-// app.use('/login', routerAuth);
-// app.use('/manager', routerManager);
-
-// if(process.evn.NODE_ENV === "production"){
-    app.use(express.static("client/build"));
-    app.get("*", (req, res)=>{
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-    })
-// }
-
-
 app.get('/', function(req, res){
-    // var page = parseInt(req.query.page) || 1;
-    // var perPage = 3;
-
-    // var start = (page - 1) * perPage;
-    // var end = page * perPage;
-    
     Post.find()
         .then(posts => res.json(posts))
         .catch(err => res.status(400).json('Err :' + err))
@@ -63,34 +46,22 @@ app.get('/manager', function(req, res, next){
 
 //create
  
-app.post('/upload', function(req, res){
-    // const name = req.body.name;
-    // const imgeFile = req.body.imgeFile;
-    // const conten = req.body.conten;
-    // const textAria = req.body.textAria;
-    // const date = req.body.date;
-    // const url = req.body.url;
-    // const imageName = req.body.imageName;
+// app.post('/upload', function(req, res){
 
-    // const newUser = new Post({name,conten,date,textAria,url,imageName})
-    // console.log(newUser)
-    // newUser.save()
-    //     .then(() => res.json('User add'))
-    //     .catch(err => res.status(400).json('Err: ' + err));
-    const file = req.files.file
+//     const file = req.files.file
 
-    file.mv(`${__dirname}/client/public/upload/${file.name}`)
+//     file.mv(`${__dirname}/client/public/upload/${file.name}`)
 
-    const fileName = file.name
-    const filePath= `/upload/${file.name}`
+//     const fileName = file.name
+//     const filePath= `/upload/${file.name}`
 
-    const newUser = new Post({filePath, fileName})
-    console.log(filePath)
+//     const newUser = new Post({filePath, fileName})
+//     console.log(filePath)
 
-    newUser.save()
-        .then(() => res.json('User add'))
-        .catch(err => res.status(400).json('Err: ' + err));
-})
+//     newUser.save()
+//         .then(() => res.json('User add'))
+//         .catch(err => res.status(400).json('Err: ' + err));
+// })
 
 
 
@@ -136,9 +107,6 @@ app.post('/upload/:id', function(req, res){
         })
         .catch(err => res.status(400).json('Err: ' + err));
 })
-
-
-
 
 
 app.listen(port, function(){

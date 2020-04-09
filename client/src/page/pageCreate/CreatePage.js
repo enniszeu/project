@@ -13,14 +13,12 @@ import  { Redirect } from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import Loading from '../.././Loading/Loading';
-import ImageUploader from "react-images-upload";
 import {
   Link 
 } from "react-router-dom";
 
 
     class CreatePage extends React.Component {
-
     	constructor(props){
 	        super(props);
 
@@ -89,43 +87,22 @@ import {
                 textAria: e.target.value
             });
         }
-        // key=(e)=>{
-        //     var {image1} = this.state;
-        //     var eKey = e.key;
-        //     var value = e.target.value;
-        //     var enter = this.addEnter();
-        //     if(eKey === "`"){
-        //         var textAria = e.target.value += enter;
-        //             this.setState({
-        //             textAria: textAria
-        //         });
-        //     }
-        //     console.log(eKey)
-            
-            
-        // }
-
-        addEnter=()=>{
-            let result = "";
-            return result += `<img src="${this.state.image1}" />`;
-        }
 
         onChangeImage(e){
-          // let file = e.target.files[0];
-          // if(file === undefined){
+          let file = e.target.files[0];
+          if(file === undefined){
             
-          // }else{
-          //   let reader = new FileReader();
-          //   reader.onloadend = () => {
-          //       this.setState({
-          //         file: file,
-          //         valueInput:file.name,
-          //         imageName: reader.result
-          //       })
-          //     }
-          //     reader.readAsDataURL(file)
-          // }
-          this.setState({file : e.target.files[0], imageName: e.target.files[0].name})       
+          }else{
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                this.setState({
+                  file: file,
+                  valueInput:file.name,
+                  imageName: reader.result
+                })
+              }
+              reader.readAsDataURL(file)
+          }
 
         }
 
@@ -136,28 +113,10 @@ import {
             });
           }
 
-        // onChangeImageAdd=(e)=>{
-        //   let file = e.target.files[0];
-        //   if(file === undefined){
-            
-        //   }else{
-        //     let reader = new FileReader();
-        //     reader.onloadend = () => {
-        //         this.setState({
-        //           image1: reader.result
-        //         })
-        //       }
-        //       reader.readAsDataURL(file)
-        //   }
-        // }
-
         callApiFunc = (body) => {
-            const formData = new FormData();
-            formData.append("file", this.state.file)
-
-          callApi('upload', 'POST', formData).then(res =>{
+          callApi('create', 'POST', body).then(res =>{
              // history.goBack()
-             // this.setState({redirct : res.status})
+             this.setState({redirct : res.status})
              console.log(res.data)
           }) 
         }
@@ -166,14 +125,12 @@ import {
             var {name,conten,url,textAria,imageName, date, file, err} = this.state;
             var {history} = this.props;
             
-
-
-            /*if(!file){
+            if(!file){
               this.setState({err:"Plee Choose Image"})
               return true;
-            }*/
-             {this.thenGetDownloadUrl()}
-            this.setState({start:200})   
+            }
+              {this.thenGetDownloadUrl()}
+              this.setState({start:200})   
 
       
         }
@@ -314,18 +271,6 @@ import {
                                                 <br/>
                                             </div>
                                         </div>
-                                        <div style={{ marginRight: "15px" }}>
-                                            <ImageUploader
-                                              withIcon={false}
-                                              withPreview={true}
-                                              label=""
-                                              buttonText="Upload Images"
-                                              onChange={this.onDrop}
-                                              imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
-                                              maxFileSize={1048576}
-                                              fileSizeError=" file size is too big"
-                                            />
-                                          </div>
                                         <div className="title-input">
                                             <div className="form-group">
                                                 <p>Text:</p>
